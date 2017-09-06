@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>Quick Look-Up</title>
+
+	<link href="style.css" type="text/css" rel="stylesheet">
+
+	<!-- Monofonto font for header -->
+	<link href = "https://www.fonts.com/font/typodermic/monofonto?QueryFontType=Web&src=GoogleWebFonts" type="text/css" rel = stylesheet>
+
+	<!-- Source Sans Pro font for body -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+	<div class="navigation">
+    <center>
+      <a href="index.html">Home</a> 
+      <a href="search.html">Search</a> 
+      <a href="/list">Make a List</a>
+      <a href="/settings">Settings</a>
+      <a href="help">Help</a>
+    </center>
+	</div>   
+</head>
+
+<body>
+    
+	<div class="title">
+	  <h2>Search</h2>
+	</div>
+	  
+  <div class="text">
+    	  <p>Results will display the top 25 voters. If you are looking for someone else please use more specific search terms. </p>
+		<form action = "search_results.php" method = "post">
+    <p><strong>Choose Search Type:</strong><br />
+      <select name = "searchtype" value = "LastName"/>
+      <option value = "Address">Address</option>
+      <option value = "Name">Name</option>
+      <p><strong>LastName</strong><br />
+      <input name = "searchterm" type = "text" size = 40></p>
+      <select name = "searchtype2">
+      </select>
+      <option value = "CountyID">County Voter ID</option>
+      </p>
+      <p><input type="submit" name="submit" value="Search"></p>
+    </form>
+  </div>
+
+</body>
+
+</html>
