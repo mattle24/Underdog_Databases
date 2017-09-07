@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+body, html {
+    height: 100%;
+}
+
 button {
     background-color: rgb(15,200,60);
     color: white;
@@ -10,7 +14,7 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 30%;
+    width: 200px;
     font-size: 18px;
 }
 
@@ -60,8 +64,12 @@ tr {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-/*  background-attachment: fixed;
-*/  padding: 100px 0 100px 0;
+  height: 70%;
+}
+
+#headerOnly {
+  background-attachment: fixed;
+  height: 100%;
 }
 
 
@@ -81,7 +89,7 @@ tr {
 
 .navItems {
   margin-right: 0;
-  width: 10%;
+  display: inline;
 }
 
 .navigation a:hover, .nagivation a:active {
@@ -91,7 +99,6 @@ tr {
   border-width: 2px;
   border-radius: 10px;
   color: white;
-  padding: 0px, 12px;
 }
 
 .navigation a,  a:visited{
@@ -103,17 +110,16 @@ tr {
   text-decoration: none;
 }
 
-.text, .form, .results {
+.signin {
+  padding: 30px;
+  margin: auto;
+  width: 600px;
   background-color: white;
-  margin: 0 auto 0 auto;
-  width: 80%;
-  max-width: 600px;
-  padding: 10px;
+  display: block;
 }
 
-.text h1, .text h2, .text h3 {
-  color: rgb(55, 55, 128);
-  /*TODO: fix so headers in text divs are blue */
+.signin button {
+  font-size: 14px;
 }
 
 #buttons {
@@ -121,31 +127,6 @@ tr {
   align-content: center;
 }
 
-#title {
-  margin: auto;
-  width: 60%;
-  display: block;
-}
-/*.title {
-  color: rgb(15,200,60);
-  display: block;
-  font-family: sans-serif;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  overflow:visible;
-  text-align: center;
-  text-transform: uppercase;
-}
-*/
-
-#title {
-  color: white;
-}
-
-
-#results {
-  margin-top:10px;
-}
 
 #QLbody {
   display: table-row-group;
@@ -170,7 +151,52 @@ tr {
   font-weight: normal;
 }
 
+#results {
+  margin-top:10px;
+}
 
+.text, .form, .results {
+  background-color: white;
+  margin: 0 auto 0 auto;
+  width: 80%;
+  max-width: 800px;
+  padding: 10px;
+}
+
+.text h1, .text h2, .text h3 {
+  color: rgb(55, 55, 128);
+  /*TODO: fix so headers in text divs are blue */
+}
+
+#title {
+  margin: auto;
+  width: 60%;
+  display: block;
+  color: white;
+  padding-top: 150px;
+}
+
+/*.title {
+  color: rgb(15,200,60);
+  display: block;
+  font-family: sans-serif;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow:visible;
+  text-align: center;
+  text-transform: uppercase;
+}
+*/
+
+#secondButton button {
+  background-color:red;
+}
+
+/* TODO - fix the hover on the second button */
+#secondButton button:hover {
+  background-color: white;
+  color:red;
+}
 
 #login {
 /*  color: white;
