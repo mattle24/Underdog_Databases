@@ -110,7 +110,9 @@ tr {
   text-decoration: none;
 }
 
+/* TODO- center signin vertically and center items within signin*/
 .signin {
+  align-items: center; 
   padding: 30px;
   margin: auto;
   width: 600px;
@@ -126,7 +128,6 @@ tr {
   width: 500px;
   align-content: center;
 }
-
 
 #QLbody {
   display: table-row-group;
@@ -176,18 +177,6 @@ tr {
   padding-top: 150px;
 }
 
-/*.title {
-  color: rgb(15,200,60);
-  display: block;
-  font-family: sans-serif;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  overflow:visible;
-  text-align: center;
-  text-transform: uppercase;
-}
-*/
-
 #secondButton button {
   background-color:red;
 }
@@ -196,18 +185,4 @@ tr {
 #secondButton button:hover {
   background-color: white;
   color:red;
-}
-
-#login {
-/*  color: white;
-  background-color: rgb(55, 55, 128);
-  border-color: rgb(0, 180, 80);
-  border-style: solid;
-  border-width: 2px;
-*/  padding: 10px 15px 10px 15px;
-  width: 50%;
-}
-
-#login a, a:hover{
-  color: rgb(0, 210, 50);
 }

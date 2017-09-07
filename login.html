@@ -31,16 +31,14 @@
 
         if (empty($username) || empty($password)) { 
         ?>
-          <center>
-            <form action = 'login.php' method = 'post' id = 'login'>
-              <label>Email</label>
-              <input type = 'text' name = 'username'required> <br><br>
-              <label>Password</label>
-              <input type = 'password' name = 'password'> <br> <br>
-              <button type = 'submit' value = 'Submit' formid = 'login'>Login</button>
-            </form>
-            <button id = 'secondButton'>New Account</button>
-          </center>
+          <form action = 'login.php' method = 'post' id = 'login'>
+            <label>Email</label>
+            <input type = 'text' name = 'username'required> <br><br>
+            <label>Password</label>
+            <input type = 'password' name = 'password'> <br> <br>
+            <button type = 'submit' value = 'Submit' formid = 'login'>Login</button>
+          </form>
+          <button id = 'secondButton'>New Account</button>
          <?php
         } else {
           if ($username === 'smohlke' && $password === 'mine') {
