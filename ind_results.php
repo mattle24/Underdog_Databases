@@ -5,10 +5,7 @@
 
   <link href="styles/style.css" type="text/css" rel="stylesheet">
 
-  <!-- Monofonto font for header -->
-  <link href = "https://www.fonts.com/font/typodermic/monofonto?QueryFontType=Web&src=GoogleWebFonts" type="text/css" rel = stylesheet>
-
-  <!-- Source Sans Pro font for body -->
+  <!-- Source Sans Pro font -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
   <div class="navigation">

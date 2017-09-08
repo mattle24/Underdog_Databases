@@ -124,6 +124,11 @@ tr {
   font-size: 14px;
 }
 
+.signin button:hover {
+  color: white;
+  background-color: red;
+}
+
 #buttons {
   width: 500px;
   align-content: center;
@@ -166,7 +171,6 @@ tr {
 
 .text h1, .text h2, .text h3 {
   color: rgb(55, 55, 128);
-  /*TODO: fix so headers in text divs are blue */
 }
 
 #title {
@@ -175,14 +179,4 @@ tr {
   display: block;
   color: white;
   padding-top: 150px;
-}
-
-#secondButton button {
-  background-color:red;
-}
-
-/* TODO - fix the hover on the second button */
-#secondButton button:hover {
-  background-color: white;
-  color:red;
 }
