@@ -28,7 +28,6 @@
       <?php 
         $post_username = filter_input( INPUT_POST, 'username', FILTER_SANITIZE_STRING );
         $post_password = filter_input( INPUT_POST, 'password', FILTER_SANITIZE_STRING );
-
         if (empty($post_username) || empty($post_password)) { 
         ?>
           <form action = 'login.php' method = 'post' id = 'login'>
@@ -55,10 +54,8 @@
           $stmt->store_result();
           $stmt->bind_result($email, $hashpassword, $first);
           $stmt->fetch();
-          echo password_verify($post_password, $hashpassword) == TRUE;
-          # TODO: fix this. It is not matching password and has correctly
           if ($stmt->num_rows == 1 && password_verify($post_password, $hashpassword)) {
-            echo "<p>You have logged in ".$first."!</p>";
+            echo "<p>You have logged in $first!</p>";
             $_SESSION['logged_user'] = $post_username;
           }
           else {
@@ -85,7 +82,7 @@
       </div>
       <?php
       $email = $_POST['email'];
-      $passwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
+      $passwd = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
       $first = $_POST['first'];
       $last = $_POST['last'];
 
