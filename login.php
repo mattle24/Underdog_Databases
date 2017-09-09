@@ -41,11 +41,12 @@
           <button>New Account</button>
         <?php
         } else {
+          include("configs/config.php");
           $db = new mysqli(
-            '127.0.0.1', 
-            'lehman', 
-            'password', 
-            'meta'
+            DB_HOST, 
+            DB_USER, 
+            DB_PASSWORD, 
+            DB_NAME
             )or die('Failed to connect.'); 
           $query = "SELECT email, hashpassword, first FROM users WHERE email = ?;";
           $stmt = $db->prepare($query);
