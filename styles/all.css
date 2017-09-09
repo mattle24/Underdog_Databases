@@ -1,0 +1,105 @@
+/****** Begin Global Styles ******/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #0fc83c;
+    border: none;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    transition: 0.3s;
+    background-color: #ffffff;
+    color: #0fc83c;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-brand:hover {
+    transition: 0.3s;
+    background-color: #ffffff;
+    color: #0fc83c;
+}
+
+.nav-ele {
+    color: #ffffff;
+}
+
+footer {
+    margin-top: 40px;
+    background-color: #0fc83c;
+    height: 100px;
+}
+
+/****** Begin Home Page Styles ********/
+#home-banner {
+    width: 100%;
+}
+
+#home-hero-image {
+    width: 100vw;
+    height: 80vh;
+    object-fit: cover;
+    position: absolute;
+}
+
+#home-hero-wrapper {
+    position: relative;
+    top: 25vh;
+    text-align: center;
+}
+
+#home-hero-title {
+    font-size: 5em;
+    color: #ffffff;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+}
+
+#home-hero-subtitle {
+    font-size: 2.25em;
+    color: #ffffff;
+}
+
+#home-hero-buttons {
+    margin-top: 50px;
+}
+
+.cta-button {
+    font-size: 1.5em;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    color: #ffffff;
+    background-color: #0fc83c;
+}
+
+.cta-button:hover {
+    transition: 0.3s;
+    text-decoration: none;
+    color: #0fc83c;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+#home-container {
+    margin-top: 58vh;
+}
+
+.home-text-block {
+
+}
+
+.block-header {
+    font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+    color: #373780;
+}
