@@ -41,11 +41,12 @@
 	    $first = $_POST['first'];
 	    $last = $_POST['last'];
 
+	    include('configs/config.php');
 	    $db = new mysqli(
-	      '127.0.0.1', 
-	      'lehman', 
-	      'password', 
-	      'meta'
+          DB_HOST, 
+          DB_USER, 
+          DB_PASSWORD, 
+          DB_NAME
 	      )or die('Failed to connect.');       
 	    $query = "INSERT INTO users (email, hashpassword, first, last)
 	              VALUES(?, ?, ?, ?);";
