@@ -16,7 +16,7 @@ echo '
                 <div id="collapsemenu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="centered"><a href="index.php" class="nav-ele">Home</a></li>
-                        <li class="centered"><a href="about.php" class="nav-ele">Login</a></li>
+                        <li class="centered"><a href="login.php" class="nav-ele">Login</a></li>
                     </ul>
                 </div> <!-- end collapsemenu -->
             </div> <!-- end container -->

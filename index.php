@@ -12,6 +12,7 @@
     </head>
     <body>
 
+        <!-- TODO: change nav bar so elements are all to the left/ right with small padding -->
         <?php include 'includes/navbar.php' ?>
 
         <div id='home-banner'>
