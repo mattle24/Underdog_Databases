@@ -101,7 +101,7 @@ tr {
   color: white;
 }
 
-.navigation a,  a:visited{
+.navigation a,  .navigation a:visited{
   color: white;
   float: center;
   padding: 0px 16px;
@@ -127,6 +127,10 @@ tr {
 .signin button:hover {
   color: white;
   background-color: red;
+}
+
+.signin a {
+  color:black;
 }
 
 #buttons {
