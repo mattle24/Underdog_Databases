@@ -4,22 +4,16 @@
 <html>
 <head>
 	<title>New User</title>
-   <link href="styles/style.css" type="text/css" rel="stylesheet">
-
+   <title>Login</title>
     <!-- Source Sans Pro font -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href="styles/all.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
 <body>
-    <div class="navigation">
-      <div class = 'logo'>
-      <!-- logo here -->
-      </div>
-
-      <div class = 'navItems'>
-        <a href="..">Home</a> 
-      </div>
-    </div>
-
+   <?php include 'includes/navbar.php' ?>
    <div class = "header" id = 'headerOnly'>
    	<div class = 'signin'>
       <form action = 'login.php' method = 'post'>
