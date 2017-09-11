@@ -36,6 +36,7 @@
         <button type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
       </form>
 	    <?php
+	    # regex for email: ([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){3}
 	    $email = $_POST['email'];
 	    $passwd = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
 	    $first = $_POST['first'];
