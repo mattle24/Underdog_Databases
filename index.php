@@ -12,10 +12,11 @@
     </head>
     <body>
 
+        <!-- TODO: change nav bar so elements are all to the left/ right with small padding -->
         <?php include 'includes/navbar.php' ?>
 
         <div id='home-banner'>
-            <img id='home-hero-image' src='images/background.png' alt='Blue City Line Background'>
+            <img id='home-hero-image' src='images/background.png' alt='Blue Graph Background'>
             <div id='home-hero-wrapper'>
                 <div id='home-hero-title'>
                     <span>Grassroots Analytics</span>
@@ -24,8 +25,8 @@
                     <span>Bringing Big Data to Small Campaigns</span>
                 </div>
                 <div id='home-hero-buttons'>
-                    <a class='cta-button'>Sign up</a>
-                    <a class='cta-button'>Login</a>
+                    <a class='cta-button' href= 'new_campaign.php'>New Campaign</a>
+                    <a class='cta-button' href = 'new_user.php'>New User</a>
                 </div>
             </div>
         </div>
