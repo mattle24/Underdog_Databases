@@ -4,6 +4,13 @@ html, body {
     padding: 0;
 }
 
+footer {
+/*    margin-top: 40px;
+    Commented out by ML 9/22
+*/    background-color: #0fc83c;
+    height: 80px;
+}
+
 .navbar {
     margin-bottom: 0;
     background-color: #0fc83c;
@@ -35,9 +42,7 @@ html, body {
     color: #ffffff;
 }
 
-footer {
-    margin-top: 40px;
-    background-color: #0fc83c;
+.spacer {
     height: 100px;
 }
 
@@ -93,6 +98,7 @@ footer {
 
 #home-container {
     margin-top: 58vh;
+    margin-bottom: 27vh;    
 }
 
 .home-text-block {
@@ -102,4 +108,23 @@ footer {
 .block-header {
     font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
     color: #373780;
+}
+
+
+/****** Begin Login and Sign Up Page Styles ********/
+
+#my-form {
+    background: white;
+    margin: auto;
+    padding: 40px;
+    width: 450px;
+    min-width: 500px;
+}
+
+#page-header1{
+  background-image: url('../resources/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 600px;
 }
