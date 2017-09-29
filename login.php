@@ -50,6 +50,7 @@
         if ($stmt->num_rows == 1 && password_verify($post_password, $hashpassword)) {
           echo "<p>You have logged in $first!</p>";
           $_SESSION['logged_user'] = $post_username;
+          header('Location: choose_campaign.php');
       }
       else {
           echo '<br><p>You did not login successfully.</p>';

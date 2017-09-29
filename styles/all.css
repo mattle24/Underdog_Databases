@@ -128,3 +128,9 @@ footer {
   background-position: center;
   min-height: 600px;
 }
+
+@media (min-width:1025px) {
+    #page-header1 { 
+        min-height: 900px;
+    }
+}

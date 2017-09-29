@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>New User</title>
- <title>Login</title>
+<title>New User</title>
  <!-- Source Sans Pro font -->
  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
  <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
@@ -19,10 +18,10 @@
      <div id = 'my-form'>
       <form action = 'new_user.php' method = 'post'>
         <label>Email</label>
-        <input type = 'text' name = 'email' required> <br><br>
+        <input type = 'text' name = 'email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
         <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
         <label>Password</label>
-        <input type = 'password' name = 'new_password' required> <br> <br>
+        <input type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> <br> <br>
         <label>Confirm Password</label>
         <input type = 'password' name = 'confirm_password' required> <br> <br>
         <label>First</label>
@@ -32,42 +31,19 @@
         <button type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
     </form>
     <?php
-	# regex for email: ([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){3}
     $email = $_POST['email'];
-    if (isset($email) && !preg_match("([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}", $email)){
-        echo "Please enter a valid email";
-        exit();
-    }
     $passwd = $_POST['new_password'];
     $confm_passwd = $_POST['confirm_password'];
-    if (isset($passwd)) {
-        $bad = TRUE; # default init
-        if  ($passwd != $confm_passwd) {
-            echo "Passwords do not match";
-        }     
-        elseif (strlen($passwd) <= '8') {
-            echo "Your Password Must Contain At Least 8 Characters!";
-        }
-        elseif(!preg_match("#[0-9]+#",$passwd)) {
-            echo "Your Password Must Contain At Least 1 Number!";
-        }
-        elseif(!preg_match("#[A-Z]+#",$passwd)) {
-            echo "Your Password Must Contain At Least 1 Capital Letter!";
-        }
-        elseif(!preg_match("#[a-z]+#",$passwd)) {
-            echo "Your Password Must Contain At Least 1 Lowercase Letter!";
-        }
-        else {
-            $bad = FALSE;
-        }
-
-        if ($bad) {
-            exit();
-        }
-    }
-    $passwd = password_hash($passwd, PASSWORD_DEFAULT);
     $first = $_POST['first'];
     $last = $_POST['last'];
+    if (!isset($email) || !isset($passwd) || !isset($first) || !isset($last)) {
+        exit();
+    }
+    if (isset($passwd) && $passwd != $confm_passwd) {
+        echo "Passwords do not match";
+        exit();
+    }    
+    $passwd = password_hash($passwd, PASSWORD_DEFAULT);
 
     include('configs/config.php');
     $db = new mysqli(
@@ -81,8 +57,11 @@
     $stmt = $db->prepare($query);
     $stmt->bind_param('ssss', $email, $passwd, $first, $last);
     $stmt->execute();
+    header('Location: index.php');
     ?>
 </div>
 </div>
+<footer>
+</footer>
 </body>
 </html>
