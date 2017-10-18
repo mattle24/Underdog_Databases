@@ -99,6 +99,7 @@ footer {
 #home-container {
     margin-top: 58vh;
     margin-bottom: 27vh;    
+    background-color
 }
 
 .home-text-block {
@@ -109,7 +110,6 @@ footer {
     font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
     color: #373780;
 }
-
 
 /****** Begin Login and Sign Up Page Styles ********/
 
@@ -126,11 +126,23 @@ footer {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 600px;
+  min-height: 900px;
 }
 
-@media (min-width:1025px) {
-    #page-header1 { 
-        min-height: 900px;
+@media (max-height:800px) {
+    #page-header1, #make-list { 
+        min-height: 600px;
     }
+}
+
+/** Make a list **/
+#make-list-body {
+    background-color: #373780;
+}
+
+#make-list-container {
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    min-height: 900px;
 }

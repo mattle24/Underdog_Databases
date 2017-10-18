@@ -12,13 +12,15 @@
  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
 <body>
-  <?php include 'includes/navbar.php' ?>
+  <?php
+  if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
+  include 'includes/navbar_loggedin.php';
+  ?>
   <div id = 'page-header1'>
     <div class = 'spacer'></div>
     <div id = 'my-form'>
       <label>Choose Campaign</label>
       <form action = 'landing.php' method = 'post' id ='choose_cmp'>
-        <select>
         <?php
         include("configs/config.php");
         $db = new mysqli(
@@ -39,12 +41,13 @@
           $_SESSION['cmp'] = $campaign;
           header('Location: landing.php');
         }
+        echo "<select name = 'choose_cmp'>";
         while($stmt->fetch()){
           echo "<option value = $campaign>$campaign</option>";
         }
+        echo "</select>";
         ?>
-        </select>
-        <button type = 'submit' value = 'Submit' formid = 'choose_cmp'>Choose</button>
+        <input type='submit'>
       </form>
 
     </div>
