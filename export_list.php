@@ -33,7 +33,7 @@ header("Content-Disposition: attachment; filename= $file_name");
 $output = fopen('php://output', 'w');
 
 // output the column headings
-fputcsv($output, array('CountyID', 'First', 'Last', 'Age', 'Street Number', 'Street Name', 'City'));
+fputcsv($output, array('CountyID', 'First', 'Last', 'Age', 'Address', 'City'));
 
 // fetch the data
 $db = new mysqli(
@@ -50,7 +50,7 @@ $stmt->bind_result($CountyID, $FirstName, $LastName, $Age, $StreetNumber,$Street
 
 // loop over the rows, outputting them
 while ($stmt->fetch()) {
-    fputcsv($output, array($CountyID, $FirstName, $LastName, $Age, $StreetNumber,$StreetName, $City));
+    fputcsv($output, array($CountyID, $FirstName, $LastName, $Age, $StreetNumber.' '.$StreetName, $City));
 }
 fclose($output);
 

@@ -1,7 +1,13 @@
 /****** Begin Global Styles ******/
-html, body {
-    margin: 0;
-    padding: 0;
+button {
+    color:white;
+    background-color: #0fc83c;
+    border: none;
+    border-radius: 2px;
+}
+
+button:hover {
+    background-color: #373780;
 }
 
 footer {
@@ -9,6 +15,11 @@ footer {
     Commented out by ML 9/22
 */    background-color: #0fc83c;
     height: 80px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
@@ -130,7 +141,7 @@ footer {
 }
 
 @media (max-height:800px) {
-    #page-header1, #make-list { 
+    #page-header1, #make-list-body { 
         min-height: 600px;
     }
 }
@@ -154,4 +165,47 @@ footer {
     margin: auto;
     min-height: 900px;
     padding: 30px 20px;
+}
+
+/** List Results **/
+
+#make-list-container button {
+    margin-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 14px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+td {
+  padding: 2px 30px 2px 0px;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#QLbody {
+  display: table-row-group;
+}
+
+#QLbody tr:hover{
+  background-color: rgb(235, 245, 245);
+;}
+
+#QLbody a{
+  color: rgb(15, 200, 60);
+} 
+
+#QLbody a:hover{
+  color: rgb(55, 55, 128);
+}
+
+#QLhead {
+  display: table-header-group;
+  background-color: rgb(55, 55, 128);
+  color: white;
+  font-weight: normal;
 }

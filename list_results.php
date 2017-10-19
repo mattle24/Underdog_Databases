@@ -70,7 +70,7 @@
         // AGE //
         if (isset($_POST['minage'])) {
             $minage = max(18, $_POST['minage']); // weird handling issue
-            if (isset($_POST['maxage'])){$maxage = $_POST['maxage'];}
+            if (!empty($_POST['maxage'])){$maxage = $_POST['maxage'];}
             else{ $maxage = 200; } // fewer conditions to code through 
             if ($where == False){
                 $query = $query."WHERE age BETWEEN $minage AND $maxage";
@@ -124,11 +124,8 @@
         echo '</tbody></center>';
         $stmt->free_result();
         $db->close();
-
         ?>
-    </div>
+        </div>
   </div>
-<footer>
-</footer>
 </body>
 </html>
