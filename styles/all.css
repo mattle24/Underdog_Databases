@@ -135,14 +135,23 @@ footer {
     }
 }
 
+/** Landing **/
+#landing-container {
+    background: white;
+    width: 80%;
+    margin: auto;
+    padding: 30px 0;
+}
+
 /** Make a list **/
 #make-list-body {
     background-color: #373780;
 }
 
 #make-list-container {
-    background-color: white;
+    background: white;
     width: 80%;
     margin: auto;
     min-height: 900px;
+    padding: 30px 20px;
 }

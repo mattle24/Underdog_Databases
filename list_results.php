@@ -35,6 +35,7 @@
         # if not where, add "WHERE"
         # if where, add "AND"
         $where = False;
+        // ZIP CODE //
         if (isset($_POST['zip'])) {
             $zip = $_POST['zip'];
             $zipWhere = "(".implode(",", $zip).")";
@@ -45,6 +46,7 @@
                 $query = $query." AND zip in $zipWhere";
             } 
         }
+        // CITY //
         if (isset($_POST['city'])) {
             $city = $_POST['city'];
             $cityWhere = "('".implode("','", $city)."')";
@@ -55,6 +57,7 @@
                 $query = $query." AND city in $cityWhere";
             } 
         }
+        // PARTY //
         if (isset($_POST['party'])) {
             $partyWhere = "('".implode("','", $_POST['party'])."')";
             if ($where == False){
@@ -63,6 +66,26 @@
             }else{
                 $query = $query." AND affiliation in $partyWhere";
             } 
+        }
+        // AGE //
+        if (isset($_POST['minage'])) {
+            $minage = max(18, $_POST['minage']); // weird handling issue
+            if (isset($_POST['maxage'])){$maxage = $_POST['maxage'];}
+            else{ $maxage = 200; } // fewer conditions to code through 
+            if ($where == False){
+                $query = $query."WHERE age BETWEEN $minage AND $maxage";
+                $where = True;
+            }else{
+                $query = $query." AND age BETWEEN $minage AND $maxage";
+            } 
+        } elseif (isset($_POST['maxage'])) {
+            $maxage = $_POST['maxage'];
+            if ($where == False){
+                $query = $query."WHERE age <= $maxage";
+                $where = True;
+            }else{
+                $query = $query." AND age <= $maxage";
+            }          
         }
         $_SESSION['query'] = $query;
         $stmt = $db->prepare($query);

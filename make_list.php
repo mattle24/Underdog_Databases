@@ -16,8 +16,8 @@
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
+  <div class="spacer"></div>
   <div id = 'make-list-container'>
-    <div id = 'make-list-content'>
       <form action = 'list_results.php' method = 'post' id = 'make-list-form'>
           <h3>Geography</h3>
 <!--           <button data-toggle = 'collapse' data-target='#zip'>Zip Code</button>
@@ -40,11 +40,13 @@
             $stmt->execute();
             $stmt->store_result();
             $stmt->bind_result($zip_code);
+
             echo "<fieldset><legend>Zip Code</legend>";
             while ($stmt->fetch()) {
                echo "<input type = 'checkbox' name = 'zip[]' value = $zip_code>$zip_code";
             }
             echo "</fieldset>";
+
             echo "<fieldset><legend>City</legend>";
             $query = "SELECT DISTINCT(City) FROM $cmp;"; # City
             $stmt = $db->prepare($query);
@@ -55,7 +57,16 @@
                echo "<input type = 'checkbox' name = 'city[]' value = $city>$city";
             }
             echo "</fieldset>";
+
             echo "<h3>Personal Demography</h3>";
+
+            echo "<fieldset><legend>Age</legend>"; # Age
+            echo "<label>Minimum Age</label>
+            <input type = 'number' name = 'minage' min='18' placeholder = '18'>";
+            echo "<label>Maximum Age</label>
+            <input type = 'number' name = 'maxage' max=$maxage>";
+            echo "</fieldset>";
+
             echo "<fieldset><legend>Party</legend>";
             $query = "SELECT DISTINCT(Affiliation) FROM $cmp;"; # Party Reg
             $stmt = $db->prepare($query);
@@ -63,14 +74,15 @@
             $stmt->store_result();
             $stmt->bind_result($party);
             while ($stmt->fetch()) {
-               echo "<input type = 'checkbox' name = 'party[]' value = $party>$party";
+            	echo "<input type = 'checkbox' name = 'party[]' value = $party>$party";
             }
             echo "</fieldset>";
             ?>
+            <input type = 'reset'>
             <input type = 'submit' name = 'Submit'>
       </form>
-  </div>
 </div>
+<div class = "spacer"></div>
 <footer>
 </footer>
 </body>
