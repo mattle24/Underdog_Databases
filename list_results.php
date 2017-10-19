@@ -42,7 +42,7 @@
                 $query = $query."WHERE zip in $zipWhere";
                 $where = True;
             }else{
-                $query = $query."AND zip in $zipWhere";
+                $query = $query." AND zip in $zipWhere";
             } 
         }
         if (isset($_POST['city'])) {
@@ -52,7 +52,7 @@
                 $query = $query."WHERE city in $cityWhere";
                 $where = True;
             }else{
-                $query = $query."AND city in $cityWhere";
+                $query = $query." AND city in $cityWhere";
             } 
         }
         if (isset($_POST['party'])) {
@@ -61,15 +61,18 @@
                 $query = $query."WHERE affiliation in $partyWhere";
                 $where = True;
             }else{
-                $query = $query."AND affiliation in $partyWhere";
+                $query = $query." AND affiliation in $partyWhere";
             } 
         }
-        echo $query;
+        $_SESSION['query'] = $query;
         $stmt = $db->prepare($query);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($CountyID, $FirstName, $LastName, $Age, $StreetNumber,$StreetName, $City);
         echo "<center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".<br /></p>";
+        echo "<form action = 'export_list.php' method = 'post'>
+            <button type = 'submit'>Export List</button>
+            </form>";
 
         echo '<table>
                 <thead id = "QLhead">
@@ -85,16 +88,14 @@
 
         $row = 0;
         while($stmt->fetch() & $row < 75) {
-          echo '
+          echo "
             <tr>
-              <td>
-                <a href = "ind_results.php?countyid='.$CountyID.'">'.$CountyID.'</a>
-              </td>
-              <td>'.$FirstName.' '.$LastName.'</td>
-              <td>'.$StreetNumber.' '.$StreetName.'</td>
-              <td>'.$City.'</td>
-              <td>'.$Age.'</td>
-            </tr>';
+              <td>$CountyID</td>
+              <td>$FirstName $LastName</td>
+              <td>$StreetNumber $StreetName</td>
+              <td>$City</td>
+              <td>$Age</td>
+            </tr>";
             $row = $row + 1;
         }
         echo '</tbody></center>';
