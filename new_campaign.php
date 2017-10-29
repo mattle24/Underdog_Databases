@@ -15,6 +15,8 @@
        <div class = 'spacer'></div>
        <div id = 'my-form'>
            <?php
+           // if isset submit
+           // then make sure fields are set
            $first = $_POST['first'];
            $last = $_POST['last'];
            $email = $_POST['email'];

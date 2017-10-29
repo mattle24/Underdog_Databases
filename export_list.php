@@ -1,5 +1,5 @@
-<?php session_start();?>
-<?php
+<?php session_start();
+ 
 if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
 
 $my_query = $_SESSION['query'];
@@ -15,7 +15,6 @@ $query = "INSERT INTO lists (query_text) VALUES(?);";
 $stmt = $db->prepare($query);
 $stmt->bind_param('s', $my_query);
 $stmt->execute();
-// unset($_SESSION['query']);
 
 $query = "SELECT MAX(List_ID) FROM lists LIMIT 1";
 $stmt = $db->prepare($query);
@@ -53,5 +52,4 @@ while ($stmt->fetch()) {
     fputcsv($output, array($CountyID, $FirstName, $LastName, $Age, $StreetNumber.' '.$StreetName, $City));
 }
 fclose($output);
-
 ?>

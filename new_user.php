@@ -31,20 +31,20 @@
         <button type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
     </form>
     <?php
+    if (!isset($_POST['email']) || !isset($_POST['new_password']) || !isset($_POST['confirm_password']) || !isset($_POST['first']) || !isset($_POST['last'])) {
+        echo "Make sure to fill out all fields!";
+        exit();
+    }
     $email = $_POST['email'];
     $passwd = $_POST['new_password'];
     $confm_passwd = $_POST['confirm_password'];
     $first = $_POST['first'];
     $last = $_POST['last'];
-    if (!isset($email) || !isset($passwd) || !isset($first) || !isset($last)) {
-        exit();
-    }
-    if (isset($passwd) && $passwd != $confm_passwd) {
+    if ($passwd != $confm_passwd) {
         echo "Passwords do not match";
         exit();
     }    
     $passwd = password_hash($passwd, PASSWORD_DEFAULT);
-
     include('configs/config.php');
     $db = new mysqli(
       DB_HOST, 
@@ -52,6 +52,16 @@
       DB_PASSWORD, 
       DB_NAME
       )or die('Failed to connect.');       
+    // check to make sure this email doesn't already have an account
+    $query = "SELECT email FROM users WHERE email = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows != 0) {
+        echo "There is already an account for this email";
+        exit();
+    }
     $query = "INSERT INTO users (email, hashpassword, first, last)
     VALUES(?, ?, ?, ?);";
     $stmt = $db->prepare($query);
