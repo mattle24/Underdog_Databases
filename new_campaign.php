@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,13 @@
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
 <body>
-	<?php include 'includes/navbar.php' ?>
+	<?php 
+	if (!isset($_SESSION['logged_user'])){
+		include 'includes/navbar.php';
+	}
+	else {include 'includes/navbar_loggedin.php';}
+	?>
+
 	<div id = "page-header1">
 		<div class = 'spacer'></div>
 		<div id = 'my-form'>
@@ -32,18 +39,18 @@
 			else {
 				echo 
 				"<form action = 'new_campaign.php' method = 'post' id = 'new_campaign'>
-				<label>First</label>
-				<input type = 'text' name = 'first' required> <br> <br>
-				<label>Last</label>
-				<input type = 'text' name = 'last' required> <br> <br>
-				<label>Email</label>
-				<input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
-				<label>Campaign/ Organization</label>
-				<input type = 'text' name = 'campaign' required> <br> <br>
-				<label>How do you plan to use Grassroots Analytics?</label>
-				<textarea name = 'comments' form = 'new_campaign' required> </textarea> <br> <br>
-				<button type = 'submit' value = 'Submit' formid = 'newusr'>Get Started</button>
-			</form>";
+					<label>First</label>
+						<input type = 'text' name = 'first' required> <br> <br>
+					<label>Last</label>
+						<input type = 'text' name = 'last' required> <br> <br>
+					<label>Email</label>
+						<input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
+					<label>Campaign/ Organization</label>
+						<input type = 'text' name = 'campaign' required> <br> <br>
+					<label>How do you plan to use Grassroots Analytics?</label>
+						<textarea name = 'comments' form = 'new_campaign' required> </textarea> <br> <br>
+					<button type = 'submit' value = 'Submit' formid = 'newusr'>Get Started</button>
+				</form>";
 		}
 		?>
 	</div>
