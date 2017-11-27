@@ -24,19 +24,37 @@
         echo "<form action = 'import_list.php' method = 'post'>
         <label>Number of survey questions</label><input type = 'numeric' name = 'Qnum' required></input><br />
         <label>What number column is the voter ID in?</label><input type = 'numeric' name = 'id_col' required></input><br />
-        <label>What number column in the first question in?</label><input type = 'numeric' name = 'Qstart' required></input><br />
+        <label>What number column is the first question in?</label><input type = 'numeric' name = 'Qstart' required></input><br />
         <input type = 'submit'></input>
         </form ";
     } else {
         if (!isset($_POST['questions'])) {
-            $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_STRING);
-            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_STRING);
-            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_STRING);
+            $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_NUMBER_INT);
+            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT);
+            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT);
+            $db = new mysqli(
+			DB_HOST, 
+			DB_USER, #$_SESSION['logged_user'], 
+			DB_PASSWORD, 
+			'voter_file'
+			)or die('Failed to connect.'); 
+			$cmp = $_SESSION['cmp'];
+			$query = "SELECT DISTINCT(question) FROM survey_questions WHERE campaign = ?;";
+			$stmt = $db->prepare($query);
+			$stmt->bind_param('s', "cornell");
+			echo "We made it this far";
+			$stmt->execute();
+			$stmt->store_result();
+			$possible_qs = $stmt->fetch_all();
             echo "<form action = 'import_list.php' method = 'post'>";
-            for ($num = 0; $num < $_SESSION['Qnum']; $num ++) {
-                $index_1 = $num + 1; //  because no one wants question 0
-                echo "<label>Question $index_1</label>
-                <input type = 'text' name = 'questions[]'></input> <br>";
+            for ($num = 1; $num <= $_SESSION['Qnum']; $num ++) {
+                //  because no one wants question 0
+                echo "<label>Question $num</label>";
+                echo "<select names = 'questions[]'>";
+                foreach ($possible_qs as $q) {
+                	echo "<option value = $q>$q</option>";
+                }
+                echo "</select>";
             }
             echo "<input type = 'submit'></input>
             </form>";
@@ -49,28 +67,7 @@
                     <label>Import Data</label>
                     <button type='submit' id='submit' name='Import' class='btn btn-primary button-loading' data-loading-text='Loading...'>Import</button>
                     </form>";
-            get_all_records(); // custom function from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
-
-
-            // $db = new mysqli (
-            //     DB_HOST,
-            //     DB_USER,
-            //     DB_PASSWORD,
-            //     DB_NAME)or die('Failed to connect.'); 
-            // $cmp = $_SESSION['cmp']; \
-            // $query = "SET autocommit = 0;
-            // BULK INSERT survey_responses
-            // WITH (
-                
-            // )
-            // VALUES(?, ?, ?, ?);
-            // COMITT;";
-            // $stmt = $db->prepare($query);
-            // $stmt->bind_param('ssss', $email, $passwd, $first, $last);
-            // $stmt->execute();
-            // BULK INSET
-            // foreach ($questions as $q){
-            // }
+            // get_some_records(); // custom function from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
         }
     }
     ?>
