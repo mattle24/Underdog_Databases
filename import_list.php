@@ -29,38 +29,39 @@
         </form ";
     } else {
         if (!isset($_POST['questions'])) {
-            $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_NUMBER_INT);
-            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT);
-            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT);
-            $db = new mysqli(
-			DB_HOST, 
-			DB_USER, #$_SESSION['logged_user'], 
-			DB_PASSWORD, 
-			'voter_file'
-			)or die('Failed to connect.'); 
-			$cmp = $_SESSION['cmp'];
-			$query = "SELECT DISTINCT(question) FROM survey_questions WHERE campaign = ?;";
-			$stmt = $db->prepare($query);
-			$stmt->bind_param('s', "cornell");
-			echo "We made it this far";
-			$stmt->execute();
-			$stmt->store_result();
-			$possible_qs = $stmt->fetch_all();
+            $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_NUMBER_INT); 
+            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT) - 1;  // because 0 index
+            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT) -1;
+            // TODO: change so that each question is a drop down of available questions
+   //          $db = new mysqli(
+			// DB_HOST, 
+			// DB_USER, #$_SESSION['logged_user'], 
+			// DB_PASSWORD, 
+			// 'voter_file'
+			// )or die('Failed to connect.'); 
+			// $cmp = $_SESSION['cmp'];
+			// $query = "SELECT DISTINCT(question) FROM survey_questions WHERE campaign = ?;";
+			// $stmt = $db->prepare($query);
+			// $stmt->bind_param('s', $cmp);
+			// echo "We made it this far";
+			// $stmt->execute();
+			// $stmt->store_result();
+			// $possible_qs = $stmt->fetch_all();
             echo "<form action = 'import_list.php' method = 'post'>";
             for ($num = 1; $num <= $_SESSION['Qnum']; $num ++) {
                 //  because no one wants question 0
                 echo "<label>Question $num</label>";
-                echo "<select names = 'questions[]'>";
-                foreach ($possible_qs as $q) {
-                	echo "<option value = $q>$q</option>";
-                }
-                echo "</select>";
+                echo "<input type = 'text' name = 'questions[]'></input> <br>";
             }
             echo "<input type = 'submit'></input>
             </form>";
         }
         else {
-            $_SESSION['questions'] = filter_input(INPUT_POST, 'questions', FILTER_SANITIZE_STRING);
+            $_SESSION['questions'] = $_POST['questions']; // filter_input_array(INPUT_POST, 'questions');
+            if (!is_array($_SESSION['questions'])) {
+            	session_destroy();
+            	header("Location: index.php");
+            }
             echo "<form action='includes/functions.php' method = 'post' name = 'upload_csv' enctype = 'multipart/form-data'>
                     <label>Select File</label>
                     <input type = 'file' name = 'file' id = 'file'>

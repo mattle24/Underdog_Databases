@@ -62,6 +62,13 @@
         echo "There is already an account for this email";
         exit();
     }
+    // Create a new user in the SQL database: initialize with no privledges
+    // $query = "CREATE USER ?@'localhost' IDENTIFIED BY ?;";
+    // $stmt = $db->prepare($query);
+    // $stmt->bind_param('ss', $email, $passwd);
+    // $stmt->execute();
+
+    // Create a record for the user for contact purposes etc.
     $query = "INSERT INTO users (email, hashpassword, first, last)
     VALUES(?, ?, ?, ?);";
     $stmt = $db->prepare($query);
