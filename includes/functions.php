@@ -1,7 +1,6 @@
 <?php session_start();
 // from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
 
-echo "I'm here!";
 if(isset($_POST["Import"])){
 	echo "Import was set!";
 	$filename=$_FILES["file"]["tmp_name"];		
@@ -15,7 +14,6 @@ if(isset($_POST["Import"])){
 		// if questions aren't set, redirect to import list
 	}
 	$questions = $_SESSION['questions'];
-	echo(gettype($questions));
 	// make sure the question start and the id column are set
 	// todo: id col
 	if(!isset($_SESSION['Qstart']) || !isset($_SESSION['id_col'])) {
@@ -25,60 +23,76 @@ if(isset($_POST["Import"])){
 	$id_col = $_SESSION['id_col'];
 
 	// connect to database
-	$db = new mysqli(
-	DB_HOST, 
-	DB_USER, #$_SESSION['logged_user'], 
-	DB_PASSWORD, 
-	'voter_file'
-	)or die('Failed to connect.'); 
-	echo "Connected to database!";
 
 	try {
-		echo "In try block";
+		// echo "In try block";
 		if($_FILES["file"]["size"] > 0) {
-			echo "File size greater than 0";
+			// echo "File size greater than 0";
+			include('../configs/config.php');
+			$db = new mysqli(
+			DB_HOST, 
+			DB_USER, #$_SESSION['logged_user'], 
+			DB_PASSWORD, 
+			'voter_file'
+			)or die('Failed to connect.'); 
+			echo "Connected to database!";
 			if (($handle = fopen($filename, "r")) !== FALSE) {
 				while (($getData = fgetcsv($handle, 1000, ",")) !== FALSE) {
-					echo "Data obtained";
+					echo "Data obtained. ";
 		        	// for each question, insert data
-		        	$col = 0; // init col as zero from Qstart
+		        	$col = -1; // init col to be zero from Qstart during first loop
 		        	foreach ($questions as $q) {
 		        		// loop through each question
-		        		echo "Loop started";
-		        		$col = $col + $Qstart; // column of current question
+		        		// echo "Loop started";
 		        		$col = $col + 1; // for the next question
-		        		$query = "INSERT INTO responses (voter_id, question, response, campaign) VALUES (?, ?, ?, ?);";
+				        // $query = "SELECT DISTINCT(question) FROM responses;";
+				        // printf($db->error);
+				        // $stmt = $db->prepare($query);
+				        // printf($db->error);
+				        // $stmt->execute();
+				        // // printf($db->error);
+		        		// echo "The test worked";
+		        		$query = "INSERT INTO responses 
+		        		(voter_id, question, response, campaign) 
+		        		VALUES(?, ?, ?, ?);";
 		        		$stmt = $db->prepare($query);
 						if ( !$stmt ) {
-						echo $db->;
-						die;
+							echo "Fatal prepare error...";
+							printf("Error: %s.\n", $stmt->error);
+							die;
 						}
 						echo "Statment prepared.";
-		        		$b = $stmt->bind_param('isss', (int)$getData[$id_col], $q, $getData[$col], $cmp);
-						if ( !$b ) {
-						printf('errno: %d, error: %s', $stmt->errno, $stmt->error);
+						$voter_id = (int)$getData[$id_col];
+						$response = $getData[$col + $Qstart]; // column of current question
+		        		$bind = $stmt->bind_param('isss', $voter_id, $q, $response, $cmp);
+						if ( !$bind ) {
+							echo "Fatal binding error...";
+							// printf("Error: %s.\n", $stmt->error);
+							die;
 						}
-
-		        		echo "Statement prepared";
+		        		echo "Statement binded";
 		        		$stmt->execute();
 		        		echo "Data was uploaded.";
+		        		
 			        }
 			    }
+			    // Close connections
+				$db->close();
 				fclose($handle);
 			}	
 		}
 		else {echo "File size was 0.";}
-		// echo "<script type=\"text/javascript\">
-		// alert(\"CSV File has been successfully Imported.\");
-		// window.location = \"../import_list.php\"
-		// </script>";
+		echo "<script type=\"text/javascript\">
+		alert(\"CSV File has been successfully Imported.\");
+		window.location = \"../import_list.php\"
+		</script>";
 	}
 	catch (Exception $e) {
 		echo "Error. Caught except $e.";
-		// echo "<script type=\"text/javascript\">
-		// alert(\"Invalid File:Please Upload CSV File.\");
-		// window.location = \"import_list.php\"
-		// </script>";		
+		echo "<script type=\"text/javascript\">
+		alert(\"Invalid File:Please Upload CSV File.\");
+		window.location = \"import_list.php\"
+		</script>";		
 	}
 }	 
 else {

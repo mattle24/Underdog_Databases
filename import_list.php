@@ -30,9 +30,10 @@
     } else {
         if (!isset($_POST['questions'])) {
             $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_NUMBER_INT); 
-            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT) - 1;  // because 0 index
-            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT) -1;
+            $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT) - 1;  // because php uses 0 index
+            $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT) - 1;
             // TODO: change so that each question is a drop down of available questions
+            // include('configs/config.php');
    //          $db = new mysqli(
 			// DB_HOST, 
 			// DB_USER, #$_SESSION['logged_user'], 
@@ -58,6 +59,7 @@
         }
         else {
             $_SESSION['questions'] = $_POST['questions']; // filter_input_array(INPUT_POST, 'questions');
+            // TODO: improve security above
             if (!is_array($_SESSION['questions'])) {
             	session_destroy();
             	header("Location: index.php");
