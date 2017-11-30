@@ -2,7 +2,7 @@
 // from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
 
 if(isset($_POST["Import"])){
-	echo "Import was set!";
+	// echo "Import was set!";
 	$filename=$_FILES["file"]["tmp_name"];		
 	if(!isset($_SESSION['cmp']) || !isset($_SESSION['logged_user'])){
 		header('Location: choose_campaign.php'); // if not set get the user out of here
@@ -35,10 +35,10 @@ if(isset($_POST["Import"])){
 			DB_PASSWORD, 
 			'voter_file'
 			)or die('Failed to connect.'); 
-			echo "Connected to database!";
+			// echo "Connected to database!";
 			if (($handle = fopen($filename, "r")) !== FALSE) {
 				while (($getData = fgetcsv($handle, 1000, ",")) !== FALSE) {
-					echo "Data obtained. ";
+					// echo "Data obtained. ";
 		        	// for each question, insert data
 		        	$col = -1; // init col to be zero from Qstart during first loop
 		        	foreach ($questions as $q) {
@@ -61,7 +61,7 @@ if(isset($_POST["Import"])){
 							printf("Error: %s.\n", $stmt->error);
 							die;
 						}
-						echo "Statment prepared.";
+						// echo "Statment prepared.";
 						$voter_id = (int)$getData[$id_col];
 						$response = $getData[$col + $Qstart]; // column of current question
 		        		$bind = $stmt->bind_param('isss', $voter_id, $q, $response, $cmp);
@@ -70,10 +70,9 @@ if(isset($_POST["Import"])){
 							// printf("Error: %s.\n", $stmt->error);
 							die;
 						}
-		        		echo "Statement binded";
+		        		// echo "Statement binded";
 		        		$stmt->execute();
-		        		echo "Data was uploaded.";
-		        		
+		        		// echo "Data was uploaded.";   		
 			        }
 			    }
 			    // Close connections
@@ -84,7 +83,7 @@ if(isset($_POST["Import"])){
 		else {echo "File size was 0.";}
 		echo "<script type=\"text/javascript\">
 		alert(\"CSV File has been successfully Imported.\");
-		window.location = \"../import_list.php\"
+		window.location = \"../landing.php\"
 		</script>";
 	}
 	catch (Exception $e) {
