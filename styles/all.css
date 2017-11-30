@@ -24,7 +24,7 @@ html, body {
 
 .navbar {
     margin-bottom: 0;
-    background-color: #0fc83c;
+    background-color: #0d579c;
     border: none;
     border-radius: 0;
 }
@@ -35,8 +35,8 @@ html, body {
 
 .navbar-default .navbar-nav>li>a:hover {
     transition: 0.3s;
-    background-color: #ffffff;
-    color: #0fc83c;
+    background-color: #f2f2f2;
+    color: #0d579c;
 }
 
 .navbar-default .navbar-brand {
@@ -45,8 +45,8 @@ html, body {
 
 .navbar-default .navbar-brand:hover {
     transition: 0.3s;
-    background-color: #ffffff;
-    color: #0fc83c;
+    background-color: #f2f2f2;
+    color: #0d579c;
 }
 
 .nav-ele {
@@ -95,15 +95,15 @@ html, body {
     margin-left: 10px;
     margin-right: 10px;
     padding: 20px;
-    color: #ffffff;
-    background-color: #0fc83c;
+    color: #0d579c;
+    background-color: #fff;
 }
 
 .cta-button:hover {
     transition: 0.3s;
     text-decoration: none;
-    color: #0fc83c;
-    background-color: #ffffff;
+    color: #0d579c;
+    background-color: #f2f2f2;
     cursor: pointer;
 }
 

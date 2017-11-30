@@ -3,7 +3,7 @@ echo '
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">Grassroots Analytics</a>
+                    <a class="navbar-brand" href="index.php">Underdog</a>
                     <button class="navbar-toggle callapsed"
                             data-toggle="collapse"
                             data-target="#collapsemenu">
