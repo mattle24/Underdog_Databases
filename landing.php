@@ -16,27 +16,7 @@
 if (!isset($_SESSION['logged_user'])){header('Location: index.php');} # if not logged in, redirect to index
     if (isset($_POST['choose_cmp'])) {
       // if the post variable is set, reset
-      // set campaign = to campaign table name
-      include('configs/config.php');
-      $db = new mysqli(
-          DB_HOST, 
-          DB_USER, 
-          DB_PASSWORD, 
-          DB_NAME
-          )or die('Failed to connect.'); 
-      $cmp_name = filter_input(INPUT_POST, 'choose_cmp');      
-      $query = "SELECT table_name FROM campaigns
-      WHERE campaign_name = ?;";
-      $stmt = $db->prepare($query);
-      $stmt->bind_param('s', $cmp_name);
-      $stmt->execute();
-      $stmt->store_result();
-      $stmt->bind_result($campaign);
-      if ($stmt->num_rows == 1) {
-          $stmt->fetch();
-          $_SESSION['cmp'] = $campaign;
-      }
-      $db->close();
+      $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp');      
     }  
 include 'includes/navbar_loggedin.php';
 ?>
