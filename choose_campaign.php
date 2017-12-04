@@ -30,20 +30,23 @@
           DB_NAME
           )or die('Failed to connect.'); 
         $username = $_SESSION['logged_user'];
-        $query = "SELECT campaigns.campaign_name FROM campaigns INNER JOIN users ON userID WHERE users.email = ?;";
+        $query = "SELECT DISTINCT(campaigns.campaign_name), campaigns.table_name FROM campaigns, user_campaign_bridge, users
+        WHERE users.email = ?
+        AND users.userID = user_campaign_bridge.userID
+        AND user_campaign_bridge.campaignID = campaigns.campaignID";
         $stmt = $db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($campaign);
+        $stmt->bind_result($campaign, $table_name);
         if ($stmt->num_rows == 1) {
           $stmt->fetch();
-          $_SESSION['cmp'] = $campaign;
+          $_SESSION['cmp'] = $table_name;
           header('Location: landing.php');
         }
         echo "<select name = 'choose_cmp'>";
         while($stmt->fetch()){
-          echo "<option value = $campaign>$campaign</option>";
+          echo "<option value = $table_name>$campaign</option>";
         }
         echo "</select>";
         ?>
