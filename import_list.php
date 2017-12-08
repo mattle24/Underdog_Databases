@@ -16,6 +16,7 @@
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
+  <div class = 'spacer'><</div>
   <div id = 'make-list-container'>
     <?php
     // Ask user how many survery questions she wants to enter

@@ -35,11 +35,11 @@
         echo "Make sure to fill out all fields!";
         exit();
     }
-    $email = $_POST['email'];
-    $passwd = $_POST['new_password'];
-    $confm_passwd = $_POST['confirm_password'];
-    $first = $_POST['first'];
-    $last = $_POST['last'];
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+    $passwd = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
+    $confm_passwd = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
+    $first = filter_input(INPUT_POST, 'first', FILTER_SANITIZE_STRING);
+    $last = filter_input(INPUT_POST, 'last', FILTER_SANITIZE_STRING);
     if ($passwd != $confm_passwd) {
         echo "Passwords do not match";
         exit();
