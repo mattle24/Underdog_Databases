@@ -4,12 +4,16 @@ session_start();
 $bool1 = isset($_COOKIE['logged_user']);
 // Check if Session variable is set
 $bool2 = isset($_SESSION['logged_user']);
+if ($bool1 and $bool2) {
 	// do further checks
+	if ($_SESSION['logged_user'] != $_COOKIE['logged_user']) {
 		$_SESSION = array();
+		setcookie('logged_user', 'nothing', time() - 90);	
 	}
 } 
 else {
 	$_SESSION = array();
+	setcookie('logged_user', 'nothing', time() - 90);
 }
 ?>
 
