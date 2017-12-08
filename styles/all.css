@@ -1,19 +1,20 @@
 /****** Begin Global Styles ******/
 button {
     color:white;
-    background-color: #0fc83c;
+    background-color: #0d579c;
     border: none;
     border-radius: 2px;
+    margin: 4px;
 }
 
 button:hover {
-    background-color: #373780;
+    background-color: #1066b7;
 }
 
 footer {
 /*    margin-top: 40px;
     Commented out by ML 9/22
-*/    background-color: #0fc83c;
+*/    background-color: #0d579c;
     height: 80px;
 }
 
@@ -24,13 +25,13 @@ html, body {
 
 .navbar {
     margin-bottom: 0;
-    background-color: #0d579c;
+    background-color: #fff;
     border: none;
     border-radius: 0;
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: #ffffff;
+    color: #0d579c;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
@@ -40,7 +41,7 @@ html, body {
 }
 
 .navbar-default .navbar-brand {
-    color: #ffffff;
+    color: #0d579c;
 }
 
 .navbar-default .navbar-brand:hover {
@@ -156,7 +157,7 @@ html, body {
 
 /** Make a list **/
 #make-list-body {
-    background-color: #373780;
+    background-color: #0d579c;
 }
 
 #make-list-container {
@@ -192,20 +193,16 @@ tr {
 }
 
 #QLbody tr:hover{
-  background-color: rgb(235, 245, 245);
+  background-color: #d0e6fb;
 ;}
 
 #QLbody a{
-  color: rgb(15, 200, 60);
+  color: #0d579c;
 } 
-
-#QLbody a:hover{
-  color: rgb(55, 55, 128);
-}
 
 #QLhead {
   display: table-header-group;
-  background-color: rgb(55, 55, 128);
+  background-color: #0d579c;
   color: white;
   font-weight: normal;
 }

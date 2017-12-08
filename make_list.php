@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+include 'includes/check_logged_in.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -44,6 +46,7 @@
             echo "<fieldset><legend>Zip Code</legend>";
             while ($stmt->fetch()) {
                echo "<input type = 'checkbox' name = 'zip[]' value = $zip_code>$zip_code";
+               echo "   "; // three spaces
             }
             echo "</fieldset>";
 
@@ -55,6 +58,7 @@
             $stmt->bind_result($city);
             while ($stmt->fetch()) {
                echo "<input type = 'checkbox' name = 'city[]' value = $city>$city";
+               echo "   "; // three spaces
             }
             echo "</fieldset>";
 
@@ -75,6 +79,7 @@
             $stmt->bind_result($party);
             while ($stmt->fetch()) {
             	echo "<input type = 'checkbox' name = 'party[]' value = $party>$party";
+              echo "   "; // three spaces
             }
             echo "</fieldset>";
             ?>

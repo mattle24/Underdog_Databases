@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php session_start();
+include 'includes/check_logged_in.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -16,6 +18,7 @@
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
+  <div class="spacer"></div>
   <div id = 'make-list-container'>
     <div id = 'make-list-content'>
     <a href="make_list.php">Back to Make List</a>

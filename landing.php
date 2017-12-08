@@ -1,5 +1,8 @@
-<?php session_start();?>
-
+<?php session_start();
+include 'includes/check_logged_in.php';
+// reset the cookie each time the user comes to the landing
+setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,11 +16,6 @@
 </head>
 <body>
 <?php
-if (!isset($_SESSION['logged_user'])){header('Location: index.php');} # if not logged in, redirect to index
-    if (isset($_POST['choose_cmp'])) {
-      // if the post variable is set, reset
-      $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp');      
-    }  
 include 'includes/navbar_loggedin.php';
 ?>
   <div id = 'page-header1'>
@@ -26,7 +24,7 @@ include 'includes/navbar_loggedin.php';
         <ul style = 'list-style-type:none'>
             <li><a href = 'make_list.php'>Make a List</a></li>
             <li><a href = 'search.php'>Search</a></li>
-            <li><a href = 'manage_users.php'>Manage Users</a></li>
+            <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
             <li><a href = 'import_list.php'>Import</a></li>
             <li><a href = 'help'>Help</a></li>
             <li><a href = 'contact'></a></li>

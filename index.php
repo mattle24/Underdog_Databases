@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php 
+session_start();
+include 'includes/check_logged_in.php';
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +44,7 @@
 	<div id='home-container' class='container'>
 		<div class='row'>
 			<article class='home-text-block col-md-4'>
-				<h3 class='block-header page-header'>Why Grassroots Analytics</h3>
+				<h3 class='block-header page-header'>Why Underdog Data</h3>
 				<p>
 					Underdog is a data management and analytics platform built for small campaigns. We believe that data holds an underlying truth and every campaign, from village council to president, can make more effective decisions by utilizing data. Our goal is to create a platform so that any progressive campaign, no matter the size, can use data to inform their positions.
 				</p>
