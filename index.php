@@ -1,6 +1,16 @@
 <?php 
 session_start();
-include 'includes/check_logged_in.php';
+// Check if the cookie has expired
+$bool1 = isset($_COOKIE['logged_user']);
+// Check if Session variable is set
+$bool2 = isset($_SESSION['logged_user']);
+	// do further checks
+		$_SESSION = array();
+	}
+} 
+else {
+	$_SESSION = array();
+}
 ?>
 
 <!DOCTYPE html>
