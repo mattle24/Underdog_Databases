@@ -1,5 +1,8 @@
 <?php session_start();
 include 'includes/check_logged_in.php';
+if (!isset($_SESSION['cmp'])) {
+    header("Location: choose_campaign.php");
+}
 ?>
 
 <!DOCTYPE html>

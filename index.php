@@ -21,10 +21,10 @@ else {
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Grassroots Analytics</title>
+	<title>Underdog Data</title>
 	<!-- Source Sans Pro font -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 	<link rel='stylesheet' type='text/css' href="styles/all.css">
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
@@ -43,7 +43,7 @@ else {
 		<img id='home-hero-image' src='images/background.png' alt='Blue Graph Background'>
 		<div id='home-hero-wrapper'>
 			<div id='home-hero-title'>
-				<span>Underdog</span>
+				<span>Underdog Data</span>
 			</div>
 			<div id='home-hero-subtitle'>
 				<span>Bringing Big Data to Small Campaigns</span>
@@ -60,14 +60,14 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>Why Underdog Data</h3>
 				<p>
-					Underdog is a data management and analytics platform built for small campaigns. We believe that data holds an underlying truth and every campaign, from village council to president, can make more effective decisions by utilizing data. Our goal is to create a platform so that any progressive campaign, no matter the size, can use data to inform their positions.
+					Underdog is a data management and analytics platform built for small campaigns. We believe that data holds an underlying truth and every campaign, from village council to president, can make more effective decisions by understanding the data you collect. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data.
 				</p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>The Importance of Data</h3>
 				<p>
-					Whether you are a city council or presidential campaign, you want to maximize your voter contact efforts. Time spent on voters that do not support your candidate is time you cannot spend talking to your potential supporters. Underdog also make it easier to keep track of your supporters to make GOTV easier, and we are building tools to help you find new supporters based on predictive modeling. By using a data-driven approach you can maximize your efforts and win crucial votes.
+					Time spent on voters that do not support your candidate is time you cannot spend talking to your potential supporters. Underdog also make it easier to keep track of your supporters to make GOTV easier. Underdog also offers tools to cut turf and create calls lists that yield optimal impact. By using a data-driven approach you can maximize your efforts and win crucial votes.
 				</p>
 			</article>
 

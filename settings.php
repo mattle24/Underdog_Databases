@@ -147,6 +147,7 @@ include 'includes/check_logged_in.php';
     }
     ?>
     </div>
+    <div class = "spacer"></div>
 </div>
 <footer>
 </footer>
