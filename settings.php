@@ -31,7 +31,7 @@ include 'includes/check_logged_in.php';
         <input type='submit'>
     </form>
     <h3>Change Password</h3>
-    <form action = 'setting.php' method = 'post'>
+    <form action = 'settings.php' method = 'post'>
       <label>Current Password</label>
       <input type = 'password' name = 'current_password' required> <br><br>
       <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
@@ -51,12 +51,13 @@ include 'includes/check_logged_in.php';
         DB_USER,
         DB_PASSWORD,
         DB_NAME) or die('Failed to connect.');
-    $query = "SELECT userid FROM users WHERE userid = ?;";
+    $query = "SELECT userID FROM users WHERE email = ?;";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('s', $_SESSION['logged_user']);
+    $curr_email = $_SESSION['logged_user'];
+    $stmt->bind_param('s', $curr_email);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_param($user_id);
+    $stmt->bind_result($user_id);
     $stmt->fetch();
     $user_id = (int)$user_id;
 
@@ -66,7 +67,6 @@ include 'includes/check_logged_in.php';
         echo "Please enter your current password.";
         exit();
     }
-    else
     $post_password = filter_input(INPUT_POST, 'current_password', FILTER_SANITIZE_STRING);
     $query = "SELECT hashpassword FROM users WHERE email = ?";
     $stmt = $db->prepare($query);
@@ -110,8 +110,8 @@ include 'includes/check_logged_in.php';
         $stmt->execute();
         if ($stmt) {
             echo "The email now associated with this account is $new_email";
-            $_SESSION['logged_user'] = $new_email;
-            setcookie('logged_user', $new_email, time() + 60 * 60);
+//            $_SESSION['logged_user'] = $new_email;
+//            setcookie('logged_user', $new_email, time() + 60 * 60);
         }
         else {
             echo "Error. Please try again or contact the administrator.";

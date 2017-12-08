@@ -99,7 +99,7 @@ include 'includes/check_logged_in.php';
             echo "Adding user";
             $email = filter_input(INPUT_POST, 'new_email');
             // check to make sure this email already has an account
-            $query = "SELECT userID FROM users WHERE email = ?";
+            $query = "SELECT userID FROM users WHERE email = ?;";
             $stmt = $db->prepare($query);
             $stmt->bind_param('s', $email);
             $stmt->execute();
