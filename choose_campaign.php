@@ -1,5 +1,7 @@
-<?php session_start();?>
-
+<?php session_start();
+if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
+setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,6 @@
 </head>
 <body>
   <?php
-  if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
   <div id = 'page-header1'>
@@ -40,6 +41,7 @@
         $stmt->store_result();
         $stmt->bind_result($campaign, $table_name);
         if ($stmt->num_rows == 1) {
+          // if the user is only in one campaign, then don't worry about having him choose
           $stmt->fetch();
           $_SESSION['cmp'] = $table_name;
           header('Location: landing.php');
