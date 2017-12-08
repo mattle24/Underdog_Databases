@@ -2,6 +2,10 @@
 include 'includes/check_logged_in.php';
 // reset the cookie each time the user comes to the landing
 setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
+// check for the post campaign variable
+if (isset($_POST['choose_cmp'])) {
+  $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
+}
 ?>
 <!DOCTYPE html>
 <html>
