@@ -4,12 +4,10 @@
 
 TODO:
 
-- Add import section [X]
-
-- Add more search features [X]
-
 - Add user management
 
 - Create fake sample voter file and deploy 
+
+- Add more search features 
 
 - Integrate canvassing application
