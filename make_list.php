@@ -29,6 +29,7 @@ if (!isset($_SESSION['cmp'])) {
           <div id='zip' class = 'collapse'> </div>
           This would create collapsable sections of the form
  -->          <?php
+//            include("includes/get_credentials.php");
             include("configs/config.php");
             # Get the user's password and the campaign table name
             $username = $_SESSION['logged_user'];
@@ -36,7 +37,7 @@ if (!isset($_SESSION['cmp'])) {
             # TODO: change this so that it uses user credentials, not default
             $db = new mysqli(
               DB_HOST, 
-              DB_USER, #$_SESSION['logged_user'], 
+              DB_USER,
               DB_PASSWORD, 
               'voter_file'
             )or die('Failed to connect.'); 

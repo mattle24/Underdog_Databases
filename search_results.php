@@ -99,9 +99,7 @@ include 'includes/check_logged_in.php';
     while($stmt->fetch() & $row < 75) {
       echo '
         <tr>
-          <td>
-            <a href = "ind_results.php?countyid='.$CountyID.'">'.$CountyID.'</a>
-          </td>
+          <td>'.$CountyID.'</td>
           <td>'.$FirstName.' '.$LastName.'</td>
           <td>'.$StreetNumber.' '.$StreetName.'</td>
           <td>'.$City.'</td>

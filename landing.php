@@ -29,8 +29,9 @@ include 'includes/navbar_loggedin.php';
         <ul style = 'list-style-type:none'>
             <li><a href = 'make_list.php'>Make a List</a></li>
             <li><a href = 'search.php'>Search</a></li>
-            <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
             <li><a href = 'import_list.php'>Import</a></li>
+            <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
+            <li><a href = 'manage_users.php'>Manage Users</a></li>
             <li><a href = 'settings.php'>Settings</a></li>
             <li><a href = 'help'></a>Help</li>
             <li><a href = 'contact'></a>Contact</li>
