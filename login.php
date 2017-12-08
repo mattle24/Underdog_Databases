@@ -59,12 +59,11 @@ if ( isset($_POST['submit']) ) {
                     <label>Email</label>
                     <input type = 'text' name = 'username'required> <br><br>
                     <label>Password</label>
-                    <input type = 'password' name = 'password'> <br> <br>
+                    <input type = 'password' name = 'password' required> <br> <br>
                     <button type = 'submit' name='submit' value = 'Submit' formid = 'login'>Login</button>
                 </form>
-                <button>Forgot Password?</button>
+                <a href = "login.php">Forgot Password?</a>
                 <!-- TODO: add a forgot password action series -->
-                <a href = 'new_user.php'><button>New Account</button></a>
             </div>
         </div>
         <footer>
