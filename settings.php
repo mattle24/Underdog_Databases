@@ -15,6 +15,34 @@ include 'includes/check_logged_in.php';
 <body>
     <?php
     include 'includes/navbar_loggedin.php';
+    ?>
+    <div id = 'page-header1'>
+     <div class = 'spacer'></div>
+     <?php echo $err_msg ?>
+     <div id = 'my-form'>
+       <h3>Change Email</h3>
+       <form action = 'settings.php' method = 'post'>
+        <label>New Email</label>
+        <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
+        <label>Confirm Email</label>
+        <input type = 'text' name = 'confirm_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
+        <label>Current Password</label>
+        <input type = 'password' name = 'current_password' required> <br><br>
+        <input type='submit'>
+    </form>
+    <h3>Change Password</h3>
+    <form action = 'setting.php' method = 'post'>
+      <label>Current Password</label>
+      <input type = 'password' name = 'current_password' required> <br><br>
+      <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
+      <label>New Password</label>
+      <input type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> <br> <br>
+      <label>Confirm Password</label>
+      <input type = 'password' name = 'confirm_password' required> <br> <br>
+      <input type = 'submit'>
+  </form>
+  <br> <br>
+    <?php
   // Get userid, because it is quick and we will need it for both changing email
   // or password
     include('configs/config.php');
@@ -33,6 +61,7 @@ include 'includes/check_logged_in.php';
     $user_id = (int)$user_id;
 
   // Validate the current password
+    if (sizeof($_POST) == 0){exit();}
     if(!isset($_POST['current_password'])) {
         echo "Please enter your current password.";
         exit();
@@ -81,10 +110,11 @@ include 'includes/check_logged_in.php';
         $stmt->execute();
         if ($stmt) {
             echo "The email now associated with this account is $new_email";
+            $_SESSION['logged_user'] = $new_email;
+            setcookie('logged_user', $new_email, time() + 60 * 60);
         }
         else {
             echo "Error. Please try again or contact the administrator.";
-            exit();
         }
     } 
     elseif (isset($_POST['new_password'])) {
@@ -110,40 +140,13 @@ include 'includes/check_logged_in.php';
         $stmt->execute();
         if ($stmt) {
             echo "The password now associated with this account has been changed.";
-            exit();
         }
         else {
             echo "Error. Please try again or contact the administrator.";
-            exit();
         }            
     }
     ?>
-    <div id = 'page-header1'>
-     <div class = 'spacer'></div>
-     <?php echo $err_msg ?>
-     <div id = 'my-form'>
-       <h3>Change Email</h3>
-       <form action = 'settings.php' method = 'post'>
-        <label>New Email</label>
-        <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
-        <label>Confirm Email</label>
-        <input type = 'text' name = 'confirm_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
-        <label>Current Password</label>
-        <input type = 'password' name = 'current_password' required> <br><br>
-        <input type='submit'>
-    </form>
-    <h3>Change Password</h3>
-    <form action = 'setting.php' method = 'post'>
-      <label>Current Password</label>
-      <input type = 'password' name = 'current_password' required> <br><br>
-      <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
-      <label>New Password</label>
-      <input type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> <br> <br>
-      <label>Confirm Password</label>
-      <input type = 'password' name = 'confirm_password' required> <br> <br>
-      <input type = 'submit'>
-  </form>
-</div>
+    </div>
 </div>
 <footer>
 </footer>
