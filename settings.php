@@ -4,7 +4,7 @@ include 'includes/check_logged_in.php';
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Login</title>
+   <title>Settings</title>
    <!-- Source Sans Pro font -->
    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
