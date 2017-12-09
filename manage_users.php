@@ -18,6 +18,22 @@ include 'includes/check_logged_in.php';
    <div id = "page-header1">
        <div class = 'spacer'></div>
        <div id = 'landing-container'>
+           <div id = 'my-form'>
+           <h3>Change user position</h3>
+            <p>You can change the positions of users with lower roles than you. You can select a role equal to or lower than your role.</p>
+           <form action = "change_user.php" method = "post">
+               <label>User email</label>
+               <input type = 'text' name = 'change_email' required></input>
+               <br>
+                <label>New Position</label>
+                <select name = 'new_pos' required>
+                    <option value = 8>Field Director</option>
+                    <option value = 6>Senior Staff</option>
+                    <option value = 4>Field Organizer</option>
+                    <option value = 1>Volunteer</option>
+                </select>
+           </form>
+       </div>
            <h3 align = 'center'>Campaign Team</h3>
         <?php
     // Get all the users for the given campaign and list them in order
@@ -66,7 +82,7 @@ include 'includes/check_logged_in.php';
           <td>$position</td>
         </tr>";
     }
-    echo '</tbody></center>';    
+    echo '</tbody></center>'; 
         ?>
        </div>
     </div>

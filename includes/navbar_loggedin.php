@@ -15,7 +15,10 @@ echo '
 
                 <div id="collapsemenu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="centered"><a href="landing.php" class="nav-ele">Toolbox</a></li>
+                        <li class="centered"><a href="landing.php" class="nav-ele">Toolbox</a>
+                        <!-- Add dropdown menu -->
+                        </li>
+
                         <li class="centered"><a href="choose_campaign.php" class="nav-ele">Choose Campaign</a></li>
                         <li class="centered"><a href="settings.php" class="nav-ele">Settings</a></li>
                         <li class="centered"><a href="logout.php" class="nav-ele">Logout</a></li>

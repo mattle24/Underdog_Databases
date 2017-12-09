@@ -30,6 +30,7 @@ include 'includes/check_logged_in.php';
         <input type = 'password' name = 'current_password' required> <br><br>
         <input type='submit'>
     </form>
+         <br>
     <h3>Change Password</h3>
     <form action = 'settings.php' method = 'post'>
       <label>Current Password</label>

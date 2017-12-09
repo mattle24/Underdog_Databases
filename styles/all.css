@@ -1,4 +1,7 @@
 /****** Begin Global Styles ******/
+a {
+    color: #0099ff;
+}
 button {
     color:white;
     background-color: #0d579c;
@@ -33,6 +36,7 @@ h3 {
     background-color: #fff;
     border: none;
     border-radius: 0;
+    font-size: 1.2em;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -164,6 +168,7 @@ h3 {
 #landing-container {
     background: white;
     width: 80%;
+    max-width: 800px;
     margin: auto;
     padding: 30px 0;
 }
