@@ -27,6 +27,7 @@ include 'includes/check_logged_in.php';
             <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
             <button type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
         </form>
+           <br><br>
         <h3>Remove an existing user from your campaign</h3>
         <form action = 'manage_users.php' method = 'post'>
             <label>User Email</label>

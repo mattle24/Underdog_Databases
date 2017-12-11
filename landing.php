@@ -13,6 +13,7 @@ if (isset($_POST['choose_cmp'])) {
    <title>Toolbox</title>
    <!-- Source Sans Pro font -->
    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
    <link rel='stylesheet' type='text/css' href="styles/all.css">
    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
@@ -26,11 +27,11 @@ include 'includes/navbar_loggedin.php';
   <div id = 'page-header1'>
     <div class = 'spacer'></div>
     <div id = 'landing-container'>
-        <h3 align = 'center'>Toolbox</h3>
+        <h2 align = 'center'>Toolbox</h2>
         <ul style = 'list-style-type:none'>
-            <li><a href = 'make_list.php'>Make a List</a></li>
-            <li><a href = 'search.php'>Search</a></li>
-            <li><a href = 'import_list.php'>Import</a></li>
+            <li><a href = 'make_list.php'>Create List of Voters</a></li>
+            <li><a href = 'search.php'>Search Voters</a></li>
+            <li><a href = 'import_list.php'>Import Responses</a></li>
             <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
             <li><a href = 'manage_users.php'>Manage Users</a></li>
             <li><a href = 'settings.php'>Settings</a></li>

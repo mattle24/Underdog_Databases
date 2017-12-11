@@ -23,6 +23,7 @@ include 'includes/check_logged_in.php';
   <div id = 'make-list-container'>
     <div id = 'make-list-content'>
     <a href="make_list.php">Back to Make List</a>
+    <h2 align='center'>List Results</h2>
     <?php
         include("configs/config.php");
         # Get the user's password and the campaign table name

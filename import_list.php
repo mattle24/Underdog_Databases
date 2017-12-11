@@ -19,6 +19,8 @@
   ?>
   <div class = 'spacer'><</div>
   <div id = 'make-list-container'>
+      <h2>Import Responses</h2>
+      <p><a href = 'help.php'>Help</a> on importing voter responses.</p>
     <?php
     // Ask user how many survery questions she wants to enter
     echo "<a href = 'import_list.php'><button type = 'button'>Reset</button></a>";

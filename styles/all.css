@@ -1,13 +1,21 @@
 /****** Begin Global Styles ******/
-a {
-    color: #0099ff;
+@font-face {
+    /* For titles */
+    font-family: Rubik;
+    src: url("https://fonts.googleapis.com/css?family=Rubik");
 }
+
+
+a {
+    color: #0d579c;
+}
+
 button {
     color:white;
     background-color: #0d579c;
     border: none;
     border-radius: 2px;
-    margin: 4px;
+    margin: 2px;
 }
 
 button:hover {
@@ -26,7 +34,9 @@ html, body {
     padding: 0;
 }
 
-h3 {
+h2, h3 {
+    font-family: Rubik, "Source Sans Pro", sans-serif;
+    font-weight: 400;
     margin-top: 0px;
     color: #0d5579;
 }
@@ -37,6 +47,7 @@ h3 {
     border: none;
     border-radius: 0;
     font-size: 1.2em;
+    font-family: 'Rubik', 'Helvetica Neue', sans-serif;
 }
 
 .navbar-default .navbar-nav>li>a {

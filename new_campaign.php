@@ -22,6 +22,7 @@
 	<div id = "page-header1">
 		<div class = 'spacer'></div>
 		<div id = 'my-form'>
+            <h2>New Campaign</h2>
 			<?php
 		   // if isset submit do things
 		   // then make sure fields are set
@@ -40,15 +41,15 @@
 			else {
 				echo 
 				"<form action = 'new_campaign.php' method = 'post' id = 'new_campaign'>
-					<label>First</label>
+					<label>First Name</label>
 						<input type = 'text' name = 'first' required> <br> <br>
-					<label>Last</label>
+					<label>Last Name</label>
 						<input type = 'text' name = 'last' required> <br> <br>
 					<label>Email</label>
 						<input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
 					<label>Campaign/ Organization</label>
 						<input type = 'text' name = 'campaign' required> <br> <br>
-					<label>How do you plan to use Grassroots Analytics?</label>
+					<label>How do you plan to use Underdog Data?</label>
 						<textarea name = 'comments' form = 'new_campaign' required> </textarea> <br> <br>
 					<button type = 'submit' value = 'Submit' formid = 'newusr'>Get Started</button>
 				</form>";

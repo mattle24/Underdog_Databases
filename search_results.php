@@ -5,7 +5,7 @@ include 'includes/check_logged_in.php';
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Search</title>
+   <title>Search Results</title>
    <!-- Source Sans Pro font -->
    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
@@ -20,6 +20,7 @@ include 'includes/check_logged_in.php';
   ?>
   <div class="spacer"></div>
   <div id = 'make-list-container' style = "overflow-x:auto;">
+      <h2 align = 'center'>Search Results</h2>
   <?php
     // Find which POST variables were set and prepare them for queries.
     if (isset($_POST['searchid'])) {
@@ -87,7 +88,7 @@ include 'includes/check_logged_in.php';
     echo '<table>
             <thead id = "QLhead">
             <tr>
-              <th>COUNTY ID</th>
+              <th>Voter ID</th>
               <th>NAME</th>
               <th>ADDRESS</th>
               <th>CITY</th>
@@ -98,14 +99,16 @@ include 'includes/check_logged_in.php';
 
     $row = 0;
     while($stmt->fetch() & $row < 75) {
-      echo '
+      echo "
         <tr>
-          <td>'.$CountyID.'</td>
-          <td>'.$FirstName.' '.$LastName.'</td>
-          <td>'.$StreetNumber.' '.$StreetName.'</td>
-          <td>'.$City.'</td>
-          <td>'.$Age.'</td>
-        </tr>';
+          <td>
+            <a href = 'individual_results.php?countyid=$CountyID'>$CountyID</a>
+          </td>
+          <td>$FirstName"." "."$LastName</td>
+          <td>$StreetNumber"." "."$StreetName</td>
+          <td>$City</td>
+          <td>$Age</td>
+        </tr>";
         $row = $row + 1;
     }
     echo '</tbody></center>';

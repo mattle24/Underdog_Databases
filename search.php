@@ -24,6 +24,7 @@ include 'includes/check_logged_in.php';
   ?>
   <div class="spacer"></div>
   <div id = 'make-list-container'>
+      <h2>Search</h2>
       <p align = 'left'>Use one or more of the search terms below. Results will display the top 25 voters that match your terms. If you are looking for someone else please use more specific search terms. </p>
 		<form action = "search_results.php" method = "post">
         <p><strong>Choose Search Type(s):</strong></p>
@@ -41,7 +42,7 @@ include 'includes/check_logged_in.php';
     	<label>Street Number</label>
     	<input type="searchterm" name="searchnumber"> 
     	</div>
-     <p><input type="submit" name="submit" value="Search"></p>
+     <button type = 'submit'>Search</button>
     </form>
 
 </div>
