@@ -11,3 +11,5 @@ TODO:
 - Add more search features 
 
 - Integrate canvassing application
+
+- Add submenu in nav bar

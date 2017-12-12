@@ -12,12 +12,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
-<body id = 'make-list-body'>
+<body>
   <?php
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
-  <div class = 'spacer'><</div>
+  <div id = 'page-header1'>
+  <div class = 'spacer'></div>
   <div id = 'make-list-container'>
       <h2>Import Responses</h2>
       <p><a href = 'help.php'>Help</a> on importing voter responses.</p>
@@ -26,11 +27,14 @@
     echo "<a href = 'import_list.php'><button type = 'button'>Reset</button></a>";
     if (!isset($_POST['Qnum']) && !isset($_POST['questions'])){
         echo "<form action = 'import_list.php' method = 'post'>
-        <label>Number of survey questions</label><input type = 'numeric' name = 'Qnum' required></input><br />
-        <label>What number column is the voter ID in?</label><input type = 'numeric' name = 'id_col' required></input><br />
-        <label>What number column is the first question in?</label><input type = 'numeric' name = 'Qstart' required></input><br />
+        <label>Number of survey questions</label>
+            <input type = 'numeric' name = 'Qnum' required></input><br />
+        <label>What number column is the voter ID in?</label>
+            <input type = 'numeric' name = 'id_col' required></input><br />
+        <label>What number column is the first question in?</label>
+            <input type = 'numeric' name = 'Qstart' required></input><br />
         <input type = 'submit'></input>
-        </form ";
+        </form> ";
     } else {
         if (!isset($_POST['questions'])) {
             $_SESSION['Qnum'] = filter_input(INPUT_POST, 'Qnum', FILTER_SANITIZE_NUMBER_INT); 
@@ -65,19 +69,21 @@
             $_SESSION['questions'] = $_POST['questions']; // filter_input_array(INPUT_POST, 'questions');
             // TODO: improve security above
             if (!is_array($_SESSION['questions'])) {
-            	session_destroy();
-            	header("Location: index.php");
+                header("Location: logout.php");
+                exit();
             }
             echo "<form action='includes/functions.php' method = 'post' name = 'upload_csv' enctype = 'multipart/form-data'>
                     <label>Select File</label>
-                    <input type = 'file' name = 'file' id = 'file'>
+                    <input type = 'file' name = 'file' id = 'file'></input>
                     <label>Import Data</label>
                     <button type='submit' id='submit' name='Import' class='btn btn-primary button-loading' data-loading-text='Loading...'>Import</button>
-                    </form>";
+                </form>";
             // get_some_records(); // custom function from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
         }
     }
     ?>
   </div>
+</div>
+<footer></footer>
 </body>
 </html>

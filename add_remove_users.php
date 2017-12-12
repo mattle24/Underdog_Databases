@@ -6,8 +6,6 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>New User</title>
-    <!-- Source Sans Pro font -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href="styles/all.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
@@ -22,22 +20,33 @@ include 'includes/check_logged_in.php';
        <div id = 'my-form'>
            <h3>Add an existing user to your campaign</h3>
            <p>The user must already have an account with Underdog</p>
-           <form action = 'manage_users.php' method = 'post'>
+           <form action = 'add_remove_users.php' method = 'post'>
             <label>User Email</label>
-            <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
+            <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br>
+            <label>New Position</label>
+                <select name = 'new_pos'>
+                    <option value = 1>Volunteer</option>
+                    <option value = 4>Field Organizer</option>
+                    <option value = 6>Senior Staff</option>
+                    <option value = 8>Field Director</option>
+                </select>
+               <br>
             <button type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
         </form>
            <br><br>
+           
+        <!-- Remove user from campaign -->
         <h3>Remove an existing user from your campaign</h3>
-        <form action = 'manage_users.php' method = 'post'>
+        <form action = 'add_remove_users.php' method = 'post'>
             <label>User Email</label>
-            <input type = 'text' name = 'old_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
+            <input type = 'text' name = 'old_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br>
             <button type = 'submit' value = 'Submit'>Remove from Campaign</button>
         </form>
         <?php
         if (!isset($_SESSION['cmp'])) {
             // if cmp not set, make them set it
-            header("Location: choose_campaign.php");
+            $msg = "Error: You must set your campaign before adding or removing users.";
+            header("Location: choose_campaign.php?msg=$msg");
             exit();
         }
         // Get campaignid
@@ -98,7 +107,7 @@ include 'includes/check_logged_in.php';
             } else { exit(); }
         }
         else { 
-            echo "Adding user";
+//            echo "Adding user";
             $email = filter_input(INPUT_POST, 'new_email');
             // check to make sure this email already has an account
             $query = "SELECT userID FROM users WHERE email = ?;";
@@ -128,17 +137,22 @@ include 'includes/check_logged_in.php';
             }
 
             // insert new data into bridge table
-            $query = "INSERT INTO user_campaign_bridge (userID, campaignID)
-            VALUES(?, ?);";
+            // If a position was specified, add as that position. 
+            // Otherwise, add as Vol
+            if (isset($_POST['new_pos'])) {
+                $new_pos = filter_input(INPUT_POST, 'new_pos', FILTER_SANITIZE_NUMBER_INT);
+            } else {$new_pos = 1;}
+            $query = "INSERT INTO user_campaign_bridge (userID, campaignID, position)
+            VALUES(?, ?, ?);";
             $stmt = $db->prepare($query);
-            $stmt->bind_param('ii', $user_id, $cmp_id);
-            echo "point 2";
+            $stmt->bind_param('iii', $user_id, $cmp_id, $new_pos);
+//            echo "point 2";
             $stmt->execute();
             if ($stmt) { echo "User $email succesfully added.";}
             else {echo "Error. Please try again or contact the administrator.";}
         }
     ?>
-</div>
+    </div>
 </div>
 <footer>
 </footer>

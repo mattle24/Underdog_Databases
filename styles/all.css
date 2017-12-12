@@ -162,14 +162,16 @@ h2, h3 {
 }
 
 #page-header1{
-  background-image: url('../resources/background_white.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 900px;
+    background-image: url('../resources/background_white.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 900px;
 }
 
 @media (max-height:800px) {
+    /* Adjust for mobile devices */
     #page-header1, #make-list-body { 
         min-height: 600px;
     }

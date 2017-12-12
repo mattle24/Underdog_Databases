@@ -6,18 +6,17 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
    <title>Search Results</title>
-   <!-- Source Sans Pro font -->
-   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
    <link rel='stylesheet' type='text/css' href="styles/all.css">
    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
-<body id = 'make-list-body'>
+<body>
   <?php
   include 'includes/navbar_loggedin.php';
   ?>
+  <div id = 'page-header1'>
   <div class="spacer"></div>
   <div id = 'make-list-container' style = "overflow-x:auto;">
       <h2 align = 'center'>Search Results</h2>
@@ -111,11 +110,15 @@ include 'includes/check_logged_in.php';
         </tr>";
         $row = $row + 1;
     }
-    echo '</tbody></center>';
+    echo '</tbody>
+    </table>
+    </center>';
     $stmt->free_result();
     $db->close();
   ?>
 
+    </div>
 </div>
+<footer></footer>
 </body>
 </html>

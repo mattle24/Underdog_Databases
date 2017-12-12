@@ -17,11 +17,12 @@ if (!isset($_SESSION['cmp'])) {
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
-<body id = 'make-list-body'>
+<body>
   <?php
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
+<div id = "page-header1">
   <div class="spacer"></div>
   <div id = 'make-list-container'>
       <form action = 'list_results.php' method = 'post' id = 'make-list-form'>
@@ -93,6 +94,7 @@ if (!isset($_SESSION['cmp'])) {
       </form>
 </div>
 <div class = "spacer"></div>
+    </div>
 <footer>
 </footer>
 </body>

@@ -21,9 +21,13 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
   <div id = 'page-header1'>
     <div class = 'spacer'></div>
     <div id = 'my-form'>
-      <label>Choose Campaign</label>
-      <form action = 'landing.php' method = 'post' id ='choose_cmp'>
-        <?php
+      <h2>Choose Campaign</h2>
+      <?php 
+        // check for error messages
+      if (isset($_GET['msg'])) {
+          echo filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING);
+      }    
+      echo "<form action = 'landing.php' method = 'post' id ='choose_cmp'>";
         include("configs/config.php");
         $db = new mysqli(
           DB_HOST, 
@@ -41,12 +45,6 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($campaign, $table_name);
-        if ($stmt->num_rows == 1) {
-          // if the user is only in one campaign, then don't worry about having him choose
-          $stmt->fetch();
-          $_SESSION['cmp'] = $table_name;
-          header('Location: landing.php');
-        }
         echo "<select name = 'choose_cmp'>";
         while($stmt->fetch()){
           echo "<option value = $table_name>$campaign</option>";

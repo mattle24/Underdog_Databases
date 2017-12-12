@@ -142,6 +142,7 @@ include 'includes/check_logged_in.php';
         $stmt->execute();
         if ($stmt) {
             echo "The password now associated with this account has been changed.";
+            $_SESSION['logged_user'] = $new_email;
         }
         else {
             echo "Error. Please try again or contact the administrator.";

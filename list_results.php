@@ -14,14 +14,14 @@ include 'includes/check_logged_in.php';
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
-<body id = 'make-list-body'>
+<body>
   <?php
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
+<div id = 'page-header1'>
   <div class="spacer"></div>
   <div id = 'make-list-container'>
-    <div id = 'make-list-content'>
     <a href="make_list.php">Back to Make List</a>
     <h2 align='center'>List Results</h2>
     <?php
@@ -126,11 +126,15 @@ include 'includes/check_logged_in.php';
             </tr>";
             $row = $row + 1;
         }
-        echo '</tbody></center>';
+        echo '</tbody>
+        </table>
+        </center>';
         $stmt->free_result();
         $db->close();
         ?>
-        </div>
   </div>
+<div class="spacer"></div>
+</div>
+<footer></footer>
 </body>
 </html>

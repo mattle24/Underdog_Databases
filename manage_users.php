@@ -20,7 +20,15 @@ include 'includes/check_logged_in.php';
        <div class = 'spacer'></div>
        <div id = 'landing-container'>
            <div id = 'my-form'>
-           <h3>Change user position</h3>
+           <h2>Change user position</h2>
+            <?php
+            if (isset($_GET['err'])) {
+                $err = filter_input(INPUT_GET, 'err', FILTER_SANITIZE_STRING);
+                echo "<p>$err</p>
+                <br>";
+                $_GET = array();
+            }
+            ?>
             <p>You can change the positions of users with lower roles than you. You can select a role equal to or lower than your role.</p>
            <form action = "change_user.php" method = "post">
                <label>User email</label>
@@ -33,6 +41,8 @@ include 'includes/check_logged_in.php';
                     <option value = 4>Field Organizer</option>
                     <option value = 1>Volunteer</option>
                 </select>
+               <br>
+               <button type = 'submit'>Submit</button>
            </form>
        </div>
            <h3 align = 'center'>Campaign Team</h3>
