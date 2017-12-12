@@ -6,8 +6,6 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>Manage Users</title>
-    <!-- Source Sans Pro font -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet' type='text/css' href="styles/all.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
@@ -36,10 +34,10 @@ include 'includes/check_logged_in.php';
                <br>
                 <label>New Position</label>
                 <select name = 'new_pos' required>
-                    <option value = 8>Field Director</option>
-                    <option value = 6>Senior Staff</option>
-                    <option value = 4>Field Organizer</option>
                     <option value = 1>Volunteer</option>
+                    <option value = 4>Field Organizer</option>
+                    <option value = 6>Senior Staff</option>
+                    <option value = 8>Field Director</option>
                 </select>
                <br>
                <button type = 'submit'>Submit</button>
@@ -50,7 +48,8 @@ include 'includes/check_logged_in.php';
     // Get all the users for the given campaign and list them in order
     // of position then name
     if (!isset($_SESSION['cmp'])) {
-        echo "<p><a href='choose_campaign.php'>Please choose your campaign.</a></p>";
+        $msg = "Error: Please choose your campaign before managing users.";
+        header("Location: choose_campaign.php?msg=$msg");
         exit();
     }
     $cmp = $_SESSION['cmp'];
@@ -93,9 +92,12 @@ include 'includes/check_logged_in.php';
           <td>$position</td>
         </tr>";
     }
-    echo '</tbody></center>'; 
+    echo '</tbody>
+    </table>
+    </center>'; 
         ?>
        </div>
     </div>
+<footer></footer>
 </body>
 </html>

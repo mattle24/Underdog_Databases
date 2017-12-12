@@ -5,11 +5,17 @@
     src: url("https://fonts.googleapis.com/css?family=Rubik");
 }
 
+@font-face {
+    /* For text */
+    font-family: barlow; 
+    src: url("https://fonts.googleapis.com/css?family=Barlow:400");
+}
 
 a {
     color: #0d579c;
 }
 
+/*
 button {
     color:white;
     background-color: #0d579c;
@@ -17,9 +23,10 @@ button {
     border-radius: 2px;
     margin: 2px;
 }
+*/
 
 button:hover {
-    background-color: #1066b7;
+    background-color: #1066b7; /* Slightly lighter shade of blue */
 }
 
 footer {
@@ -35,7 +42,7 @@ html, body {
 }
 
 h2, h3 {
-    font-family: Rubik, "Source Sans Pro", sans-serif;
+    font-family: Rubik, sans-serif;
     font-weight: 400;
     margin-top: 0px;
     color: #0d5579;
@@ -83,6 +90,11 @@ h2, h3 {
 
 .spacer {
     height: 100px;
+}
+
+p {
+    font-family: barlow, sans-serif;
+    font-size: 1.1em;
 }
 
 /****** Begin Home Page Styles ********/
@@ -145,12 +157,6 @@ h2, h3 {
 .home-text-block {
 
 }
-
-.block-header {
-    font-family: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-    color: #373780;
-}
-
 /****** Begin Login and Sign Up Page Styles ********/
 
 #my-form {
@@ -167,7 +173,7 @@ h2, h3 {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    min-height: 900px;
+    min-height: 1000px;
 }
 
 @media (max-height:800px) {
@@ -229,7 +235,7 @@ h2, h3 {
 table {
   border-collapse: collapse;
   font-size: 14px;
-  font-family: "Source Sans Pro", sans-serif;
+/*  font-family: "Source Sans Pro", sans-serif;*/
 }
 
 td {

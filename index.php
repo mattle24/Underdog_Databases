@@ -22,8 +22,8 @@ else {
 <head>
 	<meta charset="utf-8">
 	<title>Underdog Data</title>
-	<!-- Source Sans Pro font -->
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">-->
     <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 	<link rel='stylesheet' type='text/css' href="styles/all.css">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
