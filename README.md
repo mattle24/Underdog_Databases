@@ -4,8 +4,6 @@
 
 TODO:
 
-- Add user management
-
 - Create fake sample voter file and deploy 
 
 - Add more search features 
