@@ -61,21 +61,21 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>Why Underdog Data</h3>
 				<p>
-					Underdog is a data management and analytics platform built for small campaigns. We believe that data holds an underlying truth and every campaign, from village council to president, can make more effective decisions by understanding the data you collect. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data.
+					Underdog is a data management and analytics platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding your data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
 				</p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>The Importance of Data</h3>
 				<p>
-					Time spent on voters that do not support your candidate is time you cannot spend talking to your potential supporters. Underdog also make it easier to keep track of your supporters to make GOTV easier. Underdog also offers tools to cut turf and create calls lists that yield optimal impact. By using a data-driven approach you can maximize your efforts and win crucial votes.
+					Time is the most precious resource on a campaign. While your total voter universe might be large, Underdog will help shrink it to only the most important people to target. The Underdog platform makes it easy to keep track of your supporters, optimizing the impact of your field operations. Underdog also offers tools to cut turf and create calls lists that yield optimal impact. By using a data-driven approach you can maximize your efforts and win crucial votes.
 				</p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>How to Sign Up</h3>
 				<p>
-					We created Underdog as a platform that any progressive campaign or group could use. The platform is free to use, although donations keep it running. To begin using the Underdog platform, contact us by clicking the new campaign button above. We'll be in touch shortly about how we can help you bring a data-driven approach to your campaign.
+					We created Underdog as a platform that any progressive campaign or group could use. The platform is free to use, although donations keep it running. To begin using the Underdog platform, <a href= 'new_campaign.php'>contact us.</a> We'll be in touch shortly about how we can help you bring a data-driven approach to your campaign.
 				</p>
 			</article>
 		</div>

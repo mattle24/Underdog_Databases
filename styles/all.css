@@ -8,7 +8,7 @@
 @font-face {
     /* For text */
     font-family: barlow; 
-    src: url("https://fonts.googleapis.com/css?family=Barlow:400");
+    src: url("https://fonts.googleapis.com/css?family=Barlow");
 }
 
 a {
@@ -16,19 +16,11 @@ a {
 }
 
 /*
-button {
-    color:white;
-    background-color: #0d579c;
-    border: none;
-    border-radius: 2px;
-    margin: 2px;
-}
-*/
-
 button:hover {
-    background-color: #1066b7; /* Slightly lighter shade of blue */
+    background-color: #1066b7;  Slightly lighter shade of blue 
 }
 
+*/
 footer {
 /*    margin-top: 40px;
     Commented out by ML 9/22
@@ -173,13 +165,13 @@ p {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    min-height: 1000px;
+    min-height: 650px;
 }
 
-@media (max-height:800px) {
+@media (max-height:600px) {
     /* Adjust for mobile devices */
     #page-header1, #make-list-body { 
-        min-height: 600px;
+        min-height: 550px;
     }
 }
 

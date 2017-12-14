@@ -22,12 +22,12 @@ include 'includes/check_logged_in.php';
     $new_pos = filter_input(INPUT_POST, 'new_pos', FILTER_SANITIZE_NUMBER_INT);
 
     if (!isset($_SESSION['cmp'])) {
-        $err = "Please select your campaign.";
+        $err = "Error. Please select your campaign before managing users.";
         echo "<script type=\"text/javascript\">
 		alert(\"$err.\");
 		window.location = \"manage_users.php\"
 		</script>";	
-        header("Location: choose_campaign.php"); // if JS disabled
+        header("Location: choose_campaign.php?msg=$err"); // if JS disabled
         // TODO: add GET message
     }
     $cmp = $_SESSION['cmp'];
@@ -62,8 +62,8 @@ include 'includes/check_logged_in.php';
     $stmt->store_result();
     $stmt->bind_result($user_rank);
     $stmt->fetch();
-    if ($stmt->num_rows > 1) {
-        $err = "There were $stmt->num_rows accounts associated with this campaign for your email.";
+    if ($stmt->num_rows != 1) {
+        $err = "Error. There were $stmt->num_rows accounts associated with this campaign for your email.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
@@ -71,7 +71,7 @@ include 'includes/check_logged_in.php';
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
     if ($user_rank < $new_pos) {
-        $err = "You cannot promote a user above your rank. Your rank is $user_rank and the new rank is $new_pos.";
+        $err = "Error. You cannot promote a user above your rank. Your rank is $user_rank and the new rank is $new_pos.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
@@ -91,13 +91,22 @@ include 'includes/check_logged_in.php';
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($change_user_id, $change_user_rank, $cmp_id);
+    if ($stmt->num_rows !== 1){
+        $err = "Error. There were $stmt->num_rows accounts associated with this campaign for $change_email.";
+        echo "<script type=\"text/javascript\">
+        alert(\"$err\");
+        window.location = \"manage_users.php\"
+        </script>";		
+        header("Location: manage_users.php?err=$err"); // if javascript disabled 
+        exit();
+    }
     $stmt->fetch();
     echo $user_rank;
     echo $change_user_rank;
 //    exit();
     echo "C";
     if ($user_rank < $change_user_rank) {
-        $err = "You cannot change the role of a user with a more senior role.";
+        $err = "Error. You cannot change the role of a user with a more senior role.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
@@ -106,7 +115,7 @@ include 'includes/check_logged_in.php';
         exit();
     }
     elseif ($user_rank == $change_user_rank) {
-        $err = "You cannot change the role of a user with an equal role.";
+        $err = "Error. You cannot change the role of a user with an equal role.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
@@ -132,7 +141,7 @@ include 'includes/check_logged_in.php';
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
     else {
-        $err = "Error. Please try again or contact the administrator.";
+        $err = "Unknown error. Please try again or contact the administrator.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"

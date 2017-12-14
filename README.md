@@ -1,14 +1,12 @@
-# Grassroot_Analytics
+# Underdog_Data
 
 ### Let's revolutionize local politics. Or at least build a cool site.
 
 TODO:
 
-- Add user management
+- Add more search features 
 
 - Create fake sample voter file and deploy 
-
-- Add more search features 
 
 - Integrate canvassing application
 
