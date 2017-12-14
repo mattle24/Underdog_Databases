@@ -15,12 +15,10 @@ a {
     color: #0d579c;
 }
 
-/*
-button:hover {
-    background-color: #1066b7;  Slightly lighter shade of blue 
+button {
+    color: #000;
 }
 
-*/
 footer {
 /*    margin-top: 40px;
     Commented out by ML 9/22
@@ -129,14 +127,13 @@ p {
     margin-left: 10px;
     margin-right: 10px;
     padding: 20px;
-    color: #0d579c;
     background-color: #fff;
 }
 
 .cta-button:hover {
     transition: 0.3s;
     text-decoration: none;
-    color: #0d579c;
+/*    color: #0d579c;*/
     background-color: #f2f2f2;
     cursor: pointer;
 }

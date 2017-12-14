@@ -24,7 +24,7 @@
       <p><a href = 'help.php'>Help</a> on importing voter responses.</p>
     <?php
     // Ask user how many survery questions she wants to enter
-    echo "<a href = 'import_list.php'><button type = 'button'>Reset</button></a>";
+    echo "<a href = 'import_list.php' class = 'button-link'><button type = 'button' >Reset</button></a>";
     if (!isset($_POST['Qnum']) && !isset($_POST['questions'])){
         echo "<form action = 'import_list.php' method = 'post'>
         <label>Number of survey questions</label>
