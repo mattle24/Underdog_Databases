@@ -20,22 +20,21 @@ include 'includes/check_logged_in.php';
   ?>
   <div class="spacer"></div>
   <div id = 'make-list-container' style = "overflow-x:auto;">
-  <?php
+    <?php
     if (isset($_GET["countyid"])) {
-      $CountyID = filter_input(INPUT_GET, 'countyid', FILTER_SANITIZE_NUMBER_INT);
+      $VoterID = filter_input(INPUT_GET, 'countyid', FILTER_SANITIZE_NUMBER_INT);
     } 
     else {
       echo '<p> Value not set, please try again. </p>';
       exit();
     }
-      
+
     include("configs/config.php");  
     $db = new mysqli(DB_HOST, 
                      DB_USER, 
                      DB_PASSWORD, 
-                     'voter_file'
-                    )or die('Failed to connect.');
-  
+                     DB_NAME)or die('Failed to connect.');
+
     if (mysqli_connect_errno()) {
        echo '<p>Error: Could not connect to database. Please try again later!</p>';
        exit;
@@ -44,23 +43,48 @@ include 'includes/check_logged_in.php';
     $query = "SELECT FirstName, LastName, Age, StreetNumber, StreetName, City, AreaCode, TelephoneNumber, Affiliation FROM $cmp
               WHERE countyid = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param('i', $CountyID);
+    $stmt->bind_param('i', $VoterID);
     $stmt->execute();
     $stmt->store_result();
 
     $stmt->bind_result($FirstName, $LastName, $Age, $StreetNumber, $StreetName, $City, $AreaCode, $TelephoneNumber, $Affiliation);
-
+    
+    if ($stmt->num_rows > 0) {
+        echo "<h3>Voter Information</h3>";
+    }
+    else {
+        echo "<p>No voter information was found for this Voter ID.";
+    }
     while($stmt->fetch()) {
       echo '<p><strong>Name: '.$FirstName.' '.$LastName.'</strong>';
-      echo '<br />Voter ID: '.$CountyID;
+      echo '<br />Voter ID: '.$VoterID;
       echo '<br />Address: '.$StreetNumber.' '.$StreetName.', '.$City;
       echo '<br />Party: '.$Affiliation; 
       echo '<br />Age: '.$Age;
       echo '<br />Phone Number: '.$AreaCode.'-'.$TelephoneNumber.'</p>';
     }
     $stmt->free_result();
+    
+    // Get survey responses
+    $query = "SELECT question, response, date FROM responses
+    WHERE voter_id = ?
+    AND campaign = ?;";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('is', $VoterID, $cmp);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($question, $response, $date);
+    
+    if ($stmt->num_rows > 0) {
+        echo "<h3>Contact History</h3>";
+        while ($stmt->fetch()) {
+            echo "<p><strong>Question:</strong> $question<br><strong>Response:</strong> $response <br>
+            <strong>Date:</strong> $date</p>";
+        }
+    }
+    $stmt->free_result();
     $db->close();
-  ?>
+    ?>
 
 </div>
 </body>

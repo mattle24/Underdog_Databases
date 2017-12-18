@@ -71,14 +71,16 @@ include 'includes/check_logged_in.php';
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
     if ($user_rank < $new_pos) {
-        $err = "Error. You cannot promote a user above your rank. Your rank is $user_rank and the new rank is $new_pos.";
+        $err = "Error. You cannot promote a user above your rank.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
         </script>";		
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
-    echo "B";
+//    echo $user_rank;
+//    echo $new_pos;
+//    exit();
     // Get change user's current rank and ID
     // Also get the campaign id for the next query
     $query = "SELECT user_campaign_bridge.userid, position, user_campaign_bridge.campaignid FROM user_campaign_bridge, users, campaigns
@@ -104,7 +106,6 @@ include 'includes/check_logged_in.php';
     echo $user_rank;
     echo $change_user_rank;
 //    exit();
-    echo "C";
     if ($user_rank < $change_user_rank) {
         $err = "Error. You cannot change the role of a user with a more senior role.";
         echo "<script type=\"text/javascript\">

@@ -97,6 +97,7 @@ include 'includes/check_logged_in.php';
     </center>'; 
         ?>
        </div>
+    <div class="spacer"></div>
     </div>
 <footer></footer>
 </body>

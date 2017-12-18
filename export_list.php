@@ -39,8 +39,7 @@ $db = new mysqli(
 DB_HOST, 
 DB_USER, #$_SESSION['logged_user'], 
 DB_PASSWORD, 
-'voter_file'
-)or die('Failed to connect.'); 
+DB_NAME)or die('Failed to connect.'); 
 
 $stmt = $db->prepare($my_query);
 $stmt->execute();

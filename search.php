@@ -19,7 +19,8 @@ include 'includes/check_logged_in.php';
   <?php
   include 'includes/navbar_loggedin.php';
     if (!isset($_SESSION['cmp'])) {
-        header("Location: choose_campaign.php");
+        $msg = "Error. Please select your campaign before searching.";
+        header("Location: choose_campaign.php?msg=$msg");
     }
   ?>
 <div id = 'page-header1'>

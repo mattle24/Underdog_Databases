@@ -1,7 +1,7 @@
 /****** Begin Global Styles ******/
 @font-face {
     /* For titles */
-    font-family: Rubik;
+    font-family: Rubik, sans-serif;
     src: url("https://fonts.googleapis.com/css?family=Rubik");
 }
 
@@ -17,6 +17,7 @@ a {
 
 button {
     color: #000;
+    margin-bottom: 4px;
 }
 
 footer {
@@ -109,7 +110,7 @@ p {
     font-size: 7em;
     font-weight: 400;
     color: #ffffff;
-    font-family: 'Rubik', serif, 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+    font-family: 'Rubik', sans-serif, 'Source Sans Pro', 'Helvetica Neue', sans-serif;
 }
 
 #home-hero-subtitle {

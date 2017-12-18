@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php 
+session_start();
+include("includes/check_logged_in.php");
+?>
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +17,10 @@
 </head>
 <body>
   <?php
-  if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
+  if (!isset($_SESSION['cmp'])){
+      $msg = "Error. Please choose your campaign before importing a list.";
+      header("Location: choose_campaign.php?msg=$msg");
+  }
   include 'includes/navbar_loggedin.php';
   ?>
   <div id = 'page-header1'>
@@ -41,22 +47,38 @@
             $_SESSION['Qstart'] = filter_input(INPUT_POST, 'Qstart', FILTER_SANITIZE_NUMBER_INT) - 1;  // because php uses 0 index
             $_SESSION['id_col'] = filter_input(INPUT_POST, 'id_col', FILTER_SANITIZE_NUMBER_INT) - 1;
             // TODO: change so that each question is a drop down of available questions
-            // include('configs/config.php');
-   //          $db = new mysqli(
-			// DB_HOST, 
-			// DB_USER, #$_SESSION['logged_user'], 
-			// DB_PASSWORD, 
-			// 'voter_file'
-			// )or die('Failed to connect.'); 
-			// $cmp = $_SESSION['cmp'];
-			// $query = "SELECT DISTINCT(question) FROM survey_questions WHERE campaign = ?;";
-			// $stmt = $db->prepare($query);
-			// $stmt->bind_param('s', $cmp);
-			// echo "We made it this far";
-			// $stmt->execute();
-			// $stmt->store_result();
-			// $possible_qs = $stmt->fetch_all();
-            echo "<form action = 'import_list.php' method = 'post'>";
+             require_once('configs/config.php');
+             $db = new mysqli(
+			 DB_HOST, 
+			 DB_USER, 
+			 DB_PASSWORD, 
+			 DB_NAME
+			 )or die('Failed to connect.'); 
+			 $cmp = $_SESSION['cmp'];
+//			 $query = "SELECT DISTINCT(question) FROM survey_questions, campaigns 
+//             WHERE campaigns.table_name = ?
+//             AND survey_questions.campaignid = campaigns.campaignid;";
+//			 $stmt = $db->prepare($query);
+//			 $stmt->bind_param('s', $cmp);
+//			 $stmt->execute();
+//			 $stmt->store_result();
+//             $stmt->bind_result($question);
+//            echo "a";
+//            $survey_questions = array();
+//            echo "b";
+//            while ($stmt->fetch()) {
+//                echo "goooo";
+//                $survey_questions.append($question);
+//            }
+//            echo "c";
+//            echo $survey_questions;
+//            echo $temp;
+//            echo "exiting";
+//            exit();
+//			 
+//             echo "<form action = 'import_list.php' method = 'post'>";
+//             while (stmt->fetch)
+            
             for ($num = 1; $num <= $_SESSION['Qnum']; $num ++) {
                 //  because no one wants question 0
                 echo "<label>Question $num</label>";

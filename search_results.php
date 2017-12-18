@@ -56,7 +56,7 @@ include 'includes/check_logged_in.php';
     $db = new mysqli(DB_HOST, 
                      DB_USER, 
                      DB_PASSWORD, 
-                     'voter_file')or die('Failed to connect.');
+                     DB_NAME)or die('Failed to connect.');
   
     if (mysqli_connect_errno()) {
        echo '<p>Error: Could not connect to database.<br/>

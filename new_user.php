@@ -12,7 +12,12 @@
  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 </head>
 <body>
- <?php include 'includes/navbar.php' ?>
+ <?php 
+	if (!isset($_SESSION['logged_user'])){
+		include 'includes/navbar.php';
+	}
+	else {include 'includes/navbar_loggedin.php';}
+?>
  <div id = "page-header1">
      <div class = 'spacer'></div>
      <div id = 'my-form'>

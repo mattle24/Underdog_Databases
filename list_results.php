@@ -34,8 +34,7 @@ include 'includes/check_logged_in.php';
         DB_HOST, 
         DB_USER, #$_SESSION['logged_user'], 
         DB_PASSWORD, 
-        'voter_file'
-        )or die('Failed to connect.'); 
+        DB_NAME)or die('Failed to connect.'); 
         $query = "SELECT CountyID, FirstName, LastName, Age, StreetNumber, StreetName, City FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"

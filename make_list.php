@@ -35,14 +35,17 @@ if (!isset($_SESSION['cmp'])) {
             include("configs/config.php");
             # Get the user's password and the campaign table name
             $username = $_SESSION['logged_user'];
+            if (!isset($_SESSION['cmp'])) {
+                $msg = "Error. Please select your campaign before creating a list.";
+                header("Location: choose_campaign.php?msg=$msg");
+            }
             $cmp = $_SESSION['cmp'];
             # TODO: change this so that it uses user credentials, not default
             $db = new mysqli(
               DB_HOST, 
               DB_USER,
               DB_PASSWORD, 
-              'voter_file'
-            )or die('Failed to connect.'); 
+              DB_NAME)or die('Failed to connect.'); 
             $query = "SELECT DISTINCT(Zip) FROM $cmp;"; # Zip Code
             $stmt = $db->prepare($query);
             $stmt->execute();

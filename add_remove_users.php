@@ -1,5 +1,9 @@
 <?php session_start();
 include 'includes/check_logged_in.php';
+if (!isset($_SESSION['cmp'])){
+  $msg = "Error. Please choose your campaign before adding or removing users.";
+  header("Location: choose_campaign.php?msg=$msg");
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +27,7 @@ include 'includes/check_logged_in.php';
            <form action = 'add_remove_users.php' method = 'post'>
             <label>User Email</label>
             <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required></input> <br>
+<!--
             <label>New Position</label>
                 <select name = 'new_pos'>
                     <option value = 1>Volunteer</option>
@@ -31,6 +36,7 @@ include 'includes/check_logged_in.php';
                     <option value = 8>Field Director</option>
                 </select>
                <br>
+-->
             <button type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
         </form>
            <br><br>

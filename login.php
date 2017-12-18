@@ -54,6 +54,8 @@ if ( isset($_POST['submit']) ) {
         <div id = 'page-header1'>
             <div class='spacer'></div>
             <div id='my-form'>
+                <h2>Login</h2>
+                <p>This site uses cookies to enhance security.</p>
                 <form action='login.php' method='post' id='login'>
                     <?php echo "<p>$err_msg</p>"; ?>
                     <label>Email</label>
