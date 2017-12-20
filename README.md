@@ -4,9 +4,15 @@
 
 TODO:
 
+- Forget password section
+
+- Help section 
+
+- Add sample voter file and deploy 
+
 - Add more search features 
 
-- Create fake sample voter file and deploy 
+- Filter out multiple voter responses on the survey response summary.
 
 - Integrate canvassing application
 
