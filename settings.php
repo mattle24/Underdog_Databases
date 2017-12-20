@@ -43,7 +43,7 @@ include 'includes/check_logged_in.php';
   // Get userid, because it is quick and we will need it for both changing email
   // or password
     if (sizeof($_POST) > 0){
-        include('configs/config.php');
+        require_once('configs/config.php');
         $db = new mysqli(
             DB_HOST,
             DB_USER,

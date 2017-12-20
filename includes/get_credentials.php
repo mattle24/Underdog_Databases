@@ -16,7 +16,7 @@ function getCredentials($email) {
     $stmt->store_result();
     $stmt->bind_result($user_id, $hashpassword);
     $stmt->fetch();
-    return array($user_id, $hashpassword);
     $stmt->free_result();
     $db->close();
+    return array($user_id, $hashpassword);
 }
