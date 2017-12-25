@@ -55,34 +55,31 @@ include("includes/check_logged_in.php");
 			 DB_NAME
 			 )or die('Failed to connect.'); 
 			 $cmp = $_SESSION['cmp'];
-//			 $query = "SELECT DISTINCT(question) FROM survey_questions, campaigns 
-//             WHERE campaigns.table_name = ?
-//             AND survey_questions.campaignid = campaigns.campaignid;";
-//			 $stmt = $db->prepare($query);
-//			 $stmt->bind_param('s', $cmp);
-//			 $stmt->execute();
-//			 $stmt->store_result();
-//             $stmt->bind_result($question);
-//            echo "a";
-//            $survey_questions = array();
-//            echo "b";
-//            while ($stmt->fetch()) {
-//                echo "goooo";
-//                $survey_questions.append($question);
-//            }
-//            echo "c";
-//            echo $survey_questions;
-//            echo $temp;
-//            echo "exiting";
-//            exit();
-//			 
-//             echo "<form action = 'import_list.php' method = 'post'>";
-//             while (stmt->fetch)
+			 $query = "SELECT DISTINCT(question) FROM survey_questions, campaigns 
+             WHERE campaigns.table_name = ?
+             AND survey_questions.campaignid = campaigns.campaignid;";
+			 $stmt = $db->prepare($query);
+			 $stmt->bind_param('s', $cmp);
+			 $stmt->execute();
+			 $stmt->store_result();
+             $stmt->bind_result($question);
+            $survey_questions = array();
+            while ($stmt->fetch()) {
+                array_push($survey_questions, $question);
+            }
+			 
+            // Create form where for each of the number of questions there 
+            // is a dropdown menu populated with each possible question
+            echo "<form action = 'import_list.php' method = 'post'>";
             
             for ($num = 1; $num <= $_SESSION['Qnum']; $num ++) {
                 //  because no one wants question 0
                 echo "<label>Question $num</label>";
-                echo "<input type = 'text' name = 'questions[]'></input> <br>";
+                echo "<select name = 'questions[]'>";
+                foreach ($survey_questions as $q) {
+                    echo "<option value = $q>$q</option>";
+                }
+                echo "</select><br>";
             }
             echo "<input type = 'submit'></input>
             </form>";
