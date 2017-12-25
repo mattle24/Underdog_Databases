@@ -42,14 +42,6 @@ include 'includes/check_logged_in.php';
         DB_USER,
         DB_PASSWORD,
         DB_NAME) or die("Failed to connect");
-//    $query = "SELECT MAX(positions_reference.number), MIN(positions_reference.number)
-//    FROM positions_reference, users, user_campaign_bridge, campaigns
-//    WHERE campaigns.table_name = ?
-//    AND users.email = ?
-//    AND user_campaign_bridge.campaignID = campaigns.campaignID
-//    AND user_campaign_bridge.userID = users.userID 
-//    AND positions_reference.number <= user_campaign_bridge.Position 
-//    AND positions_reference.number > ?;";
     // Get user rank
     $query = "SELECT position FROM user_campaign_bridge, users, campaigns
     WHERE users.email = ?
