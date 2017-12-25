@@ -70,17 +70,21 @@ include 'includes/check_logged_in.php';
                 $stmt->execute();
                 $stmt->store_result();
                 $stmt->bind_result($response, $number);
+                // Output a list of the number of responses for the given question
+                echo "<h4>$question</h4>";
                 echo "<table>
                 <thead id = 'QLhead'>
                 <tr>
                 <th>Response</th>
-                <th>Number of Responses</th>
+                <th><!--Leave blank for spacing --></th>
+                <th>Count</th>
                 </tr>
                 </tread>
                 <tbody id = 'QLbody'>";
                 while ($stmt->fetch()) {
                     echo "<tr>
                     <td>$response</td>
+                    <td>
                     <td>$number</td>
                     </tr>";
                 }

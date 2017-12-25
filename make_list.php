@@ -26,6 +26,7 @@ if (!isset($_SESSION['cmp'])) {
   <div class="spacer"></div>
   <div id = 'make-list-container'>
       <form action = 'list_results.php' method = 'post' id = 'make-list-form'>
+          <h2>Create List</h2>
           <h3>Geography</h3>
 <!--           <button data-toggle = 'collapse' data-target='#zip'>Zip Code</button>
           <div id='zip' class = 'collapse'> </div>

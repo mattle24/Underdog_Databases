@@ -64,7 +64,7 @@ if ( isset($_POST['submit']) ) {
                     <input type = 'password' name = 'password' required> <br> <br>
                     <button type = 'submit' name='submit' value = 'Submit' formid = 'login'>Login</button>
                 </form>
-                <a href = "login.php">Forgot Password?</a>
+                <a href = "forgot_password.php">Forgot Password?</a>
                 <!-- TODO: add a forgot password action series -->
             </div>
         </div>

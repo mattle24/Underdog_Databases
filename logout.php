@@ -5,7 +5,7 @@ $_SESSION = array();
 setcookie('logged_user', 'nothing', time() - 60);
 echo "<script type=\"text/javascript\">
 alert(\"You have been logged out.\");
-window.location = \"index.php\"
+window.location = \"login.php\"
 </script>";		
-header('Location: index.php'); // if javascript disabled
+header('Location: login.php'); // if javascript disabled
 ?>

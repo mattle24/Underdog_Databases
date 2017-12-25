@@ -24,10 +24,10 @@
          <h2>New User</h2>
       <form action = 'new_user.php' method = 'post'>
         <label>Email</label>
-        <input type = 'text' name = 'email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br><br>
-        <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
+        <input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
+        <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</p>
         <label>Password</label>
-        <input type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required> <br> <br>
+        <input type = 'password' name = 'new_password' pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' required> <br> <br>
         <label>Confirm Password</label>
         <input type = 'password' name = 'confirm_password' required> <br> <br>
         <label>First</label>

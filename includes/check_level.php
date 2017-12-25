@@ -1,4 +1,6 @@
 <?php
+// Useful helper functions //
+
 // Get the position given 
 // an email address and campaign
 function checkLevel($email, $cmp) {
@@ -27,4 +29,5 @@ function checkLevel($email, $cmp) {
         return ($position);
     }
 }
+
 ?>

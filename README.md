@@ -6,6 +6,9 @@ TODO:
 
 - Forget password section
 
+- Search based on survey responses
+    - When we move to AWS, will be easy to include past exported lists into possible search criteria
+
 - Help section 
 
 - Add sample voter file and deploy 
@@ -13,6 +16,11 @@ TODO:
 - Add more search features 
 
 - Filter out multiple voter responses on the survey response summary.
+WITH temp AS 
+(SELECT voter_id, response FROM responses
+where question = ?
+group by voter_id
+order by date desc)
 
 - Integrate canvassing application
 

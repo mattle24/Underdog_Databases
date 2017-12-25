@@ -39,6 +39,10 @@ h2, h3 {
     color: #0d5579;
 }
 
+label {
+    color: #0d5579;
+}
+
 .navbar {
     margin-bottom: 0;
     background-color: #fff;
@@ -229,7 +233,7 @@ table {
 }
 
 td {
-  padding: 2px 30px 2px 0px;
+  padding: 2px 40px 2px 0px;
 }
 
 tr {
@@ -249,8 +253,9 @@ tr {
 } 
 
 #QLhead {
-  display: table-header-group;
-  background-color: #0d579c;
-  color: white;
-  font-weight: normal;
+    display: table-header-group;
+    background-color: #0d579c;
+    color: white;
+    font-weight: normal;
+    margin: 2px;
 }
