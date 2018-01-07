@@ -9,6 +9,8 @@ TODO:
 
 - Help section 
 
+- Meta tags
+
 - Add sample voter file and deploy 
 
 - Add more search features 
