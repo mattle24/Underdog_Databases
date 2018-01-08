@@ -28,6 +28,8 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
           echo filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING);
       }    
       echo "<form action = 'landing.php' method = 'post' id ='choose_cmp'>";
+        // BS Dropdown
+        echo "<div class = 'form-group'>";
         include("configs/config.php");
         $db = new mysqli(
           DB_HOST, 
@@ -45,13 +47,14 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($campaign, $table_name);
-        echo "<select name = 'choose_cmp'>";
+        echo "<select class = 'form-control' name = 'choose_cmp'>";
         while($stmt->fetch()){
           echo "<option value = $table_name>$campaign</option>";
         }
         echo "</select>";
+        echo "</div>";
         ?>
-        <input type='submit'>
+        <button type = 'submit' class = 'btn btn-primary'>Choose</button>
       </form>
 
     </div>

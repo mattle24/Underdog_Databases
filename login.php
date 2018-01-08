@@ -49,26 +49,34 @@ if ( isset($_POST['submit']) ) {
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
     </head>
-    <body>
-        <?php include 'includes/navbar.php' ?>
-        <div id = 'page-header1'>
-            <div class='spacer'></div>
-            <div id='my-form'>
+<body>
+    <?php include 'includes/navbar.php' ?>
+    <div id = 'page-header1'>
+        <div class='spacer'></div>
+        <div id='white-container-small'>
+            <div class = 'row'>
                 <h2>Login</h2>
                 <p>This site uses cookies to enhance security.</p>
-                <form action='login.php' method='post' id='login'>
-                    <?php echo "<p>$err_msg</p>"; ?>
-                    <label>Email</label>
-                    <input type = 'text' name = 'username'required> <br><br>
-                    <label>Password</label>
-                    <input type = 'password' name = 'password' required> <br> <br>
-                    <button type = 'submit' name='submit' value = 'Submit' formid = 'login'>Login</button>
-                </form>
-                <a href = "forgot_password.php">Forgot Password?</a>
-                <!-- TODO: add a forgot password action series -->
             </div>
+            <form action='login.php' method='post' id='login'>
+                <!-- Email input -->
+                <div class = 'form-group'>
+                    <?php echo "<p>$err_msg</p>"; ?>
+                    <label for ='loginEmail'>Email</label>
+                    <input type = 'email' class = 'form-control' id = 'loginEmail' placeholder = 'Enter email' name = 'username' required>
+                </div>
+                <!-- Password input -->
+                <div class = 'form-group'>
+                    <label for = 'loginPassword'>Password</label>
+                    <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
+                </div>
+                <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit' formid = 'login'>Login</button>
+            </form>
+            <br>
+            <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a> 
         </div>
-        <footer>
-        </footer>
-    </body>
+    </div>
+    <footer>
+    </footer>
+</body>
 </html>

@@ -92,6 +92,37 @@ if (!isset($_SESSION['cmp'])) {
               echo "   "; // three spaces
             }
             echo "</fieldset>";
+          
+          // Survey Responses //
+          // Code from: http://formvalidation.io/examples/adding-dynamic-field/
+          echo "<h3>Survey Responses</h3>";
+          echo "
+          <div class = 'form-group'>
+              <label class = 'col-xs-3 control-label'>Question</label>
+              <div class = 'col-xs-5'>
+                <input type = 'text' class = 'form-control' name = 'question' />
+            </div>
+        </div>
+        
+        <div class = 'form-group'>
+            <label class = 'col-xs-3 control-label'>Responses</label>
+            <div class = 'col=xs-5'>
+                <input type = 'text' class = 'form-control' name = 'response[]' />
+            </div>
+        </div>
+        
+        <!-- The option field template containing an option field and a Remove button -->
+        
+        <div class = 'form-group hide' id = 'responseTemplate'>
+            <div c;ass = 'col-xs'offset col-xs-5'>
+                <input class = 'form-control' type = 'text' name = 'response[]' />
+            </div>
+            <div class = 'col-xs-4'>
+                <button type = 'button' class = 'btn btn-default removeButton><i lass = 'fa fa-minus'></i></button>
+            </div>
+        </div>
+
+          ";
             ?>
             <input type = 'reset'>
             <input type = 'submit' name = 'Submit'>

@@ -3,13 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>New User</title>
- <!-- Source Sans Pro font -->
- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
- <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
- <link rel='stylesheet' type='text/css' href="styles/all.css">
-<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/><script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
- <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <title>New User</title>
+    <?php include 'includes/head.php'; ?>
 </head>
 <body>
  <?php 
@@ -20,27 +15,45 @@
 ?>
  <div id = "page-header1">
      <div class = 'spacer'></div>
-     <div id = 'my-form'>
-         <h2>New User</h2>
+     <div id = 'white-container-medium'>
+         <div class = 'row'>
+             <h2>New User</h2>
+         </div>
       <form action = 'new_user.php' method = 'post'>
-        <label>Email</label>
-        <input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
-        <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</p>
-        <label>Password</label>
-        <input type = 'password' name = 'new_password' pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' required> <br> <br>
-        <label>Confirm Password</label>
-        <input type = 'password' name = 'confirm_password' required> <br> <br>
-        <label>First</label>
-        <input type = 'text' name = 'first' required> <br> <br>
-        <label>Last</label>
-        <input type = 'text' name = 'last' required> <br> <br>
-        <button type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
+        <div class = 'form-group'>
+            <label for = 'formFirst'>First Name</label>
+            <input id = 'formFirst' class = 'form-control' type = 'text' name = 'first' placeholder = 'First' required>
+        </div>
+        <div class = 'form-group'>
+            <label for = 'formLast'>Last</label>
+            <input id = 'formLast' class = 'form-control' type = 'text' name = 'last' placeholder = 'Last' required>
+        </div>
+        <div class = 'form-group'>
+            <label for = 'newEmail'>Email Address</label>
+            <input id = 'newEmail' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder='Email' required>
+        </div>
+        <div class = 'form-group'>
+            <label for = 'newPwd'>Password</label>
+            <input id = 'newPwd' class = 'form-control' type = 'password' name = 'new_password' pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' aria-describedby="pwdHelp" placeholder = 'Secure password' required>
+            <small id = 'pwdHelp' class = 'form-text text-muted'>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</small>
+        </div>
+        <div class = 'form-group'>
+            <label for = 'cnfPwd'>Confirm Password</label>
+            <input id = 'cnnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' placeholder = 'Confirm Password' required>
+        </div>
+        <button class = 'btn btn-primary' type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
     </form>
     <?php
-    if (!isset($_POST['email']) || !isset($_POST['new_password']) || !isset($_POST['confirm_password']) || !isset($_POST['first']) || !isset($_POST['last'])) {
+    if (!isset($_POST['email']) and !isset($_POST['new_password']) and !isset($_POST['confirm_password']) and !isset($_POST['first']) and !isset($_POST['last'])) {
+        // If none of the fields are set, do nothing
+        echo "";
+    }
+    else if (!isset($_POST['email']) and !isset($_POST['new_password']) and !isset($_POST['confirm_password']) and !isset($_POST['first']) and !isset($_POST['last'])) {
+        // If some but not all fields are set, send an error message
         echo "Make sure to fill out all fields!";
     }
     else {
+        // If all fields are set, validate and then create a new user
         $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
         $passwd = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
         $confm_passwd = filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING);
@@ -85,8 +98,9 @@
         }
     }
     ?>
-</div>
-</div>
+     </div>
+     <div class = 'spacer'></div>
+    </div>
 <footer>
 </footer>
 </body>

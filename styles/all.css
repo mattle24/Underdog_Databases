@@ -87,7 +87,7 @@ label {
     height: 100px;
 }
 
-p {
+p, label, a {
     font-family: barlow, sans-serif;
     font-size: 1.1em;
 }
@@ -149,11 +149,13 @@ p {
 }
 
 .home-text-block {
-
+    /*** What happended here? There's no styling **/
 }
 /****** Begin Login and Sign Up Page Styles ********/
 
 #my-form {
+    /** #my-form is backwards-compatible, use #white-container-small 
+    going forward **/
     background: white;
     margin: auto;
     padding: 40px;
@@ -197,6 +199,21 @@ p {
     font-weight: 500;
 }
 
+#white-container-small {
+    background: white;
+    margin: auto;
+    padding: 40px;
+    width: 450px;
+    min-width: 500px;
+}
+
+#white-container-medium {
+    background: white;
+    margin: auto;
+    padding: 40px;
+    width: 600px;
+    min-width: 500px;
+}
 
 /** Make a list **/
 #make-list-body {

@@ -4,12 +4,27 @@
 
 TODO:
 
+- Bootstrap everything 
+    - Skipped make list since I still have to add search by survey responses. 
+    - Done: 
+        > Index 
+        > Login
+        > New Campaign
+        > New User 
+        > Forgot Password
+        > Reset Password
+        > Choose Campaign
+
 - Search based on survey responses
     - When we move to AWS, will be easy to include past exported lists into possible search criteria
 
 - Help section 
 
 - Meta tags
+
+- Delete test accounts (or change passwords)
+
+- Fix buttons on index when not in full screen
 
 - Add sample voter file and deploy 
 

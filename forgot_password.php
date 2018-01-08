@@ -3,12 +3,7 @@
 <html>
 <head>
 	<title>Forgot Password</title>
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include 'includes/head.php'; ?>
 </head>
 <body>
 	<?php 
@@ -24,15 +19,19 @@
 
 	<div id = "page-header1">
 		<div class = 'spacer'></div>
-		<div id = 'my-form'>
-            <h2>Forgot password</h2>
-			<?php
+		<div id = 'white-container-small'>
+            <div class = 'row'>
+                <h2>Forgot password</h2>
+			</div>
+            <?php
 		   // if isset submit do things
 		   // then make sure fields are set
 			if (isset($_POST['first']) && isset($_POST['last']) && isset($_POST['email'])) {
-				$first = filter_input(INPUT_POST, 'first', FILTER_SANITIZE_STRING);
-				$last = filter_input(INPUT_POST, 'last', FILTER_SANITIZE_STRING);
-				$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
+                // TODO: should we store everything in lowercase?
+                // Problem: right now this check is case-sensitive
+				$first = trim(filter_input(INPUT_POST, 'first', FILTER_SANITIZE_STRING));
+				$last = trim(filter_input(INPUT_POST, 'last', FILTER_SANITIZE_STRING));
+				$email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING));
                 // Check if first, last, and email matches records
                 require_once("configs/config.php");
                 $db = new mysqli(
@@ -87,15 +86,25 @@
                 }
 			}
 			else {
+                // If not set, then give the form
 				echo 
 				"<form action = 'forgot_password.php' method = 'post'>
-					<label>First Name</label>
-						<input type = 'text' name = 'first' required> <br> <br>
-					<label>Last Name</label>
-						<input type = 'text' name = 'last' required> <br> <br>
-					<label>Email</label>
-						<input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
-					<button type = 'submit'>Reset password</button>
+                    <!-- First Name -->
+                    <div class = 'form-group'>
+                        <label for = 'formFirst'>First Name</label>
+                        <input id = 'formFirst' class = 'form-control' type = 'text' name = 'first' placeholder = 'First' required> 
+                    </div>
+                    <!-- Last Name -->
+                    <div class = 'form-group'>
+					   <label for = 'formLast'>Last Name</label>
+				       <input id = 'formLast' class = 'form-control' type = 'text' name = 'last' placeholder = 'Last' required>
+					</div>
+                    <!-- Email -->
+                    <div class = 'form-group'>
+                        <label for = 'formEmail'>Email Address</label>
+						<input id = 'formEmail' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder = 'Email' required> 
+                    </div>
+					<button class = 'btn btn-primary' type = 'submit'>Reset password</button>
 				</form>";
 		}
 		?>

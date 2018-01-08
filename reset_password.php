@@ -3,12 +3,8 @@
 <html>
 <head>
 	<title>Reset Password</title>
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include 'includes/head.php'; ?>
+    
     <!-- Google CAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
@@ -16,6 +12,7 @@
          document.getElementById("reset-form").submit();
        }
     </script>
+    <!-- END Google Captcha -->
 </head>
 <body>
 	<?php 
@@ -31,9 +28,11 @@
 
 	<div id = "page-header1">
 		<div class = 'spacer'></div>
-		<div id = 'my-form'>
-            <h2>Reset Password</h2> <br>
-			<?php
+		<div id = 'white-container-small'>
+            <div class = 'row'>
+                <h2>Reset Password</h2>
+			</div>
+            <?php
             // Step 4: validate GET data, validate the correct user is using the link (email), 
             // validate the request is not timed out and reset password
 			if (isset($_GET['code'])) {
@@ -71,16 +70,27 @@
                         $_SESSION['code'] = $code;
                         $site_key = CAPTCHA_SITE_KEY;
                         echo "
-                        <h3>Please confirm your email and reset your password</h3>
-                        <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</p>
+                        <div class = 'row'>
+                            <p><strong>Please confirm your email and reset your password.</strong></p>
+                        </div>
                         <form id = 'reset-form' action = 'reset_password.php' method = 'POST'>
-                            <label>Email</label>
-                            <input type = 'text' name = 'email' required></input><br>
-                            <label>New Password</label>
-                            <input type = 'password' name = 'new_password' pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' required></input><br>
-                            <label>Confirm Password</label>
-                            <input type = 'password' name = 'confirm_password' required></input><br>
-                            <button class='g-recaptcha' data-sitekey=$site_key data-callback='onSubmit' name = 'code2' value =$code>Submit</button>
+                            <!-- Confirm Email -->
+                            <div class = 'form-group'>
+                                <label for = 'formEmail'>Email Address</label>
+                                <input id = 'formEmail' class = 'form-control' type = 'text' name = 'email' placeholder = 'Email' required />
+                            </div>
+                            <!-- New Password -->
+                            <div class = 'form-group'>
+                                <label for = 'newPwd'>New Password</label>
+                                <input id = 'newPwd' class = 'form-control' type = 'password' name = 'new_password' pattern = '(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}' placeholder = 'Secure password' aria-describedby = 'pwdHelp' required />
+                                <small id = 'pwdHelp' class = 'form-text text-muted'>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</small>
+                            </div>
+                            <!-- Confirm Password -->
+                            <div class = 'form-group'>
+                                <label for ='cnfPwd'>Confirm Password</label>
+                                <input id = 'cnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' placeholder = 'Confirm Password' required></input>
+                            </div>
+                            <button class = 'btn btn-primary' class='g-recaptcha' data-sitekey=$site_key data-callback='onSubmit' name = 'code2' value =$code>Submit</button>
                         </form>";
                     }
                 }
