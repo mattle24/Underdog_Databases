@@ -5,7 +5,9 @@
 TODO:
 
 - Bootstrap everything 
-    - Skipped make list since I still have to add search by survey responses. 
+    - Skipped:
+        > Make list since I still have to add search by survey responses. 
+        > Import list since I might change it to use AJAX
     - Done: 
         > Index 
         > Login
@@ -14,6 +16,11 @@ TODO:
         > Forgot Password
         > Reset Password
         > Choose Campaign
+        > Quick Search
+        > Create Questions
+        > Add and remove users
+        > Manage users
+        > Settings
 
 - Search based on survey responses
     - When we move to AWS, will be easy to include past exported lists into possible search criteria
@@ -25,6 +32,10 @@ TODO:
 - Delete test accounts (or change passwords)
 
 - Fix buttons on index when not in full screen
+
+- Nav text is bigger in the login page than the home page
+
+- In list_results.php, POST input is obtained without filtering input. There should be filter input arrays, or at least some array validation.
 
 - Add sample voter file and deploy 
 

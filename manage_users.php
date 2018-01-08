@@ -6,43 +6,44 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>Manage Users</title>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
-   <?php include 'includes/navbar_loggedin.php' ?>
+   <?php include 'includes/navbar_loggedin.php'; ?>
    <div id = "page-header1">
        <div class = 'spacer'></div>
-       <div id = 'landing-container'>
-           <div id = 'my-form'>
-           <h2>Change user position</h2>
-            <?php
-            if (isset($_GET['err'])) {
-                $err = filter_input(INPUT_GET, 'err', FILTER_SANITIZE_STRING);
-                echo "<p>$err</p>
-                <br>";
-                $_GET = array();
-            }
-            ?>
-            <p>You can change the positions of users with lower roles than you. You can select a role equal to or lower than your role.</p>
-           <form action = "change_user.php" method = "post">
-               <label>User email</label>
-               <input type = 'text' name = 'change_email' required></input>
-               <br>
-                <label>New Position</label>
-                <select name = 'new_pos' required>
-                    <option value = 1>Volunteer</option>
-                    <option value = 4>Field Organizer</option>
-                    <option value = 6>Senior Staff</option>
-                    <option value = 8>Field Director</option>
-                </select>
-               <br>
-               <button type = 'submit'>Submit</button>
+           <div id = 'white-container-medium'>
+               <div class = 'row'>
+                   <h2>Change user position</h2>
+                </div>
+               
+                <?php
+                if (isset($_GET['err'])) {
+                    $err = filter_input(INPUT_GET, 'err', FILTER_SANITIZE_STRING);
+                    echo "<p>$err</p>
+                    <br>";
+                    $_GET = array();
+                }
+                ?>
+               <div class = 'row'>
+                   <p>You can change the positions of users with lower roles than you.</p> 
+                   <p>You can change their role to a position equal to or lower than the role you have.</p>
+               </div>
+               
+               <form action = "change_user.php" method = "post">
+                   <div class = 'form-group'>
+                       <label for = 'formEmail'>User email</label>
+                       <input id = 'formEmail' class = 'form-control' type = 'email' name = 'change_email' placeholder = 'jbiden1@gmail.com' required></input>
+                        <label for = 'newPos'>New Position</label>
+                        <select id = 'newPos' class = 'form-control' name = 'new_pos' required>
+                            <option value = 1>Volunteer</option>
+                            <option value = 4>Field Organizer</option>
+                            <option value = 6>Senior Staff</option>
+                            <option value = 8>Field Director</option>
+                        </select>
+               </div>
+               <button class = 'btn btn-primary' type = 'submit'>Submit</button>
            </form>
-       </div>
            <h3 align = 'center'>Campaign Team</h3>
         <?php
     // Get all the users for the given campaign and list them in order

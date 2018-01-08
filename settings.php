@@ -4,41 +4,63 @@ include 'includes/check_logged_in.php';
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Settings</title>
-   <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-   <link rel='stylesheet' type='text/css' href="styles/all.css">
-   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <title>Settings</title>
+    <?php include "includes/head.php" ; ?>    
 </head>
 <body>
     <?php include 'includes/navbar_loggedin.php'; ?>
     <div id = 'page-header1'>
-     <div class = 'spacer'></div>
-     <div id = 'my-form'>
-       <h3>Change Email</h3>
-       <form action = 'settings.php' method = 'post'>
-        <label>New Email</label>
-            <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required></input> <br /><br />
-        <label>Confirm Email</label>
-            <input type = 'text' name = 'confirm_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required></input> <br /><br />
-        <label>Current Password</label>
-            <input type = 'password' name = 'current_password' required></input> <br><br>
-        <input type='submit'></input>
+        <div class = 'spacer'></div>
+        <div id = 'white-container-small'>
+            <div class = 'row'>
+                <h2>Settings</h2>
+            </div>
+            <div class = 'row'>
+                <h3>Change Email</h3>
+            </div>
+            
+            <!-- Form to change email -->
+            <form action = 'settings.php' method = 'post'>
+                <div class = 'form-group'>
+                    <label for = 'newEmail'>New Email</label>
+                    <input id = 'newEmail' class = 'form-control' type = 'email' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required/>
+                </div>
+                
+                <div class = 'form-group'>
+                    <label for = 'cnfEmail'>Confirm Email</label>
+                    <input id = 'cnfEmail' class = 'form-control' type = 'email' name = 'confirm_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required/>
+                </div>
+                
+                <div class = 'form-group'>
+                    <label for = 'pwd1'>Current Password</label>
+                    <input id = 'pwd1' class = 'form-control' type = 'password' name = 'current_password' required></input>
+                </div>
+                <button class = 'btn btn-primary' type='submit'>Change Email</button>
+            </form>
+        <br />
+        
+        <!-- Form to change password -->
+        <div class = 'row'>
+            <h3>Change Password</h3>
+        </div>
+        <form action = 'settings.php' method = 'post'>
+            <div class = 'form-group'>
+                <label for = 'pwd2'>Current Password</label>
+                <input id = 'pwd2' class = 'form-control' type = 'password' name = 'current_password' required/>
+            </div>
+            
+            <div class = 'form-group'>
+                <label for = 'newPwd'>New Password</label>
+                <input id = 'newPwd' class = 'form-control' type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" aria-describedby= 'pwdHelp' required/>
+                <small id = 'pwdHelp' class = 'form-text text-muted'>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</small>
+            </div>
+            
+            <div class = 'form-group'>
+                <label for = 'cnfPwd'>Confirm New Password</label>
+                <input id = 'cnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' required/>
+            </div>
+            <button class = 'btn btn-primary' type = 'submit'>Change Password</button>
       </form>
-         <br />
-      <h3>Change Password</h3>
-      <form action = 'settings.php' method = 'post'>
-          <label>Current Password</label>
-            <input type = 'password' name = 'current_password' required></input> <br /><br />
-          <p>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter</p>
-          <label>New Password</label>
-            <input type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required></input> <br /> <br />
-          <label>Confirm Password</label>
-            <input type = 'password' name = 'confirm_password' required></input> <br /> <br />
-            <input type = 'submit'></input>
-      </form>
-      <br /> <br />
     <?php
   // Get userid, because it is quick and we will need it for both changing email
   // or password

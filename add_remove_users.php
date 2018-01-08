@@ -10,24 +10,24 @@ if (!isset($_SESSION['cmp'])){
 <html>
 <head>
     <title>New User</title>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
    <?php include 'includes/navbar_loggedin.php' ?>
    <div id = "page-header1">
        <div class = 'spacer'></div>
        <!-- Add user to campaign -->
-       <div id = 'my-form'>
-           <h3>Add an existing user to your campaign</h3>
-           <p>The user must already have an account with Underdog</p>
+       <div id = 'white-container-small'>
+           <div class = 'row'>
+               <h3>Add an existing user to your campaign</h3>
+           </div>
+                     
            <form action = 'add_remove_users.php' method = 'post'>
-            <label>User Email</label>
-            <input type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required></input> <br>
-<!--
+               <div class= 'form-group'>
+                   <label for = 'addEmail'>User Email</label>
+                   <input id = 'addEmail' class = 'form-control' type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" aria-describedby='addHelp' placeholder = 'Add user' required></input>
+               </div>
+<!-- Code to set initial position. Currently removed because it would allow someone to set a user above themselves. 
             <label>New Position</label>
                 <select name = 'new_pos'>
                     <option value = 1>Volunteer</option>
@@ -37,16 +37,20 @@ if (!isset($_SESSION['cmp'])){
                 </select>
                <br>
 -->
-            <button type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
+            <button class = 'btn btn-primary' type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
         </form>
            <br><br>
            
         <!-- Remove user from campaign -->
-        <h3>Remove an existing user from your campaign</h3>
-        <form action = 'add_remove_users.php' method = 'post'>
-            <label>User Email</label>
-            <input type = 'text' name = 'old_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required> <br>
-            <button type = 'submit' value = 'Submit'>Remove from Campaign</button>
+       <div class = 'row'>
+           <h3>Remove a user from your campaign</h3>
+       </div>
+       <form action = 'add_remove_users.php' method = 'post'>
+           <div class = 'form-group'>
+               <label for = 'rmEmail'>User Email</label>
+               <input id = 'rmEmail' class = 'form-control' type = 'text' name = 'old_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" placeholder = 'Remove user' required>
+            </div>
+            <button class = 'btn btn-primary' type = 'submit' value = 'Submit'>Remove from Campaign</button>
         </form>
         <?php
         if (sizeof($_POST) > 0){

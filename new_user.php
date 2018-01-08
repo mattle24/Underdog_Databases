@@ -15,7 +15,7 @@
 ?>
  <div id = "page-header1">
      <div class = 'spacer'></div>
-     <div id = 'white-container-medium'>
+     <div id = 'white-container-small'>
          <div class = 'row'>
              <h2>New User</h2>
          </div>

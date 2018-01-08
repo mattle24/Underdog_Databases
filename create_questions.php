@@ -6,18 +6,19 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>Manage Questions</title>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
 <?php include('includes/navbar_loggedin.php'); ?>
 <div id = 'page-header1'>
     <div class = 'spacer'></div>
-    <div id = 'my-form'>
-    <h3>Current Questions</h3>
+    <div id = 'white-container-medium'>
+        <div class = 'row'>
+            <h2>Manage Questions</h2>
+        </div>
+        <div class = 'row'>
+            <h3>Current Questions</h3>
+        </div>
     <?php
     // get list of questions
     if (!isset($_SESSION['cmp'])) {
@@ -48,9 +49,11 @@ include 'includes/check_logged_in.php';
     //    </tr>
     //    </tread>
     //    <tbody id = 'QLbody'>";
+        echo "<ul class = 'list-group'>";
         while ($stmt->fetch()) {
-            echo "<p>$question</p>";
+            echo "<li class = 'list-group-item'>$question</li>";
         }
+        echo "</ul>";
     //    echo "</tbody>
     //    </table>";
     } else {
@@ -65,18 +68,28 @@ include 'includes/check_logged_in.php';
     
     // Can play around with level required to add questions
     if ($user_pos > 3) {
-        echo "<br><br>
+        echo "
+        <!-- Create a Question -->
         <form action = 'new_question.php' method = 'post'>
-        <h3>New Question</h3>
-        <input type = 'text' name = 'new_question' required></input>
-        <input type = 'submit'></input>
+            <div class = 'row'>
+                <h3>New Question</h3>
+            </div>
+            <div class = 'form-group'>
+                <input type = 'text' name = 'new_question' placeholder = 'New question' required/>
+            </div>
+            <button class = 'btn btn-primary'>Add</button>
         </form>
         <br>
+        <!-- Remove a Question -->
         <form action = 'remove_question.php' method = 'post'>
-        <h3>Remove Question</h3>
-        <p>This will prevent people from creating lists based on responses to this question and uploading new lists with responses to this question. It will not remove the existing responses to this question</p>
-        <input type = 'text' name = 'remove_question' required></input>
-        <input type = 'submit'></input>
+            <div class = 'row'>
+                <h3>Remove Question</h3>
+            </div>
+            <div class = 'form-group'>
+                <input aira-describedby = 'rmvHelp' type = 'text' name = 'remove_question' required/>
+                <small id = 'rmvHelp' class = 'form-text text-muted'>This will prevent people from creating lists based on responses to this question and uploading new lists with responses to this question. It will not remove the existing responses to this question.</small>
+            </div>
+            <button class = 'btn btn-primary' type = 'submit'>Remove</button>
         </form>";
     } else {
         echo "You do not have permission to edit questions for this campaign.";
