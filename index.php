@@ -20,15 +20,8 @@ else {
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Underdog Data</title>
-    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
-<!--    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">-->
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+	<title>Underdog Databases</title>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
 
@@ -41,10 +34,10 @@ else {
 	?>
 
 	<div id='home-banner'>
-		<img id='home-hero-image' src='images/background.png' alt='Blue Graph Background'>
+		<img id='home-hero-image' src='images/background.png' alt='Background'>
 		<div id='home-hero-wrapper'>
 			<div id='home-hero-title'>
-				<span>Underdog Data</span>
+				<span>Underdog Databases</span>
 			</div>
 			<div id='home-hero-subtitle'>
 				<span>Bringing Big Data to Small Campaigns</span>
@@ -59,9 +52,9 @@ else {
 	<div id='home-container' class='container'>
 		<div class='row'>
 			<article class='home-text-block col-md-4'>
-				<h3 class='block-header page-header'>Why Underdog Data</h3>
+				<h3 class='block-header page-header'>Why Underdog Databases</h3>
 				<p>
-					Underdog is a data management and analytics platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding your data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
+					Underdog Databases is a data management platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding your data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
 				</p>
 			</article>
 

@@ -3,13 +3,8 @@
 <html>
 <head>
 	<title>New Campaign</title>
-	<!-- Source Sans Pro font -->
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-	<link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-	<link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include 'includes/head.php'; ?>
+    
 </head>
 <body>
 	<?php 
@@ -21,8 +16,10 @@
 
 	<div id = "page-header1">
 		<div class = 'spacer'></div>
-		<div id = 'my-form'>
-            <h2>New Campaign</h2>
+		<div id = 'white-container-medium'>
+            <div class = 'row'>
+                <h2>New Campaign</h2>
+            </div>
 			<?php
 		   // if isset submit do things
 		   // then make sure fields are set
@@ -33,29 +30,47 @@
 				$campaign = filter_input(INPUT_POST, 'campaign', FILTER_SANITIZE_STRING);
 				$comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_STRING);
 				$msg = "Campaign: $campaign\nContact: $first $last\nEmail: $email\n\n $comments";
-				$receipt = "$first, thank you for your interest in Grassroots Analytics. We will be in touch as soon as possible.";	
+				$receipt = "$first, thank you for your interest in Underdog Databases. We will be in touch as soon as possible.";	
 				echo "Your request has been submitted. We will be in touch as soon as possible!";
-				mail("mhlehman24@gmail.com", "New Grassroots interest from $campaign", $msg);
-				mail($email, "Grassroots Analytics", $receipt);
+				mail("mhlehman24@gmail.com", "New Underdog Databases interest from $campaign", $msg);
+				mail($email, "Underdog Databases", $receipt);
 			}
 			else {
 				echo 
-				"<form action = 'new_campaign.php' method = 'post' id = 'new_campaign'>
-					<label>First Name</label>
-						<input type = 'text' name = 'first' required> <br> <br>
-					<label>Last Name</label>
-						<input type = 'text' name = 'last' required> <br> <br>
-					<label>Email</label>
-						<input type = 'text' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' required> <br><br>
-					<label>Campaign/ Organization</label>
-						<input type = 'text' name = 'campaign' required> <br> <br>
-					<label>How do you plan to use Underdog Data?</label>
-						<textarea name = 'comments' form = 'new_campaign' required> </textarea> <br> <br>
-					<button type = 'submit' value = 'Submit' formid = 'newusr'>Get Started</button>
-				</form>";
+				"
+                <form action = 'new_campaign.php' method = 'post' id = 'new_campaign'>
+                    <!-- First Name -->
+                    <div class = 'form-group'>
+                        <label for = 'firstName'>First Name</label>
+                        <input id = 'firstName' class = 'form-control' type = 'text' name = 'first' placeholder = 'First Name' required>
+                    </div>
+                    <!-- Last Name -->
+                    <div class = 'form-group'>
+                        <label for = 'lastName'>Last Name</label>
+                        <input id = 'lastName' class = 'form-control' type = 'text' name = 'last' placeholder = 'Last Name' required>
+                    </div>
+                    <!-- Email -->
+                    <div class = 'form-group'>
+                        <label for = 'Email'>Email Address</label>
+                        <input id = 'Email' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder = 'Email' required>
+                    </div>
+                    <!-- Campaign/ Organization -->
+                    <div class = 'form-group'>
+                        <label for = 'cmpOrg'>Campaign/ Organization</label>
+                        <input id = 'cmpOrg' class = 'form-control' type = 'text' name = 'campaign' required> 
+                    </div>
+                    <!-- Statment of intent -->
+                    <div class = 'form-group'>
+                        <label for = 'intent'>How do you plan to use Underdog Databases?</label>
+                        <textarea rows = '5 id = 'intent' class = 'form-control' name = 'comments' form = 'new_campaign' required> </textarea>
+                    </div>
+                    <button type = 'submit' class = 'btn btn-primary' value = 'Submit' formid = 'newusr'>Get Started</button>
+				</form>
+                ";
 		}
 		?>
 	</div>
+    <div class = 'spacer'></div> 
 </div>
 <footer>
 </footer>
