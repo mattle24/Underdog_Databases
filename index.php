@@ -9,6 +9,7 @@ if ($bool1 and $bool2) {
 	if ($_SESSION['logged_user'] != $_COOKIE['logged_user']) {
 		$_SESSION = array();
 		setcookie('logged_user', 'nothing', time() - 90);	
+        // we boolin
 	}
 } 
 else {
@@ -25,7 +26,6 @@ else {
 </head>
 <body>
 
-	<!-- TODO: change nav bar so elements are all to the left/ right with small padding -->
 	<?php 
 	if (!isset($_SESSION['logged_user'])){
 		include 'includes/navbar.php';
@@ -54,7 +54,7 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>Why Underdog Databases</h3>
 				<p>
-					Underdog Databases is a data management platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding your data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
+					Underdog Databases is a database management platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding its data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data to make effective decisions. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
 				</p>
 			</article>
 

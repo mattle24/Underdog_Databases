@@ -5,26 +5,17 @@ include 'includes/check_logged_in.php';
 <!DOCTYPE html>
 <html>
 <head>
-   <title>List Results</title>
-   <!-- Source Sans Pro font -->
-   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-   <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-   <link rel='stylesheet' type='text/css' href="styles/all.css">
-   <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <title>List Results</title>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
-  <?php
-  if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
-  include 'includes/navbar_loggedin.php';
-  ?>
+    <?php include 'includes/navbar_loggedin.php'; ?>
 <div id = 'page-header1'>
-  <div class="spacer"></div>
-  <div id = 'make-list-container'>
-    <a href="make_list.php">Back to Make List</a>
-    <h2 align='center'>List Results</h2>
-    <?php
+    <div class="spacer"></div>
+    <div id = 'white-container-large'>
+        <a href="make_list.php">Back to Make List</a>
+        <h2 align='center'>List Results</h2>
+        <?php
         include("configs/config.php");
         # Get the user's password and the campaign table name
         $username = $_SESSION['logged_user'];
@@ -74,7 +65,7 @@ include 'includes/check_logged_in.php';
         // AGE //
         if (isset($_POST['minage'])) {
             $minage = max(18, $_POST['minage']); // weird handling issue
-            if (!empty($_POST['maxage'])){$maxage = $_POST['maxage'];}
+            if (!empty($_POST['maxage'])){$maxage = filter_input(INPUT_POST, 'maxage', FILTER_SANITIZE_NUMBER_INT);}
             else{ $maxage = 200; } // fewer conditions to code through 
             if ($where == False){
                 $query = $query."WHERE age BETWEEN $minage AND $maxage";
@@ -131,9 +122,10 @@ include 'includes/check_logged_in.php';
         $stmt->free_result();
         $db->close();
         ?>
-  </div>
-<div class="spacer"></div>
+    </div>
+    <div class="spacer"></div>
 </div>
-<footer></footer>
+<footer>
+</footer>
 </body>
 </html>

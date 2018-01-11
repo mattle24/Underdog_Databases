@@ -6,6 +6,7 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>Change Users</title>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
 <?php

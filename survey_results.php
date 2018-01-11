@@ -5,19 +5,16 @@ include 'includes/check_logged_in.php';
 <!DOCTYPE html>
 <head>
     <title>Survey Results</title>
-    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-    <link rel='stylesheet' type='text/css' href="styles/all.css">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
     <?php include 'includes/navbar_loggedin.php'; ?>
     <div id = 'page-header1'>
         <div class = 'spacer'></div>
-        <div id = 'my-form'>
-            <h2>Survey Results</h2>
-            <a href = 'survey_results.php'><button>Reset</button></a>
+        <div id = 'white-container-small'>
+            <div class = 'row'>
+                <h2>Survey Results</h2>
+            </div>
             <?php
             if (!isset($_SESSION['cmp'])) {
                 $msg = "Error. Please select a campaign before looking at survey results.";
@@ -33,27 +30,30 @@ include 'includes/check_logged_in.php';
             DB_PASSWORD,
             DB_NAME) or die('Failed to connect.');
             
-            if (!isset($_POST['question'])) {                
-                // Add a dropdown menu of every question currently associated with this campaign
-                echo"<form action = 'survey_results.php' method = 'post'>
-                <label>Select Question</label>";
+            // Add a dropdown menu of every question currently associated with this campaign
+            echo"<form action = 'survey_results.php' method = 'post'>
+                <div class = 'form-group'>
+                    <label>Choose Question</label>";
 
-                $query = "SELECT question FROM survey_questions, campaigns
-                WHERE campaigns.table_name = ?
-                AND campaigns.campaignid = survey_questions.campaignid;";
-                $stmt = $db->prepare($query);
-                $stmt->bind_param('s', $cmp);
-                $stmt->execute();
-                $stmt->store_result();
-                $stmt->bind_result($question);
-                echo "<select name = 'question' required>";
-                while ($stmt->fetch()) {
-                    echo "<option value =$question>$question</option>";
-                }
-                echo "</select>
-                    <input type = 'submit'></input>
-                </form>";
-            } else {
+            $query = "SELECT question FROM survey_questions, campaigns
+            WHERE campaigns.table_name = ?
+            AND campaigns.campaignid = survey_questions.campaignid;";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param('s', $cmp);
+            $stmt->execute();
+            $stmt->store_result();
+            $stmt->bind_result($question);
+            echo "<select class = 'form-control' name = 'question' required>";
+            while ($stmt->fetch()) {
+                echo "<option value =$question>$question</option>";
+            }
+            echo "</select>
+                </div>
+                <button class = 'btn btn-primary' type = 'submit'>Select</button>
+                <a href = 'survey_results.php'><button class = 'btn btn-secondary'>Reset</button></a>
+           </form>";
+            if (isset($_POST['question'])) {
+                echo "<br><br>";
                 // Show a quick analysis of the survey responses
                 $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
                 // Get count of distinct responses

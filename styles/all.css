@@ -87,7 +87,7 @@ label {
     height: 100px;
 }
 
-p, label, a {
+p, label, a, legend {
     font-family: barlow, sans-serif;
     font-size: 1.1em;
 }
@@ -109,6 +109,15 @@ p, label, a {
     top: 25vh;
     text-align: center;
 }
+
+@media (max-width:800px) {
+    /* Adjust for mobile devices */
+    /* Might need to play around with the exact adjustment */
+    #home-hero-wrapper { 
+        top: 10vh;
+    }
+}
+
 
 #home-hero-title {
     font-size: 7em;
@@ -223,35 +232,37 @@ p, label, a {
     background: white;
     margin: auto;
     padding: 40px;
-    width: 600px;
+    width: 700px;
     min-width: 500px;
 }
 
-/** Make a list **/
-#make-list-body {
-/*    background-color: #0d579c;*/
-    background-image: url("../resources/background_white.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-#make-list-container {
+#white-container-large {
     background: white;
     width: 80%;
     margin: auto;
 /*    min-height: 600px;*/
-    padding: 30px 20px;
+    padding: 40px;
 }
 
-#make-list-container fieldset {
+/** Make a list **/
+
+#white-container-large fieldset {
     margin-bottom: 15px;
+}
+
+#white-container-large legend {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#white-container-large label {
+    color: black;
+    font-weight: normal !important;
 }
 
 /** List Results **/
 
-#make-list-container button {
+#white-container-large button {
     margin-bottom: 10px;
 }
 

@@ -6,6 +6,8 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
 if (isset($_POST['choose_cmp'])) {
   $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
 }
+// TODO: make sure that user has access to the campaign. Otherwise,
+// can spoof with a curl(?) POST input
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +16,9 @@ if (isset($_POST['choose_cmp'])) {
     <?php include "includes/head.php"; ?>
 </head>
 <body>
-  <?php include 'includes/navbar_loggedin.php'; ?>
-  <div id = 'page-header1'>
-    <div class = 'spacer'></div>
+    <?php include 'includes/navbar_loggedin.php'; ?>
+    <div id = 'page-header1'>
+      <div class = 'spacer'></div>
     <div id = 'landing-container'>
         <h2 align = 'center'>Toolbox</h2>
         <ul style = 'list-style-type:none'>
