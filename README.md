@@ -4,24 +4,6 @@
 
 TODO:
 
-- Bootstrap forms 
-    - Done: 
-        > Index 
-        > Login
-        > New Campaign
-        > New User 
-        > Forgot Password
-        > Reset Password
-        > Choose Campaign
-        > Quick Search
-        > Create Questions
-        > Add and remove users
-        > Manage users
-        > Settings
-        > Survey Results
-        > Import list 
-        > Make list
-
 - Search based on survey responses
     - When we move to AWS, will be easy to include past exported lists into possible search criteria
 
@@ -36,6 +18,9 @@ TODO:
 - Landing security flaw (must be fixed before actual data deployed)
 
 - Meta tags
+
+- Reformat all pages to effectively use responsive design 
+    - Ie, be ready for mobile use
 
 - Add more search features 
     - Voter history

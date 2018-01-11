@@ -10,27 +10,53 @@ if (!isset($_SESSION['cmp'])) {
 <head>
     <title>Make List</title>
     <?php include "includes/head.php"; ?>
+    <!-- To add and remove responses -->
+<!-- <script type = 'text/javascript' src = 'scripts/add_rm_fields.js'></script> -->
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '.btn-add', function(e) {
+            e.preventDefault();
+
+            var controlForm = $('.controls form:first'),
+                currentEntry = $(this).parents('.entry:first'),
+                newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+            newEntry.find('input').val('');
+            controlForm.find('.entry:not(:last) .btn-add')
+                .removeClass('btn-add').addClass('btn-remove')
+                .removeClass('btn-success').addClass('btn-danger')
+                .html('<span class="glyphicon glyphicon-minus"></span>');
+        }).on('click', '.btn-remove', function(e) {
+            $(this).parents('.entry:first').remove();
+
+            e.preventDefault();
+            return false;
+        });
+    });
+    </script>
+
 </head>
 <body>
   <?php
   if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
   include 'includes/navbar_loggedin.php';
   ?>
-<div id = "page-header1">
-  <div class="spacer"></div>
-  <div id = 'white-container-large' class = 'container'>
-      <form action = 'list_results.php' method = 'post'>
-          <div class = 'row'>
-              <h2>Create List</h2>
-          </div>
-          <br>
-          <div class = 'row'>
-              <h3>Geography</h3>
-          </div>
+    <div id = "page-header1">
+        <div class="spacer"></div>
+        <div id = 'white-container-large' class = 'container'>
+            <form action = 'list_results.php' method = 'post'>
+                <div class = 'row'>
+                    <h2>Create List</h2>
+                </div>
+                <br>
+                <div class = 'row'>
+                    <h3>Geography</h3>
+                </div>
 <!--           <button data-toggle = 'collapse' data-target='#zip'>Zip Code</button>
           <div id='zip' class = 'collapse'> </div>
           This would create collapsable sections of the form
- -->          <?php
+ -->          
+            <?php
             include("configs/config.php");
             # Get the user's password and the campaign table name
             $username = $_SESSION['logged_user'];
@@ -116,7 +142,6 @@ if (!isset($_SESSION['cmp'])) {
             echo "</div>";
           
             // Survey Responses //
-            // Code from: http://formvalidation.io/examples/adding-dynamic-field/
             echo "<div class = 'row'>
                     <h3>Survey Responses</h3>
                 </div>";
@@ -147,31 +172,28 @@ if (!isset($_SESSION['cmp'])) {
           echo "</div>";
           // Need to update possible responses with AJAX
           // Need to give option to add more responses and more questions
-          ?>
-        <div class = 'form-group'>
-            <label for = 'rsp' class = 'col-xs-3 control-label'>Responses</label>
-            <div class = 'col-xs-5'>
-                <input type = 'text' class = 'form-control' name = 'response[]'></input>
-            </div>
-            <div class = 'col-xs-4'>
-                <button type = 'button' class = 'btn btn-default addButton'><i class = 'fa fa-plus'></i></button>
-            </div>
-        </div>
-        
-        <!-- The option field template containing an option field and a Remove button -->    
-        <div class = 'form-group hide' id = 'responseTemplate'>
-            <div class = 'col-xs offset col-xs-5'>
-                <input class = 'form-control' type = 'text' name = 'response[]' />
-            </div>
-            <div class = 'col-xs-4'>
-                <button type = 'button' class = 'btn btn-default' removeButton><i class = 'fa fa-minus'></i></button>
-            </div>
-        </div>
-      
-            <button class = 'btn btn-primary' type = 'submit'>Make list</button>
-            <button class = 'btn btn-secondary' type = 'reset'>Reset</button>
-        </form>
-
+            ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="control-group" id="fields">
+                            <label class="control-label" for="field1">Responses</label>
+                            <div class="controls"> 
+                                <form role="form" autocomplete="off">
+                                    <div class="entry input-group col-xs-3">
+                                        <input class="form-control" name="fields[]" type="text" placeholder="Type something" />
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-add" type="button">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                <button class = 'btn btn-primary' type = 'submit'>Make List</button>
+            </form>
         </div>
         <div class = "spacer"></div>
     </div>

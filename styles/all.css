@@ -246,6 +246,16 @@ p, label, a, legend {
 
 /** Make a list **/
 
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+.glyphicon
+{
+    font-size: 12px;
+}
+
 #white-container-large fieldset {
     margin-bottom: 15px;
 }
