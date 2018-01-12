@@ -22,7 +22,7 @@ include("includes/check_logged_in.php");
         <div id = 'white-container-medium'>
             <div class = 'row'>
                 <h2>Import Responses</h2>
-                <p><a href = 'help.php'>Help</a> on importing voter responses.</p>
+                <p><a href = 'help.php#import_list'>Help</a> on importing voter responses.</p>
             </div>
             <?php
             // Ask user how many survery questions she wants to enter
