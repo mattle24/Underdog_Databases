@@ -63,21 +63,21 @@ include 'includes/check_logged_in.php';
 
         $cmp = $_SESSION['cmp'];  
         if ($searchid) {
-          $query = "SELECT CountyID, FirstName, LastName, Age, StreetNumber, StreetName, City
-                    FROM $cmp WHERE COUNTYID = ? AND FirstName LIKE ? AND LastName LIKE ? AND City LIKE ? AND StreetName LIKE ? AND StreetNumber LIKE ?;";
+          $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
+                    FROM $cmp WHERE voter_id = ? AND First_Name LIKE ? AND Last_Name LIKE ? AND City LIKE ? AND Street_Name LIKE ? AND Street_Number LIKE ?;";
           $stmt = $db->prepare($query);
           $stmt->bind_param('isssss', $searchid, $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);
         }
         else { //countyid can't utilize '%' wildcard
-          $query = "SELECT CountyID, FirstName, LastName, Age, StreetNumber, StreetName, City
-                    FROM $cmp WHERE FirstName LIKE ? AND LastName LIKE ? AND City LIKE ? AND StreetName LIKE ? AND StreetNumber LIKE ?;";
+          $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
+                    FROM $cmp WHERE First_Name LIKE ? AND Last_Name LIKE ? AND City LIKE ? AND Street_Name LIKE ? AND Street_Number LIKE ?;";
           $stmt = $db->prepare($query);
           $stmt->bind_param('sssss', $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);      
         }
         $stmt->execute();
         $stmt->store_result();
 
-        $stmt->bind_result($CountyID, $FirstName, $LastName, $Age, $StreetNumber,$StreetName, $City);
+        $stmt->bind_result($voter_id, $First_Name, $Last_Name, $Age, $Street_Number,$Street_Name, $City);
 
         echo "<div class = 'row'>
                 <center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".<br /></p>
@@ -86,7 +86,7 @@ include 'includes/check_logged_in.php';
         echo "<table class = 'table'>
                 <thead id = 'QLhead'>
                 <tr>
-                  <th scope = 'col'>Voter ID</th>
+                  <th scope = 'col'>VOTER ID</th>
                   <th scope = 'col'>NAME</th>
                   <th scope = 'col'>ADDRESS</th>
                   <th scope = 'col'>CITY</th>
@@ -100,10 +100,10 @@ include 'includes/check_logged_in.php';
           echo "
             <tr>
               <td>
-                <a href = 'individual_results.php?countyid=$CountyID'>$CountyID</a>
+                <a href = 'individual_results.php?countyid=$voter_id'>$voter_id</a>
               </td>
-              <td>$FirstName"." "."$LastName</td>
-              <td>$StreetNumber"." "."$StreetName</td>
+              <td>$First_Name"." "."$Last_Name</td>
+              <td>$Street_Number"." "."$Street_Name</td>
               <td>$City</td>
               <td>$Age</td>
             </tr>";

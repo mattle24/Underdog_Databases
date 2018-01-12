@@ -26,10 +26,31 @@ include 'includes/check_logged_in.php';
         DB_USER, #$_SESSION['logged_user'], 
         DB_PASSWORD, 
         DB_NAME)or die('Failed to connect.'); 
-        $query = "SELECT CountyID, FirstName, LastName, Age, StreetNumber, StreetName, City FROM $cmp ";
+        $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, $cmp.Age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
         $where = False;
+        
+        // Survey Responses //
+        // This needs to be first
+        // problem: question and response are always set
+        $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
+        
+        if ( !(empty($_POST['question'])) and isset($_POST['responses']) ) {
+            $question = trim(filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING));
+            // Validate each part of the responses array
+//            $respWhere = array();
+//            foreach ($_POST['responses'] as $resp) {
+//                
+//            }
+            $respWhere = "('".implode("','", $_POST['responses'])."')";
+            // Determine if we need to append WHERE or AND
+            $query = $query."LEFT JOIN responses ON responses.voter_id = $cmp.voter_id";
+            // Break this up to really emphasis the query steps
+            $query = $query." WHERE responses.question = '$question' AND responses.response IN $respWhere AND responses.campaign = '$cmp'";
+            $where = True;
+        }
+        
         // ZIP CODE //
         if (isset($_POST['zip'])) {
             $zip = $_POST['zip'];
@@ -41,6 +62,7 @@ include 'includes/check_logged_in.php';
                 $query = $query." AND zip in $zipWhere";
             } 
         }
+        
         // CITY //
         if (isset($_POST['city'])) {
             $city = $_POST['city'];
@@ -52,16 +74,18 @@ include 'includes/check_logged_in.php';
                 $query = $query." AND city in $cityWhere";
             } 
         }
+        
         // PARTY //
         if (isset($_POST['party'])) {
             $partyWhere = "('".implode("','", $_POST['party'])."')";
             if ($where == False){
-                $query = $query."WHERE affiliation in $partyWhere";
+                $query = $query."WHERE party in $partyWhere";
                 $where = True;
             }else{
-                $query = $query." AND affiliation in $partyWhere";
+                $query = $query." AND party in $partyWhere";
             } 
         }
+        
         // AGE //
         if (isset($_POST['minage'])) {
             $minage = max(18, $_POST['minage']); // weird handling issue
@@ -81,21 +105,22 @@ include 'includes/check_logged_in.php';
             }else{
                 $query = $query." AND age <= $maxage";
             }          
-        }
+        }        
+        
         $_SESSION['query'] = $query;
         $stmt = $db->prepare($query);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($CountyID, $FirstName, $LastName, $Age, $StreetNumber,$StreetName, $City);
+        $stmt->bind_result($Voter_ID, $First_Name, $Last_Name, $Age, $Street_Number,$Street_Name, $City);
         echo "<center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".<br /></p>";
         echo "<form action = 'export_list.php' method = 'post'>
-            <button type = 'submit'>Export List</button>
+            <button class = 'btn btn-secondary' type = 'submit'>Export List</button>
             </form>";
 
         echo '<table>
                 <thead id = "QLhead">
                 <tr>
-                  <th>COUNTY ID</th>
+                  <th>VOTER ID</th>
                   <th>NAME</th>
                   <th>ADDRESS</th>
                   <th>CITY</th>
@@ -108,9 +133,9 @@ include 'includes/check_logged_in.php';
         while($stmt->fetch() & $row < 75) {
           echo "
             <tr>
-              <td>$CountyID</td>
-              <td>$FirstName $LastName</td>
-              <td>$StreetNumber $StreetName</td>
+              <td>$Voter_ID</td>
+              <td>$First_Name $Last_Name</td>
+              <td>$Street_Number $Street_Name</td>
               <td>$City</td>
               <td>$Age</td>
             </tr>";

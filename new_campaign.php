@@ -62,7 +62,7 @@
                     <!-- Statment of intent -->
                     <div class = 'form-group'>
                         <label for = 'intent'>How do you plan to use Underdog Databases?</label>
-                        <textarea rows = '5 id = 'intent' class = 'form-control' name = 'comments' form = 'new_campaign' required> </textarea>
+                        <textarea rows = '5' id = 'intent' class = 'form-control' name = 'comments' form = 'new_campaign' required> </textarea>
                     </div>
                     <button type = 'submit' class = 'btn btn-primary' value = 'Submit' formid = 'newusr'>Get Started</button>
 				</form>

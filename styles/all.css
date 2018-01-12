@@ -246,9 +246,10 @@ p, label, a, legend {
 
 /** Make a list **/
 
-.entry:not(:first-of-type)
+
+.entry(:first-of-type)
 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .glyphicon
@@ -308,4 +309,16 @@ tr {
     color: white;
     font-weight: normal;
     margin: 2px;
+}
+
+/*** Join team styles **/
+.join-team label {
+    color: black;
+    font-weight: normal !important;    
+}
+
+/*** Help page styles **/
+
+#toc a:hover{
+    background-color: #d0e6fb;
 }

@@ -3,7 +3,9 @@ echo '
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php"><img src = "images/logo_und.png" alt = "Underdog Databases"></a>
+                    <a class="navbar-brand" href="index.php">
+                        <img src = "images/logo_und.png" alt = "Underdog Databases">
+                    </a>
                     <button class="navbar-toggle callapsed"
                             data-toggle="collapse"
                             data-target="#collapsemenu">

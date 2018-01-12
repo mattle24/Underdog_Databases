@@ -4,10 +4,11 @@
 
 TODO:
 
-- Search based on survey responses
-    - When we move to AWS, will be easy to include past exported lists into possible search criteria
-
 - Help section 
+
+- Navbar expansion in smaller browser seems broken
+
+- Finish join the team page and add links to it
 
 - Delete test accounts (or change passwords)
 
@@ -36,5 +37,8 @@ order by date desc)
 
 - Add submenu in nav bar
     - Change nav bar so elements are all to the left/ right with small padding
+
+- Search based on survey responses
+    - When we move to AWS, will be easy to include past exported lists into possible search criteria
 
 - Give option for two-factor authentication in login

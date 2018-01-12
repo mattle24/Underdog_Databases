@@ -33,14 +33,14 @@ include 'includes/check_logged_in.php';
            exit;
         }
         $cmp = $_SESSION['cmp'];
-        $query = "SELECT FirstName, LastName, Age, StreetNumber, StreetName, City, AreaCode, TelephoneNumber, Affiliation FROM $cmp
-                  WHERE countyid = ?";
+        $query = "SELECT First_Name, Last_Name, Age, Street_Number, Street_Name, City, Area_Code, Phone_Number, Party FROM $cmp
+                  WHERE voter_id = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param('i', $VoterID);
         $stmt->execute();
         $stmt->store_result();
 
-        $stmt->bind_result($FirstName, $LastName, $Age, $StreetNumber, $StreetName, $City, $AreaCode, $TelephoneNumber, $Affiliation);
+        $stmt->bind_result($First_Name, $Last_Name, $Age, $Street_Number, $Street_Name, $City, $AreaCode, $Phone_Number, $Party);
 
         if ($stmt->num_rows > 0) {
             echo "<h3>Voter Information</h3>";
@@ -49,12 +49,12 @@ include 'includes/check_logged_in.php';
             echo "<p>No voter information was found for this Voter ID.";
         }
         while($stmt->fetch()) {
-          echo '<p><strong>Name: '.$FirstName.' '.$LastName.'</strong>';
+          echo '<p><strong>Name: '.$First_Name.' '.$Last_Name.'</strong>';
           echo '<br />Voter ID: '.$VoterID;
-          echo '<br />Address: '.$StreetNumber.' '.$StreetName.', '.$City;
-          echo '<br />Party: '.$Affiliation; 
+          echo '<br />Address: '.$Street_Number.' '.$Street_Name.', '.$City;
+          echo '<br />Party: '.$Party; 
           echo '<br />Age: '.$Age;
-          echo '<br />Phone Number: '.$AreaCode.'-'.$TelephoneNumber.'</p>';
+          echo '<br />Phone Number: '.$AreaCode.'-'.$Phone_Number.'</p>';
         }
         $stmt->free_result();
 
