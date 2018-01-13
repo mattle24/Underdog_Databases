@@ -54,21 +54,23 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>Why Underdog Databases</h3>
 				<p>
-					Underdog Databases is a database management platform built for small campaigns. We believe data contains an underlying truth and every campaign can smarter decisions by understanding its data. Our goal is to create a platform so that any progressive campaign, no matter the size, can utilize data to make effective decisions. Currently, we offer a data management platform. We are developing turf cutting tools and predictive modeling. 
-				</p>
+                    Underdog Databases is a database management platform especially designed for local campaigns and progressive organizations. Underdog’s goal is to allow any progressive campaign or group, no matter the size or funding, to have full access to data they need to succeed. Underdog develops software specially designed for progressives who cannot access expensive tools. 
+                    <!-- Not ready yet 
+                    <a href = 'underdog_workshop'>Take a look at what we offer and our developing programs.</a>	-->
+                </p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>The Importance of Data</h3>
 				<p>
-					Time is the most precious resource on a campaign. While your total voter universe might be large, Underdog will help shrink it to only the most important people to target. The Underdog platform makes it easy to keep track of your supporters, optimizing the impact of your field operations. Underdog also offers tools to cut turf and create calls lists that yield optimal impact. By using a data-driven approach you can maximize your efforts and win crucial votes.
+					The belief that data contains an underlying truth is at the core of Underdog Databases. For your campaign or organization to make the largest possible impact, you need to maximize your organizers’ and volunteers’ efforts. Underdog helps you keep track of your supporters and determine which voters should be contacted. Today, no campaign can afford to ignore data. 
 				</p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>How to Sign Up</h3>
 				<p>
-					We created Underdog as a platform that any progressive campaign or group could use. The platform is free to use, although donations keep it running. To begin using the Underdog platform, <a href= 'new_campaign.php'>contact us.</a> We'll be in touch shortly about how we can help you bring a data-driven approach to your campaign.
+                    Underdog Databases is currently in beta testing. If you are interested in using the platform when the full version is released, <a href='new_campaign.php'>contact us!</a> If you would like to be a beta tester, you can <a href = 'contact_us.php'>sign up here.</a>
 				</p>
 			</article>
 		</div>

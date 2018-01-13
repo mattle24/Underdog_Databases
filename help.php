@@ -42,9 +42,12 @@ $('#myList a').on('click', function (e) {
                     <a href = '#forgot_password' class = 'list-group-item list-group-item-action'>Forgot Password</a>
                     <a href = '#create_list' class = 'list-group-item list-group-item-action'>Create List of Voters</a>
                     <a href = '#export_list' class = 'list-group-item list-group-item-action'>Export List</a>
-                    <a href = '#import_list' class = 'list-group-item list-group-item-action'>Import List</a>
+                    <a href = '#manage_questions' class = 'list-group-item list-group-item-action'>Add and Remove Questions</a>
+                    <a href = '#import_responses' class = 'list-group-item list-group-item-action'>Import Survey Responses</a>
                     <a href = '#quick_search' class = 'list-group-item list-group-item-action'>Quick Search Voters</a>
-                    <a href = '#create_list' class = 'list-group-item list-group-item-action'>Create List of Voters</a>
+                    <a href = '#view_responses' class = 'list-group-item list-group-item-action'>View Survey Responses</a>
+                    <a href = '#manage_users' class = 'list-group-item list-group-item-action'>Manage User Positions</a>
+                    <a href = '#account_settings' class = 'list-group-item list-group-item-action'>Account Settings</a>
                 </div> <!-- End of list group -->
             </div> <!-- End of TOC
             
@@ -79,17 +82,62 @@ $('#myList a').on('click', function (e) {
             
             <!-- Create list -->
             <hr />
-            <div class = 'row help-section' id = 'forgot_password'>
+            <div class = 'row help-section' id = 'create_list'>
                 <h3>Create a List of Voters</h3>
                 <p>Creating a list of voters is meant to help campaigns and organizations make call lists and lists for canvassing. To create a list, you must be logged in. Then, go to <a href='make_list.php'>create a list.</a> There are a number of different fields you can use in your search. For example, zip code, age, and political party. When you select options in the same field, like two zip codes, the search will look for voters that fit at least one option. When you select options in different fields, the search will look voters that fit all of the options. For example, selecting zip codes '00001' and '00002' and party 'DEMOCRAT' will return a list of voters who live in either zip code and are Democrats.</p>
             </div> <!-- End of create list -->
 
-            <!-- Create list -->
+            <!-- Export list -->
             <hr />
-            <div class = 'row help-section' id = 'forgot_password'>
-                
+            <div class = 'row help-section' id = 'export_list'>
+                <h3>Export List</h3>
+                <p>To export a list, create a list and then click the export list button at the top of the page. You will download a spreadsheet with everyone in the list you made, not just the 75 voters the page displays. To collect survey responses, add columns to the end of the spreadsheet and fill in the responses.</p>
+            </div> <!-- End of export list -->
             
-	   </div>
+            <!-- Manage Questions -->
+            <hr />
+            <div class = 'row help-section' id = 'manage_questions'>
+                <h3>Add and Remove Questions</h3>
+                <p>Survey questions are designed to add organization to voter outreach by creating a list of questions your campaigns asks voters. To add a question, go to the <a href = 'create_questions.php'>add and remove questions page.</a> It will display a list of current questions and give you the option to add and remove questions. Simply type your new question or the question you want to remove into the form.</p>
+            </div> <!-- End of manage questions -->     
+            
+            <!-- Import Responses -->
+            <hr />
+            <div class = 'row help-section' id = 'import_responses'>
+                <h3>Import Survey Responses</h3>
+                <p>Only field organizers and above are able to import lists. To import a list, you must be logged in. It is recommended to use a list that was exported from Underdog, but not necessary. To import a list, you must have a .csv file. One of the columns must contain the unique voter ID the government assigns voters. When importing a list, delete the header row of the spreadsheet. To import a list, go to <a href='import_list.php'>the import list page.</a> Fill in which column the voter ID is in (where the first column is Column 1), the number of survey questions in the file, and what number the first question is in. The questions must be in sequential columns. Then, select the questions you asked. If you need to add new survey questions to Underdog, <a href='#manage_questions'> do so.</a></p>
+                <p>Importing lists is a developing tool. If you have trouble, please do not hesitate to <a href = 'contact_us'>contact us.</a></p>
+            </div> <!-- End of import responses -->
+            
+            <!-- Quick Search -->
+            <hr />
+            <div class = 'row help-section' id = 'quick_search'>
+                <h3>Quick Search Voters</h3>
+                <p>Quick search is designed to be a way to find information on a specific voter. For example, while canvassing you meet someone interested in volunteering but forgot to get their number. In the future, you will also be able to change contact information for a voter.</p>
+            </div> <!-- End quick search -->
+            
+            <!-- View Survey Responses -->
+            <hr />
+            <div class = 'row help-section' id = 'view_responses'>
+                <h3>View Survey Responses</h3>
+                <p>The <a href ='survey_results.php'>survey responses</a> page allows you to get a quick breakdown of how voters have answered your questions. Choose a question from the dropdown menu, click the select button, and the results will come up.</p>
+            </div>
+            
+            <!-- Manage User Positions -->
+            <hr />
+            <div class = 'row help-section' id = 'manage_users'>
+                <h3>Manage User Positions</h3>
+                <p>To manage the roles your campaign team members have, go to the <a href='manage_users.php'>manage user positions page.</a> This page also shows you your full campaign team and everyones' positions. You can manage the role of anyone who has a lower position than you do. You can adjust their role below or at the same level as your position. Type in their email and select their new role from the dropdown.</p>
+            </div> <!-- End manage user positions -->
+            
+            <!-- Account Settings -->
+            <hr />
+            <div class = 'row help-section' id = 'account_settings'>
+                <h3>Account Settings</h3>
+                <p>In <a href='settings.php'>account settings</a> you can adjust the email and password associated with your account.</p>
+            </div> <!-- End account settings -->
+            
+ 	   </div>
         <div class = 'spacer'></div> 
     </div>
     <footer>

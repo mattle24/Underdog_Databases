@@ -23,6 +23,7 @@ echo '
 
                         <li class="centered"><a href="choose_campaign.php" class="nav-ele">Choose Campaign</a></li>
                         <li class="centered"><a href="settings.php" class="nav-ele">Settings</a></li>
+                        <li class="centered"><a href="help.php" class="nav-ele">Help</a></li>
                         <li class="centered"><a href="logout.php" class="nav-ele">Logout</a></li>
                     </ul>
                 </div> <!-- end collapsemenu -->

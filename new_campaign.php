@@ -14,7 +14,7 @@
 	else {include 'includes/navbar_loggedin.php';}
 	?>
 
-	<div id = "page-header1">
+	<div id = "page-header0">
 		<div class = 'spacer'></div>
 		<div id = 'white-container-medium'>
             <div class = 'row'>

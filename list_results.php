@@ -22,10 +22,10 @@ include 'includes/check_logged_in.php';
         $cmp = $_SESSION['cmp'];
         # TODO: change this so that it uses user credentials, not default
         $db = new mysqli(
-        DB_HOST, 
-        DB_USER, #$_SESSION['logged_user'], 
-        DB_PASSWORD, 
-        DB_NAME)or die('Failed to connect.'); 
+            DB_HOST, 
+            DB_USER, #$_SESSION['logged_user'], 
+            DB_PASSWORD, 
+            DB_NAME)or die('Failed to connect.'); 
         $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, $cmp.Age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
@@ -106,7 +106,7 @@ include 'includes/check_logged_in.php';
                 $query = $query." AND age <= $maxage";
             }          
         }        
-        
+        echo $query;
         $_SESSION['query'] = $query;
         $stmt = $db->prepare($query);
         $stmt->execute();

@@ -52,6 +52,7 @@ if ( isset($_POST['submit']) ) {
             <div class = 'row'>
                 <h2>Login</h2>
                 <p>This site uses cookies to enhance security.</p>
+                <p>Don't have an account yet? <a href='new_user.php'>Sign up!</a></p>
             </div>
             <form action='login.php' method='post' id='login'>
                 <!-- Email input -->

@@ -4,11 +4,6 @@
 
 TODO:
 
-- Help section 
-
-- Navbar expansion in smaller browser seems broken
-
-- Finish join the team page and add links to it
 
 - Delete test accounts (or change passwords)
 

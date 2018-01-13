@@ -41,6 +41,7 @@ if (!isset($_SESSION['cmp'])) {
                     header("Location: choose_campaign.php?msg=$msg");
                 }
                 $cmp = $_SESSION['cmp'];
+                echo $cmp;
                 # TODO: change this so that it uses user credentials, not default
                 $db = new mysqli(
                   DB_HOST, 
