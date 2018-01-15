@@ -69,7 +69,7 @@
                         <input type = 'checkbox' name = 'beta_tester' value = 'True' class = 'form-check' />
                     </div <!-- End of beta interest -->
                     
-                    <button type = 'submit' class = 'btn btn-primary' value = 'Submit'>Get Started</button>
+                    <button type = 'submit' class = 'btn btn-primary' value = 'Submit'>Send</button>
 				</form>
                 ";
 		}

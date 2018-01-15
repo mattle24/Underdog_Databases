@@ -20,7 +20,7 @@ include 'includes/check_logged_in.php';
       <?php
         // Find which POST variables were set and prepare them for queries.
         if (isset($_POST['searchid'])) {
-            $searchid = filter_input(INPUT_POST,'searchid',FILTER_SANITIZE_NUMBER_INT);
+            $searchid = filter_input(INPUT_POST,'searchid',FILTER_SANITIZE_STRING);
         } else {$searchid = FALSE;}
         if (isset($_POST['searchfirst'])) {
             $searchfirst = filter_input(INPUT_POST, 'searchfirst', FILTER_SANITIZE_STRING);
@@ -46,6 +46,7 @@ include 'includes/check_logged_in.php';
 
        if (!$searchlast && !$searchcity && !$searchstreet &&!$searchnumber && !$searchid && !$searchfirst) {
            echo '<p>You have not entered search details. Please go back and try again.</p>';
+           // TODO: this is coded terribly. It should not exit. Also, this does not do anything because all this terms are set.
            exit();
         }
 
@@ -58,21 +59,35 @@ include 'includes/check_logged_in.php';
         if (mysqli_connect_errno()) {
            echo '<p>Error: Could not connect to database.<br/>
            Please try again later!</p>';
-           exit;
+           exit();
         }
 
         $cmp = $_SESSION['cmp'];  
         if ($searchid) {
-          $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
-                    FROM $cmp WHERE voter_id = ? AND First_Name LIKE ? AND Last_Name LIKE ? AND City LIKE ? AND Street_Name LIKE ? AND Street_Number LIKE ?;";
-          $stmt = $db->prepare($query);
-          $stmt->bind_param('isssss', $searchid, $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);
+            $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
+            FROM $cmp 
+            WHERE voter_id = ? 
+            AND First_Name LIKE ? 
+            AND Last_Name LIKE ? 
+            AND City LIKE ? 
+            AND Street_Name LIKE ? 
+            AND Street_Number LIKE ?;";
+            $stmt = $db->prepare($query);
+            $stmt->bind_param('ssssss', $searchid, $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);
         }
-        else { //countyid can't utilize '%' wildcard
-          $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
-                    FROM $cmp WHERE First_Name LIKE ? AND Last_Name LIKE ? AND City LIKE ? AND Street_Name LIKE ? AND Street_Number LIKE ?;";
+        else { 
+			//voter_id shouldn't utilize '%' wildcard so we can't include a voter_id LIKE '%'
+            // because voter_id is unique and shouldn't search for similar numbers
+            // Argument could be made the same is true for age and street number --> TODO!
+			$query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
+			FROM $cmp 
+			WHERE First_Name LIKE ? 
+			AND Last_Name LIKE ? 
+			AND City LIKE ? 
+			AND Street_Name LIKE ? 
+			AND Street_Number LIKE ?;";
           $stmt = $db->prepare($query);
-          $stmt->bind_param('sssss', $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);      
+          $stmt->bind_param('sssss', $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);  
         }
         $stmt->execute();
         $stmt->store_result();

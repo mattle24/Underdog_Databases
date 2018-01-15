@@ -28,10 +28,10 @@ if (isset($_POST['choose_cmp'])) {
             <li><a href = 'create_questions.php'>Add or Remove Questions</a></li>
             <li><a href = 'survey_results.php'>View Survey Results</a></li>
             <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
-            <li><a href = 'manage_users.php'>Manage Users</a></li>
-            <li><a href = 'settings.php'>Settings</a></li>
-            <li><a href = 'help'></a>Help</li>
-            <li><a href = 'contact'></a>Contact</li>
+            <li><a href = 'manage_users.php'>Manage User Positions</a></li>
+            <li><a href = 'settings.php'>Account Settings</a></li>
+            <li><a href = 'help.php'>Help</a></li>
+            <li><a href = 'contact_us.php'>Contact</a></li>
         </ul>
     </div>
 </div>

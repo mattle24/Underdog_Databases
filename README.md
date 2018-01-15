@@ -4,9 +4,6 @@
 
 TODO:
 
-
-- Delete test accounts (or change passwords)
-
 - Add sample voter file and deploy 
 
 - In list_results.php, POST input is obtained without filtering input. There should be filter input arrays, or at least some array validation.
@@ -27,6 +24,8 @@ WITH temp AS
 where question = ?
 group by voter_id
 order by date desc)
+
+- The reset button in the survey results page doesn't work ¯\_(ツ)_/¯
 
 - Integrate canvassing application
 

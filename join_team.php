@@ -92,7 +92,7 @@ session_start();
                         <textarea rows = '5' class = 'form-control' name = 'comments' form = 'new_campaign' required> </textarea>
                     </div> <!-- End contribute -->
 
-                    <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit' formid = 'login'>Login</button>
+                    <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit'>Send</button>
                 </form> <!-- End form -->"; 
             } 
             ?>
