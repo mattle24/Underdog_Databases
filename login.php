@@ -40,10 +40,20 @@ if ( isset($_POST['submit']) ) {
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Login</title>
-        <?php include "includes/head.php"; ?>
-    </head>
+<head>
+	<title>Login</title>
+	<?php include "includes/head.php"; ?>
+	
+	<!-- Google CAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+		function onSubmit(token) {
+			 document.getElementById("login-form").submit();
+		   }
+    </script>
+    <!-- END Google Captcha -->
+
+</head>
 <body>
     <?php include 'includes/navbar.php'; ?>
     <div id = 'page-header0'>
@@ -54,7 +64,7 @@ if ( isset($_POST['submit']) ) {
                 <p>This site uses cookies to enhance security.</p>
                 <p>Don't have an account yet? <a href='new_user.php'>Sign up!</a></p>
             </div>
-            <form action='login.php' method='post' id='login'>
+            <form id='login-form' action='login.php' method='post'>
                 <!-- Email input -->
                 <div class = 'form-group'>
                     <?php echo "<p>$err_msg</p>"; ?>
@@ -66,7 +76,14 @@ if ( isset($_POST['submit']) ) {
                     <label for = 'loginPassword'>Password</label>
                     <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
                 </div>
-                <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit' formid = 'login'>Login</button>
+				<?php
+				// Google CAPTCHA 
+				require_once("configs/config.php");
+				$site_key = CAPTCHA_SITE_KEY;
+				echo "
+                <button type = 'submit' class = 'btn btn-primary g-recaptcha' name='submit' data-sitekey=$site_key data-callback='onSubmit'>Login</button>
+				";
+				?>
             </form>
             <br>
             <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a> 

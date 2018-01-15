@@ -90,7 +90,7 @@
                                 <label for ='cnfPwd'>Confirm Password</label>
                                 <input id = 'cnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' placeholder = 'Confirm Password' required></input>
                             </div>
-                            <button class = 'btn btn-primary' class='g-recaptcha' data-sitekey=$site_key data-callback='onSubmit' name = 'code2' value =$code>Submit</button>
+                            <button class = 'btn btn-primary g-recaptcha' data-sitekey=$site_key data-callback='onSubmit' name = 'code2' value =$code>Submit</button>
                         </form>";
                     }
                 }
@@ -135,6 +135,7 @@
                         $stmt->execute();
                         if ($stmt) {
                             echo "Your password has been changed. <a href = 'login.php'>Login.</a>";
+							$_SESSION['code'] = ''; // reset
                         } else {
                             echo "Error. An unknown error has occurred. Please contact an administrator or try again.";
                         }
