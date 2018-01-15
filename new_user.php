@@ -93,7 +93,7 @@
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('ssss', $email, $passwd, $first, $last);
                 $stmt->execute();
-                header('Location: index.php');
+                header('Location: login.php');
             }
         }
     }
