@@ -1,6 +1,5 @@
-<?php 
-
-session_start(); 
+<?php
+session_start();
 $err_msg = "";
 if ( isset($_SESSION['logged_user']) ) {
     // User is already logged in, redirect
@@ -22,7 +21,7 @@ if ( isset($_POST['submit']) ) {
         $stmt->store_result();
         $stmt->bind_result($email, $hashpassword, $first);
         $stmt->fetch();
-                        
+
         if ( $stmt->num_rows === 1 && password_verify($post_password, $hashpassword) ) {
             // Successful login, set logged_user in $_SESSION and redirect
             $_SESSION['logged_user'] = $post_username;
@@ -35,7 +34,7 @@ if ( isset($_POST['submit']) ) {
         // Required fields were not filled out properly
         $err_msg = "Please fill out all required fields below.";
     }
-} 
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +42,7 @@ if ( isset($_POST['submit']) ) {
 <head>
 	<title>Login</title>
 	<?php include "includes/head.php"; ?>
-	
+
 	<!-- Google CAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
@@ -76,17 +75,18 @@ if ( isset($_POST['submit']) ) {
                     <label for = 'loginPassword'>Password</label>
                     <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
                 </div>
-				<?php
-				// Google CAPTCHA 
-				require_once("configs/config.php");
-				$site_key = CAPTCHA_SITE_KEY;
-				echo "
-                <button type = 'submit' class = 'btn btn-primary g-recaptcha' name='submit' data-sitekey=$site_key data-callback='onSubmit'>Login</button>
-				";
-				?>
+        				<?php
+        				// Google CAPTCHA
+        				require_once("configs/config.php");
+        				$site_key = CAPTCHA_SITE_KEY_LOGIN;
+                echo "Remember to change the keys for reset password.";
+        				echo "
+                  <button type = 'submit' class = 'btn btn-primary g-recaptcha' name='submit' data-sitekey=$site_key data-callback='onSubmit'>Login</button>
+        				";
+        				?>
             </form>
             <br>
-            <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a> 
+            <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a>
         </div>
     </div>
     <footer>
