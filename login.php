@@ -73,7 +73,6 @@ if ( isset($_POST['submit']) ) {
         				// Google CAPTCHA
         				// require_once("configs/config.php");
         				// $site_key = CAPTCHA_SITE_KEY_LOGIN;
-                echo "Remember to change the keys for reset password.";
         				echo "
                   <button type = 'submit' class = 'btn btn-primary' name='submit'>Login</button>
         				";
