@@ -44,12 +44,6 @@ if ( isset($_POST['submit']) ) {
 	<?php include "includes/head.php"; ?>
 
 	<!-- Google CAPTCHA -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-		function onSubmit(token) {
-			 document.getElementById("login-form").submit();
-		   }
-    </script>
     <!-- END Google Captcha -->
 
 </head>
@@ -77,11 +71,11 @@ if ( isset($_POST['submit']) ) {
                 </div>
         				<?php
         				// Google CAPTCHA
-        				require_once("configs/config.php");
-        				$site_key = CAPTCHA_SITE_KEY_LOGIN;
+        				// require_once("configs/config.php");
+        				// $site_key = CAPTCHA_SITE_KEY_LOGIN;
                 echo "Remember to change the keys for reset password.";
         				echo "
-                  <button type = 'submit' class = 'btn btn-primary g-recaptcha' name='submit' data-sitekey=$site_key data-callback='onSubmit'>Login</button>
+                  <button type = 'submit' class = 'btn btn-primary' name='submit'>Login</button>
         				";
         				?>
             </form>
