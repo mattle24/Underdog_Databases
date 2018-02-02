@@ -15,7 +15,7 @@ include 'includes/check_logged_in.php';
         <div id = 'white-container-medium' style = "overflow-x:auto;">
         <?php
         if (isset($_GET["voter_id"])) {
-          $VoterID = filter_input(INPUT_GET, 'voter_id', FILTER_SANITIZE_NUMBER_INT);
+          $VoterID = filter_input(INPUT_GET, 'voter_id', FILTER_SANITIZE_STRING);
         }
         else {
           echo '<p> Value not set, please try again. </p>';
