@@ -22,26 +22,26 @@ include 'includes/check_logged_in.php';
         $cmp = $_SESSION['cmp'];
         # TODO: change this so that it uses user credentials, not default
         $db = new mysqli(
-            DB_HOST, 
-            DB_USER, #$_SESSION['logged_user'], 
-            DB_PASSWORD, 
-            DB_NAME)or die('Failed to connect.'); 
+            DB_HOST,
+            DB_USER, #$_SESSION['logged_user'],
+            DB_PASSWORD,
+            DB_NAME)or die('Failed to connect.');
         $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, $cmp.Age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
         $where = False;
-        
+
         // Survey Responses //
         // This needs to be first
         // problem: question and response are always set
         $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
-        
+
         if ( !(empty($_POST['question'])) and isset($_POST['responses']) ) {
             $question = trim(filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING));
             // Validate each part of the responses array
 //            $respWhere = array();
 //            foreach ($_POST['responses'] as $resp) {
-//                
+//
 //            }
             $respWhere = "('".implode("','", $_POST['responses'])."')";
             // Determine if we need to append WHERE or AND
@@ -50,7 +50,7 @@ include 'includes/check_logged_in.php';
             $query = $query." WHERE responses.question = '$question' AND responses.response IN $respWhere AND responses.campaign = '$cmp'";
             $where = True;
         }
-        
+
         // ZIP CODE //
         if (isset($_POST['zip'])) {
             $zip = $_POST['zip'];
@@ -60,9 +60,9 @@ include 'includes/check_logged_in.php';
                 $where = True;
             }else{
                 $query = $query." AND zip in $zipWhere";
-            } 
+            }
         }
-        
+
         // CITY //
         if (isset($_POST['city'])) {
             $city = $_POST['city'];
@@ -72,9 +72,9 @@ include 'includes/check_logged_in.php';
                 $where = True;
             }else{
                 $query = $query." AND city in $cityWhere";
-            } 
+            }
         }
-        
+
         // PARTY //
         if (isset($_POST['party'])) {
             $partyWhere = "('".implode("','", $_POST['party'])."')";
@@ -83,20 +83,20 @@ include 'includes/check_logged_in.php';
                 $where = True;
             }else{
                 $query = $query." AND party in $partyWhere";
-            } 
+            }
         }
-        
+
         // AGE //
         if (isset($_POST['minage'])) {
             $minage = max(18, $_POST['minage']); // weird handling issue
             if (!empty($_POST['maxage'])){$maxage = filter_input(INPUT_POST, 'maxage', FILTER_SANITIZE_NUMBER_INT);}
-            else{ $maxage = 200; } // fewer conditions to code through 
+            else{ $maxage = 200; } // fewer conditions to code through
             if ($where == False){
                 $query = $query."WHERE age BETWEEN $minage AND $maxage";
                 $where = True;
             }else{
                 $query = $query." AND age BETWEEN $minage AND $maxage";
-            } 
+            }
         } elseif (isset($_POST['maxage'])) {
             $maxage = $_POST['maxage'];
             if ($where == False){
@@ -104,9 +104,9 @@ include 'includes/check_logged_in.php';
                 $where = True;
             }else{
                 $query = $query." AND age <= $maxage";
-            }          
-        }        
-        echo $query;
+            }
+        }
+        // echo $query;
         $_SESSION['query'] = $query;
         $stmt = $db->prepare($query);
         $stmt->execute();

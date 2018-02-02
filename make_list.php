@@ -41,13 +41,11 @@ if (!isset($_SESSION['cmp'])) {
                     header("Location: choose_campaign.php?msg=$msg");
                 }
                 $cmp = $_SESSION['cmp'];
-                echo $cmp;
-                # TODO: change this so that it uses user credentials, not default
                 $db = new mysqli(
-                  DB_HOST, 
+                  DB_HOST,
                   DB_USER,
-                  DB_PASSWORD, 
-                  DB_NAME)or die('Failed to connect.'); 
+                  DB_PASSWORD,
+                  DB_NAME)or die('Failed to connect.');
                 $query = "SELECT DISTINCT(Zip) FROM $cmp;"; # Zip Code
                 $stmt = $db->prepare($query);
                 $stmt->execute();
@@ -69,7 +67,7 @@ if (!isset($_SESSION['cmp'])) {
                 // CITY //
                 echo "<div class = 'form-check'>";
                 echo "<fieldset><legend>City</legend>";
-                $query = "SELECT DISTINCT(City) FROM $cmp;"; 
+                $query = "SELECT DISTINCT(City) FROM $cmp;";
                 $stmt = $db->prepare($query);
                 $stmt->execute();
                 $stmt->store_result();
@@ -88,7 +86,7 @@ if (!isset($_SESSION['cmp'])) {
 
                 // AGE //
                 echo "<div class = 'form-group'>";
-                    echo "<fieldset><legend>Age</legend>"; 
+                    echo "<fieldset><legend>Age</legend>";
                         echo "<div class = 'col-xs-4'>";
                             echo "<label for = 'mnAge'>Minimum Age</label>
                             <input id = 'mnAge' class = 'form-control' type = 'number' name = 'minage' min='18' placeholder = '18' aria-describedby = 'minHelp'>";
@@ -151,7 +149,7 @@ if (!isset($_SESSION['cmp'])) {
                 // Need to update possible responses with AJAX
                 // Need to give option to add more responses and more questions
                 ?>
-                
+
                 <!-- Add dynamic response fields (add and remove fields) -->
                 <label>Add Response</label>
                     <button class = 'btn btn-success js-add-button' type = 'button'>
