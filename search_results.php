@@ -25,23 +25,23 @@ include 'includes/check_logged_in.php';
         if (isset($_POST['searchfirst'])) {
             $searchfirst = filter_input(INPUT_POST, 'searchfirst', FILTER_SANITIZE_STRING);
             $searchfirst = '%'.trim($searchfirst).'%'; // for wildcards
-        } else {$searchfirst = '%';}                      
+        } else {$searchfirst = '%';}
         if (isset($_POST['searchlast'])) {
             $searchlast = filter_input(INPUT_POST, 'searchlast', FILTER_SANITIZE_STRING);
             $searchlast = '%'.trim($searchlast).'%'; // for wildcards
-        } else {$searchlast = '%';}                      
+        } else {$searchlast = '%';}
         if (isset($_POST['searchcity'])) {
             $searchcity = filter_input(INPUT_POST, 'searchcity', FILTER_SANITIZE_STRING);
             $searchcity = '%'.trim($searchcity).'%'; // for wildcards
-        } else {$searchcity = '%';}                      
+        } else {$searchcity = '%';}
         if (isset($_POST['searchstreet'])) {
             $searchstreet = filter_input(INPUT_POST, 'searchstreet', FILTER_SANITIZE_STRING);
             $searchstreet = '%'.trim($searchstreet).'%'; // for wildcards
-        } else {$searchstreet = '%';}                      
+        } else {$searchstreet = '%';}
         if (isset($_POST['searchnumber'])) {
             $searchnumber = filter_input(INPUT_POST, 'searchumber', FILTER_SANITIZE_STRING);
             $searchnumber = '%'.trim($searchnumber).'%'; // for wildcards
-        } else {$searchnumber = '%';}                      
+        } else {$searchnumber = '%';}
 
 
        if (!$searchlast && !$searchcity && !$searchstreet &&!$searchnumber && !$searchid && !$searchfirst) {
@@ -51,9 +51,9 @@ include 'includes/check_logged_in.php';
         }
 
         require_once('configs/config.php');
-        $db = new mysqli(DB_HOST, 
-                         DB_USER, 
-                         DB_PASSWORD, 
+        $db = new mysqli(DB_HOST,
+                         DB_USER,
+                         DB_PASSWORD,
                          DB_NAME)or die('Failed to connect.');
 
         if (mysqli_connect_errno()) {
@@ -62,32 +62,32 @@ include 'includes/check_logged_in.php';
            exit();
         }
 
-        $cmp = $_SESSION['cmp'];  
+        $cmp = $_SESSION['cmp'];
         if ($searchid) {
             $query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
-            FROM $cmp 
-            WHERE voter_id = ? 
-            AND First_Name LIKE ? 
-            AND Last_Name LIKE ? 
-            AND City LIKE ? 
-            AND Street_Name LIKE ? 
+            FROM $cmp
+            WHERE voter_id = ?
+            AND First_Name LIKE ?
+            AND Last_Name LIKE ?
+            AND City LIKE ?
+            AND Street_Name LIKE ?
             AND Street_Number LIKE ?;";
             $stmt = $db->prepare($query);
             $stmt->bind_param('ssssss', $searchid, $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);
         }
-        else { 
+        else {
 			//voter_id shouldn't utilize '%' wildcard so we can't include a voter_id LIKE '%'
             // because voter_id is unique and shouldn't search for similar numbers
             // Argument could be made the same is true for age and street number --> TODO!
 			$query = "SELECT voter_id, First_Name, Last_Name, Age, Street_Number, Street_Name, City
-			FROM $cmp 
-			WHERE First_Name LIKE ? 
-			AND Last_Name LIKE ? 
-			AND City LIKE ? 
-			AND Street_Name LIKE ? 
+			FROM $cmp
+			WHERE First_Name LIKE ?
+			AND Last_Name LIKE ?
+			AND City LIKE ?
+			AND Street_Name LIKE ?
 			AND Street_Number LIKE ?;";
           $stmt = $db->prepare($query);
-          $stmt->bind_param('sssss', $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);  
+          $stmt->bind_param('sssss', $searchfirst, $searchlast, $searchcity, $searchstreet, $searchnumber);
         }
         $stmt->execute();
         $stmt->store_result();
@@ -115,7 +115,7 @@ include 'includes/check_logged_in.php';
           echo "
             <tr>
               <td>
-                <a href = 'individual_results.php?countyid=$voter_id'>$voter_id</a>
+                <a href = 'individual_results.php?voter_id=$voter_id'>$voter_id</a>
               </td>
               <td>$First_Name"." "."$Last_Name</td>
               <td>$Street_Number"." "."$Street_Name</td>

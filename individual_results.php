@@ -14,18 +14,18 @@ include 'includes/check_logged_in.php';
         <div class="spacer"></div>
         <div id = 'white-container-medium' style = "overflow-x:auto;">
         <?php
-        if (isset($_GET["countyid"])) {
-          $VoterID = filter_input(INPUT_GET, 'countyid', FILTER_SANITIZE_NUMBER_INT);
-        } 
+        if (isset($_GET["voter_id"])) {
+          $VoterID = filter_input(INPUT_GET, 'voter_id', FILTER_SANITIZE_NUMBER_INT);
+        }
         else {
           echo '<p> Value not set, please try again. </p>';
           exit();
         }
 
-        require_once("configs/config.php");  
-        $db = new mysqli(DB_HOST, 
-                         DB_USER, 
-                         DB_PASSWORD, 
+        require_once("configs/config.php");
+        $db = new mysqli(DB_HOST,
+                         DB_USER,
+                         DB_PASSWORD,
                          DB_NAME)or die('Failed to connect.');
 
         if (mysqli_connect_errno()) {
@@ -36,7 +36,7 @@ include 'includes/check_logged_in.php';
         $query = "SELECT First_Name, Last_Name, Age, Street_Number, Street_Name, City, Area_Code, Phone_Number, Party FROM $cmp
                   WHERE voter_id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param('i', $VoterID);
+        $stmt->bind_param('s', $VoterID);
         $stmt->execute();
         $stmt->store_result();
 
@@ -52,7 +52,7 @@ include 'includes/check_logged_in.php';
           echo '<p><strong>Name: '.$First_Name.' '.$Last_Name.'</strong>';
           echo '<br />Voter ID: '.$VoterID;
           echo '<br />Address: '.$Street_Number.' '.$Street_Name.', '.$City;
-          echo '<br />Party: '.$Party; 
+          echo '<br />Party: '.$Party;
           echo '<br />Age: '.$Age;
           echo '<br />Phone Number: '.$AreaCode.'-'.$Phone_Number.'</p>';
         }
@@ -63,7 +63,7 @@ include 'includes/check_logged_in.php';
         WHERE voter_id = ?
         AND campaign = ?;";
         $stmt = $db->prepare($query);
-        $stmt->bind_param('is', $VoterID, $cmp);
+        $stmt->bind_param('ss', $VoterID, $cmp);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($question, $response, $date);
