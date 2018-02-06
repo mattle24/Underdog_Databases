@@ -21,13 +21,13 @@ if (!isset($_SESSION['cmp'])){
            <div class = 'row'>
                <h3>Add an existing user to your campaign</h3>
            </div>
-                     
+
            <form action = 'add_remove_users.php' method = 'post'>
                <div class= 'form-group'>
                    <label for = 'addEmail'>User Email</label>
-                   <input id = 'addEmail' class = 'form-control' type = 'text' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" aria-describedby='addHelp' placeholder = 'Add user' required></input>
+                   <input id = 'addEmail' class = 'form-control' type = 'text' name = 'new_email' aria-describedby='addHelp' placeholder = 'Add user' required></input>
                </div>
-<!-- Code to set initial position. Currently removed because it would allow someone to set a user above themselves. 
+<!-- Code to set initial position. Currently removed because it would allow someone to set a user above themselves.
             <label>New Position</label>
                 <select name = 'new_pos'>
                     <option value = 1>Volunteer</option>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['cmp'])){
             <button class = 'btn btn-primary' type = 'submit' value = 'Submit' formid = 'newusr'>Add to Campaign</button>
         </form>
            <br><br>
-           
+
         <!-- Remove user from campaign -->
        <div class = 'row'>
            <h3>Remove a user from your campaign</h3>
@@ -117,7 +117,7 @@ if (!isset($_SESSION['cmp'])){
                     else { echo "Error. Please try again or contact the administrator."; }
                 } else { exit(); }
             }
-            else { 
+            else {
     //            echo "Adding user";
                 $email = filter_input(INPUT_POST, 'new_email');
                 // check to make sure this email already has an account
@@ -148,7 +148,7 @@ if (!isset($_SESSION['cmp'])){
                 }
 
                 // insert new data into bridge table
-                // If a position was specified, add as that position. 
+                // If a position was specified, add as that position.
                 // Otherwise, add as Vol
                 if (isset($_POST['new_pos'])) {
                     $new_pos = filter_input(INPUT_POST, 'new_pos', FILTER_SANITIZE_NUMBER_INT);
