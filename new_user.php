@@ -7,7 +7,7 @@
     <?php include 'includes/head.php'; ?>
 </head>
 <body>
- <?php 
+ <?php
 	if (!isset($_SESSION['logged_user'])){
 		include 'includes/navbar.php';
 	}
@@ -30,7 +30,7 @@
         </div>
         <div class = 'form-group'>
             <label for = 'newEmail'>Email Address</label>
-            <input id = 'newEmail' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder='Email' required>
+            <input id = 'newEmail' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_|.)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder='Email' required>
         </div>
         <div class = 'form-group'>
             <label for = 'newPwd'>Password</label>
@@ -66,11 +66,11 @@
             $passwd = password_hash($passwd, PASSWORD_DEFAULT);
             include('configs/config.php');
             $db = new mysqli(
-              DB_HOST, 
-              DB_USER, 
-              DB_PASSWORD, 
+              DB_HOST,
+              DB_USER,
+              DB_PASSWORD,
               DB_NAME
-              )or die('Failed to connect.');       
+              )or die('Failed to connect.');
             // check to make sure this email doesn't already have an account
             $query = "SELECT email FROM users WHERE email = ?";
             $stmt = $db->prepare($query);

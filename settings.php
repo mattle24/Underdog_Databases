@@ -5,7 +5,7 @@ include 'includes/check_logged_in.php';
 <html>
 <head>
     <title>Settings</title>
-    <?php include "includes/head.php" ; ?>    
+    <?php include "includes/head.php" ; ?>
 </head>
 <body>
     <?php include 'includes/navbar_loggedin.php'; ?>
@@ -49,7 +49,7 @@ include 'includes/check_logged_in.php';
                 $stmt->store_result();
                 $stmt->bind_result($hashpassword);
                 $stmt->fetch();
-                if ( !($stmt->num_rows === 1 && password_verify($post_password, $hashpassword)) ) { 
+                if ( !($stmt->num_rows === 1 && password_verify($post_password, $hashpassword)) ) {
                     echo "Password incorrect. Please reenter your password.";
                 }
               // Password verified
@@ -90,7 +90,7 @@ include 'includes/check_logged_in.php';
                             echo "Error. Please try again or contact the administrator.";
                         }
                     }
-                } 
+                }
                 elseif (isset($_POST['new_password'])) {
                     if(!isset($_POST['confirm_password'])) {
                         echo "Please confirm your new password.";
@@ -100,7 +100,7 @@ include 'includes/check_logged_in.php';
                     if ($_POST['new_password'] !== $_POST['confirm_password']) {
                         echo "Error. The passwords did not match.";
                     }
-                // Passwords match. Change the password. 
+                // Passwords match. Change the password.
                 // Hash password
                     $new_password = filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING);
                     $passwd = password_hash($new_password, PASSWORD_DEFAULT);
@@ -116,26 +116,26 @@ include 'includes/check_logged_in.php';
                     }
                     else {
                         echo "Error. Please try again or contact the administrator.";
-                    }            
+                    }
                 }
             }
             ?>
             <div class = 'row'>
                 <h3>Change Email</h3>
             </div>
-            
+
             <!-- Form to change email -->
             <form action = 'settings.php' method = 'post'>
                 <div class = 'form-group'>
                     <label for = 'newEmail'>New Email</label>
-                    <input id = 'newEmail' class = 'form-control' type = 'email' name = 'new_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required/>
+                    <input id = 'newEmail' class = 'form-control' type = 'email' name = 'new_email' pattern = "([a-z]|\d|_|.)+(@)([a-z])+(\.)([a-z]){2,3}" required/>
                 </div>
-                
+
                 <div class = 'form-group'>
                     <label for = 'cnfEmail'>Confirm New Email</label>
                     <input id = 'cnfEmail' class = 'form-control' type = 'email' name = 'confirm_email' pattern = "([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}" required/>
                 </div>
-                
+
                 <div class = 'form-group'>
                     <label for = 'pwd1'>Current Password</label>
                     <input id = 'pwd1' class = 'form-control' type = 'password' name = 'current_password' required></input>
@@ -143,7 +143,7 @@ include 'includes/check_logged_in.php';
                 <button class = 'btn btn-primary' type='submit'>Change Email</button>
             </form>
         <br />
-        
+
         <!-- Form to change password -->
         <div class = 'row'>
             <h3>Change Password</h3>
@@ -153,13 +153,13 @@ include 'includes/check_logged_in.php';
                 <label for = 'pwd2'>Current Password</label>
                 <input id = 'pwd2' class = 'form-control' type = 'password' name = 'current_password' required/>
             </div>
-            
+
             <div class = 'form-group'>
                 <label for = 'newPwd'>New Password</label>
                 <input id = 'newPwd' class = 'form-control' type = 'password' name = 'new_password' pattern = "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" aria-describedby= 'pwdHelp' required/>
                 <small id = 'pwdHelp' class = 'form-text text-muted'>Your password must contain at least 8 characters, including one number, one capital letter, and one lowercase letter.</small>
             </div>
-            
+
             <div class = 'form-group'>
                 <label for = 'cnfPwd'>Confirm New Password</label>
                 <input id = 'cnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' required/>

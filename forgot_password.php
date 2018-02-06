@@ -6,7 +6,7 @@
     <?php include 'includes/head.php'; ?>
 </head>
 <body>
-	<?php 
+	<?php
 	if (isset($_SESSION['logged_user'])){
         // Logged in users don't need to recover password
 		header("Location: choose_campaign.php");
@@ -59,14 +59,14 @@
                     for ($i = 0; $i < $length; $i++) {
                         $randomString .= $characters[rand(0, $charactersLength - 1)];
                     }
-                    
+
                     // Step 1.5: delete all previous reset links for this user
                     $query = "DELETE FROM reset_password
                     WHERE email = ?;";
                     $stmt= $db->prepare($query);
                     $stmt->bind_param('s', $email);
                     $stmt->execute();
-                    
+
                     // Step 2: store the link with a date so it can expire
                     $time = time();
                     $query = "INSERT INTO reset_password (email, url_ext, time)
@@ -74,25 +74,25 @@
                     $stmt = $db->prepare($query);
                     $stmt->bind_param('ssi', $email, $randomString, $time);
                     $stmt->execute();
-                    
+
                     // Step 3: send the user an email with the link to reset the password
                     $msg = "$first, Someone asked us to reset your password. If this was you, click here: localhost:8890/reset_password.php?code=$randomString.\nIf this wasn't you, please contact us.";
                     echo $msg;
                     mail($email, "Grassroots Analytics", $receipt);
                     echo "Your request has been submitted.";
-                    
+
                     // Step 4: validate GET data, validate the correct user is using the link (email), and reset password
                     // on reset_password.php
                 }
 			}
 			else {
                 // If not set, then give the form
-				echo 
+				echo
 				"<form action = 'forgot_password.php' method = 'post'>
                     <!-- First Name -->
                     <div class = 'form-group'>
                         <label for = 'formFirst'>First Name</label>
-                        <input id = 'formFirst' class = 'form-control' type = 'text' name = 'first' placeholder = 'First' required> 
+                        <input id = 'formFirst' class = 'form-control' type = 'text' name = 'first' placeholder = 'First' required>
                     </div>
                     <!-- Last Name -->
                     <div class = 'form-group'>
@@ -102,7 +102,7 @@
                     <!-- Email -->
                     <div class = 'form-group'>
                         <label for = 'formEmail'>Email Address</label>
-						<input id = 'formEmail' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder = 'Email' required> 
+						<input id = 'formEmail' class = 'form-control' type = 'email' name = 'email' placeholder = 'Email' required> 
                     </div>
 					<button class = 'btn btn-primary' type = 'submit'>Reset password</button>
 				</form>";
