@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 ?>
 
@@ -10,7 +10,7 @@ session_start();
         <?php include "includes/head.php"; ?>
     </head>
 <body>
-	<?php 
+	<?php
 	if (!isset($_SESSION['logged_user'])){
 		include 'includes/navbar.php';
 	}
@@ -22,6 +22,7 @@ session_start();
             <div class = 'row'>
                 <h2>Join the Team</h2>
                 <p>Can you code? Are you passionate about progressive politics? Apply to join the Underdog Databases team!</p>
+                <p>Thank you for trying out Underdog Databases! We are working on making the site fully operational while in beta testing. Unfortunately, this form does not work as this time. Thank you for your patience!</p>
             </div>
 			<?php
 		   // Check if form was filled out
@@ -61,10 +62,10 @@ session_start();
                     <!-- Skill Section -->
                     <label>Area(s) of Interest</label>
                     <br>
-                    <div class = 'form-check join-team'>  
+                    <div class = 'form-check join-team'>
                         <label class = 'form-check-label'>Front End Development</label>
                         <input type = 'checkbox' name = 'skills[]' value ='FrontEnd' />
-                    </div> 
+                    </div>
 
                     <div class = 'form-check join-team'>
                         <label class = 'form-check-label'>Back End Development</label>
@@ -81,7 +82,7 @@ session_start();
                         <input type = 'checkbox' name = 'skills[]' value ='Marketing' />
                     </div>
 
-                    <div class = 'form-check join-team'>                
+                    <div class = 'form-check join-team'>
                         <label class = 'form-check-label'>Other</label>
                         <input type = 'checkbox' name = 'skills[]' value ='Other' />
                     </div> <!-- End of skills section -->
@@ -93,8 +94,8 @@ session_start();
                     </div> <!-- End contribute -->
 
                     <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit'>Send</button>
-                </form> <!-- End form -->"; 
-            } 
+                </form> <!-- End form -->";
+            }
             ?>
         </div> <!-- End of content box -->
         <div class = 'spacer'></div>

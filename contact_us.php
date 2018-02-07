@@ -20,7 +20,8 @@
             <div class = 'row'> <!-- Page title -->
                 <h2>Contact Us</h2>
                 <p>Have questions or comments? Submit them here and we will get back to you as soon as possible. If you are interested in joining the Underdog team, <a href = 'join_team.php'>click here.</a></p>
-            </div> <!-- End page title -->
+								<p>Thank you for trying out Underdog Databases! We are working on making the site fully operational while in beta testing. Unfortunately, this form does not work as this time. Thank you for your patience!</p>
+						</div> <!-- End page title -->
 			<?php
 		   // Check if form was filled out
 			if (isset($_POST['first']) && isset($_POST['last']) && isset($_POST['email']) && isset($_POST['comments'])) {
