@@ -39,7 +39,7 @@ session_start();
 				echo "Your form has been submitted. We will be in touch as soon as possible!";
 			}
 			else {
-				echo "<form action='join_the_team.php' method='post'>
+				echo "<form action='join_team.php' method='post'>
                     <!-- First Name -->
                     <div class = 'form-group'>
                         <label for = 'firstName'>First Name</label>
