@@ -22,7 +22,6 @@ session_start();
             <div class = 'row'>
                 <h2>Join the Team</h2>
                 <p>Can you code? Are you passionate about progressive politics? Apply to join the Underdog Databases team!</p>
-                <p>Thank you for trying out Underdog Databases! We are working on making the site fully operational while in beta testing. Unfortunately, this form does not work as this time. Thank you for your patience!</p>
             </div>
 			<?php
 		   // Check if form was filled out
