@@ -55,7 +55,7 @@ session_start();
                     <!-- Email input -->
                     <div class = 'form-group'>
                         <label for ='loginEmail'>Email Address</label>
-                        <input type = 'email' class = 'form-control' id = 'loginEmail' placeholder = 'Enter email' name = 'username' required>
+                        <input type = 'email' class = 'form-control' id = 'loginEmail' placeholder = 'Enter email' name = 'email' required>
                     </div><!-- End email -->
 
                     <!-- Skill Section -->
