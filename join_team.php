@@ -31,7 +31,7 @@ session_start();
 				$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 				$comments = filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_STRING);
 				$msg = "$first $last with email: $email asked:\n $comments";
-                if (isset($POST['skills'])) {
+                if (isset($_POST['skills'])) {
                     $skills = "'".implode("','", $_POST['skills'])."'";
                     $msg = $msg."\n Person has skills: $skills.";
                 }
