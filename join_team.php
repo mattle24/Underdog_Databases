@@ -89,7 +89,7 @@ session_start();
                     <!-- How do you want to contibute -->
                     <div class = 'form-group'>
                         <label>How do you want to contribute?</label>
-                        <textarea rows = '5' class = 'form-control' name = 'comments' form = 'new_campaign' required> </textarea>
+                        <textarea rows = '5' class = 'form-control' name = 'comments'required> </textarea>
                     </div> <!-- End contribute -->
 
                     <button type = 'submit' class = 'btn btn-primary' name='submit' value = 'Submit'>Send</button>
