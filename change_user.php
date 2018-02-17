@@ -14,7 +14,7 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
 		alert(\"Make sure to fill out all fields.\");
 		window.location = \"manage_users.php\"
-		</script>";		
+		</script>";
         header("Location: manage_users.php"); // if JS disabled
     }
     echo "A";
@@ -27,14 +27,14 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
 		alert(\"$err.\");
 		window.location = \"manage_users.php\"
-		</script>";	
+		</script>";
         header("Location: choose_campaign.php?msg=$err"); // if JS disabled
         // TODO: add GET message
     }
     $cmp = $_SESSION['cmp'];
     $user_email = $_SESSION['logged_user'];
-    
-    // Two requirements: 
+
+    // Two requirements:
     // 1) user must be above the level of the user they are changing
     // 2) user must not change other level to above their own rank
     include("configs/config.php");
@@ -42,7 +42,8 @@ include 'includes/check_logged_in.php';
         DB_HOST,
         DB_USER,
         DB_PASSWORD,
-        DB_NAME) or die("Failed to connect");
+        DB_NAME
+    ) or die("Failed to connect");
     // Get user rank
     $query = "SELECT position FROM user_campaign_bridge, users, campaigns
     WHERE users.email = ?
@@ -60,7 +61,7 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
     if ($user_rank < $new_pos) {
@@ -68,7 +69,7 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
 //    echo $user_rank;
@@ -86,13 +87,13 @@ include 'includes/check_logged_in.php';
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($change_user_id, $change_user_rank, $cmp_id);
-    if ($stmt->num_rows !== 1){
+    if ($stmt->num_rows !== 1) {
         $err = "Error. There were $stmt->num_rows accounts associated with this campaign for $change_email.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
-        header("Location: manage_users.php?err=$err"); // if javascript disabled 
+        </script>";
+        header("Location: manage_users.php?err=$err"); // if javascript disabled
         exit();
     }
     $stmt->fetch();
@@ -104,16 +105,15 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
         exit();
-    }
-    elseif ($user_rank == $change_user_rank) {
+    } elseif ($user_rank == $change_user_rank) {
         $err = "Error. You cannot change the role of a user with an equal role.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
         exit();
     }
@@ -131,19 +131,18 @@ include 'includes/check_logged_in.php';
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
-    }
-    else {
+    } else {
         $err = "Unknown error. Please try again or contact the administrator.";
         echo "<script type=\"text/javascript\">
         alert(\"$err\");
         window.location = \"manage_users.php\"
-        </script>";		
+        </script>";
         header("Location: manage_users.php?err=$err"); // if javascript disabled
     }
     $db->close();
 ?>
-    
+
 </body>
 </html>

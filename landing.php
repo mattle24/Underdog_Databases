@@ -4,7 +4,7 @@ include 'includes/check_logged_in.php';
 setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
 // check for the post campaign variable
 if (isset($_POST['choose_cmp'])) {
-  $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
+    $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
 }
 // TODO: make sure that user has access to the campaign. Otherwise,
 // can spoof with a curl(?) POST input
@@ -18,24 +18,24 @@ if (isset($_POST['choose_cmp'])) {
 <body>
     <?php include 'includes/navbar_loggedin.php'; ?>
     <div id = 'page-header1'>
-      <div class = 'spacer'></div>
-    <div id = 'landing-container'>
-        <h2 align = 'center'>Toolbox</h2>
-        <ul style = 'list-style-type:none'>
-            <li><a href = 'make_list.php'>Create List of Voters</a></li>
-            <li><a href = 'search.php'>Quick Search Voters</a></li>
-            <li><a href = 'import_list.php'>Import Responses</a></li>
-            <li><a href = 'create_questions.php'>Add or Remove Questions</a></li>
-            <li><a href = 'survey_results.php'>View Survey Results</a></li>
-            <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
-            <li><a href = 'manage_users.php'>Manage User Positions</a></li>
-            <li><a href = 'settings.php'>Account Settings</a></li>
-            <li><a href = 'help.php'>Help</a></li>
-            <li><a href = 'contact_us.php'>Contact</a></li>
-        </ul>
+        <div class = 'spacer'></div>
+        <div id = 'landing-container'>
+            <h2 align = 'center'>Toolbox</h2>
+            <ul style = 'list-style-type:none'>
+                <li><a href = 'make_list.php'>Create List of Voters</a></li>
+                <li><a href = 'search.php'>Quick Search Voters</a></li>
+                <li><a href = 'import_list.php'>Import Responses</a></li>
+                <li><a href = 'create_questions.php'>Add or Remove Questions</a></li>
+                <li><a href = 'survey_results.php'>View Survey Results</a></li>
+                <li><a href = 'add_remove_users.php'>Add or Remove Users</a></li>
+                <li><a href = 'manage_users.php'>Manage User Positions</a></li>
+                <li><a href = 'settings.php'>Account Settings</a></li>
+                <li><a href = 'help.php'>Help</a></li>
+                <li><a href = 'contact_us.php'>Contact</a></li>
+            </ul>
+        </div>
     </div>
-</div>
-<footer>
-</footer>
+    <footer>
+    </footer>
 </body>
 </html>

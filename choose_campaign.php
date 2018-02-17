@@ -1,5 +1,7 @@
 <?php session_start();
-if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
+if (!isset($_SESSION['logged_user'])) {
+    header('Location: index.php');
+}
 setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
 ?>
 <!DOCTYPE html>
@@ -22,21 +24,21 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
     <div class = 'spacer'></div>
     <div id = 'my-form'>
       <h2>Choose Campaign</h2>
-      <?php 
+      <?php
         // check for error messages
       if (isset($_GET['msg'])) {
           echo filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING);
-      }    
+      }
       echo "<form action = 'landing.php' method = 'post' id ='choose_cmp'>";
         // BS Dropdown
         echo "<div class = 'form-group'>";
         include("configs/config.php");
         $db = new mysqli(
-          DB_HOST, 
-          DB_USER, 
-          DB_PASSWORD, 
+          DB_HOST,
+          DB_USER,
+          DB_PASSWORD,
           DB_NAME
-          )or die('Failed to connect.'); 
+          )or die('Failed to connect.');
         $username = $_SESSION['logged_user'];
         $query = "SELECT DISTINCT(campaigns.campaign_name), campaigns.table_name FROM campaigns, user_campaign_bridge, users
         WHERE users.email = ?
@@ -48,8 +50,8 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
         $stmt->store_result();
         $stmt->bind_result($campaign, $table_name);
         echo "<select class = 'form-control' name = 'choose_cmp'>";
-        while($stmt->fetch()){
-          echo "<option value = $table_name>$campaign</option>";
+        while ($stmt->fetch()) {
+            echo "<option value = $table_name>$campaign</option>";
         }
         echo "</select>";
         echo "</div>";

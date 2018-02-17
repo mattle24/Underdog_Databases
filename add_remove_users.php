@@ -1,8 +1,8 @@
 <?php session_start();
 include 'includes/check_logged_in.php';
-if (!isset($_SESSION['cmp'])){
-  $msg = "Error. Please choose your campaign before adding or removing users.";
-  header("Location: choose_campaign.php?msg=$msg");
+if (!isset($_SESSION['cmp'])) {
+    $msg = "Error. Please choose your campaign before adding or removing users.";
+    header("Location: choose_campaign.php?msg=$msg");
 }
 ?>
 
@@ -53,7 +53,7 @@ if (!isset($_SESSION['cmp'])){
             <button class = 'btn btn-primary' type = 'submit' value = 'Submit'>Remove from Campaign</button>
         </form>
         <?php
-        if (sizeof($_POST) > 0){
+        if (sizeof($_POST) > 0) {
             if (!isset($_SESSION['cmp'])) {
                 // if cmp not set, make them set it
                 $msg = "Error: You must set your campaign before adding or removing users.";
@@ -66,7 +66,8 @@ if (!isset($_SESSION['cmp'])){
                 DB_HOST,
                 DB_USER,
                 DB_PASSWORD,
-                DB_NAME) or die('Failed to connect.');
+                DB_NAME
+            ) or die('Failed to connect.');
             $query = "SELECT campaignid FROM campaigns WHERE table_name = ?;";
             $stmt = $db->prepare($query);
             $stmt->bind_param('s', $_SESSION['cmp']);
@@ -113,12 +114,14 @@ if (!isset($_SESSION['cmp'])){
                     $stmt->execute();
                     if ($stmt) {
                         echo "User succesfully deleted.";
+                    } else {
+                        echo "Error. Please try again or contact the administrator.";
                     }
-                    else { echo "Error. Please try again or contact the administrator."; }
-                } else { exit(); }
-            }
-            else {
-    //            echo "Adding user";
+                } else {
+                    exit();
+                }
+            } else {
+                //            echo "Adding user";
                 $email = filter_input(INPUT_POST, 'new_email');
                 // check to make sure this email already has an account
                 $query = "SELECT userID FROM users WHERE email = ?;";
@@ -152,15 +155,20 @@ if (!isset($_SESSION['cmp'])){
                 // Otherwise, add as Vol
                 if (isset($_POST['new_pos'])) {
                     $new_pos = filter_input(INPUT_POST, 'new_pos', FILTER_SANITIZE_NUMBER_INT);
-                } else {$new_pos = 1;}
+                } else {
+                    $new_pos = 1;
+                }
                 $query = "INSERT INTO user_campaign_bridge (userID, campaignID, position)
                 VALUES(?, ?, ?);";
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('iii', $user_id, $cmp_id, $new_pos);
-    //            echo "point 2";
+                //            echo "point 2";
                 $stmt->execute();
-                if ($stmt) { echo "User $email succesfully added.";}
-                else {echo "Error. Please try again or contact the administrator.";}
+                if ($stmt) {
+                    echo "User $email succesfully added.";
+                } else {
+                    echo "Error. Please try again or contact the administrator.";
+                }
             }
         }
     ?>
