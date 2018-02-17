@@ -69,14 +69,8 @@ if ( isset($_POST['submit']) ) {
                     <label for = 'loginPassword'>Password</label>
                     <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
                 </div>
-        				<?php
-        				// Google CAPTCHA
-        				// require_once("configs/config.php");
-        				// $site_key = CAPTCHA_SITE_KEY_LOGIN;
-        				echo "
-                  <button type = 'submit' class = 'btn btn-primary' name='submit'>Login</button>
-        				";
-        				?>
+                <button type = 'submit' class = 'btn btn-primary' name='submit'>Login</button>
+                <small>By logging in you agree to the <a href='terms.php'>terms and conditions.</a></small>
             </form>
             <br>
             <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a>

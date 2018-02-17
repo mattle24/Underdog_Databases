@@ -39,8 +39,17 @@
         </div>
         <div class = 'form-group'>
             <label for = 'cnfPwd'>Confirm Password</label>
-            <input id = 'cnnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' placeholder = 'Confirm Password' required>
+            <input id = 'cnfPwd' class = 'form-control' type = 'password' name = 'confirm_password' placeholder = 'Confirm Password' required>
         </div>
+
+        <div class = 'form-group join-team'>
+            <label for = 'isnot13'>I certify I am least 13 years old.</label>
+            <input id = 'isnot13' name = 'isnot13' class = 'form-check' type =  'checkbox' value = 'True' required />
+
+            <label for = 'terms'>I have read and agree to the <a href = 'terms.php'>terms and conditions.</a></label>
+            <input for = 'terms' name = 'terms' class = 'form-check' type = 'checkbox' value = 'True' required />
+        </div>
+
         <button class = 'btn btn-primary' type = 'submit' value = 'Submit' formid = 'newusr'>Submit</button>
     </form>
     <?php
@@ -48,7 +57,7 @@
         // If none of the fields are set, do nothing
         echo "";
     }
-    else if (!isset($_POST['email']) and !isset($_POST['new_password']) and !isset($_POST['confirm_password']) and !isset($_POST['first']) and !isset($_POST['last'])) {
+    else if (!(isset($_POST['email']) and isset($_POST['new_password']) and isset($_POST['confirm_password']) and isset($_POST['first']) and isset($_POST['last']) and isset($_POST['isnot13']) and isset($_POST['terms']))) {
         // If some but not all fields are set, send an error message
         echo "Make sure to fill out all fields!";
     }
