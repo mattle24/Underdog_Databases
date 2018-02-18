@@ -87,12 +87,6 @@ p, label, a, legend {
     width: 100%;
 }
 
-/* #home-hero-image {
-    width: 100vw;
-    object-fit: cover;
-    position: absolute;
-} */
-
 #home-hero-wrapper {
     position: relative;
     text-align: center;
@@ -105,9 +99,9 @@ p, label, a, legend {
 }
 
 #home-hero-subtitle {
-    font-size: 20px;
+    font-size: 3.5vh;
     color: #fff;
-    font-family: Rubik, 'Helvetica Neue', sans-serif;
+    font-family: Barlow, 'Helvetica Neue', sans-serif;
 }
 
 #home-hero-buttons {

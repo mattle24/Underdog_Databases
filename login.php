@@ -77,7 +77,7 @@ if ( isset($_POST['submit']) ) {
                     <div class = 'row'>
                         <button type = 'submit' class = 'btn btn-primary col-md-3' name='submit'>Login</button>
                         <a href = 'forgot_password.php'><button class = 'btn btn-secondary col-md-7'>Forgot Password</button></a>
-                        <small class = 'col-xs-8'>By logging in you agree to the <a href='terms.php'>terms and conditions.</a></small>
+                        <small class = 'col-xs-12'>By logging in you agree to the <a href='terms.php'>terms and conditions.</a></small>
                     </div>
                 </form>
             </div>
