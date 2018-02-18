@@ -49,32 +49,41 @@ if ( isset($_POST['submit']) ) {
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
-    <div id = 'page-header0' class = 'col-12'>
+    <div id = 'page-header0' class = 'container-fluid'>
         <div class='spacer'></div>
-        <div id='white-container-small' class = 'col-12'>
+        <div id='white-container-small' class = 'container'>
             <div class = 'row'>
                 <h2>Login</h2>
                 <p>This site uses cookies to enhance security.</p>
                 <p>Don't have an account yet? <a href='new_user.php'>Sign up!</a></p>
             </div>
-            <form id='login-form' action='login.php' method='post'>
-                <!-- Email input -->
-                <div class = 'form-group'>
+
+            <div class = 'row'>
+                <form id='login-form' action='login.php' method='post'>
                     <?php echo "<p>$err_msg</p>"; ?>
-                    <label for ='loginEmail'>Email</label>
-                    <input type = 'email' class = 'form-control' id = 'loginEmail' placeholder = 'Enter email' name = 'username' required>
-                </div>
-                <!-- Password input -->
-                <div class = 'form-group'>
-                    <label for = 'loginPassword'>Password</label>
-                    <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
-                </div>
-                <button type = 'submit' class = 'btn btn-primary' name='submit'>Login</button>
-                <small>By logging in you agree to the <a href='terms.php'>terms and conditions.</a></small>
-            </form>
-            <br>
-            <a href = 'forgot_password.php'><button class = 'btn btn-secondary'>Forgot Password</button></a>
+                    <div class = 'row'>
+                        <!-- Email input -->
+                        <div class = 'form-group col-sm-6'>
+                            <label for ='loginEmail'>Email</label>
+                            <input type = 'email' class = 'form-control' id = 'loginEmail' placeholder = 'Enter email' name = 'username' required>
+                        </div>
+                        <!-- Password input -->
+                        <div class = 'form-group col-sm-6'>
+                            <label for = 'loginPassword'>Password</label>
+                            <input type = 'password' class = 'form-control' id = 'loginPassword' placeholder = 'Password' name = 'password' required>
+                        </div>
+                    </div>
+
+                    <div class = 'row'>
+                        <button type = 'submit' class = 'btn btn-primary col-md-3' name='submit'>Login</button>
+                        <a href = 'forgot_password.php'><button class = 'btn btn-secondary col-md-7'>Forgot Password</button></a>
+                        <small class = 'col-xs-8'>By logging in you agree to the <a href='terms.php'>terms and conditions.</a></small>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <div class = 'spacer'> </div>
     </div>
     <footer>
     </footer>

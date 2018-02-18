@@ -5,7 +5,7 @@ a {
 
 button {
     color: #000;
-    margin-bottom: 4px;
+    margin: 1em;
 }
 
 footer {
@@ -27,6 +27,10 @@ h2, h3 {
 
 label {
     color: #0d5579;
+}
+
+.btn-secondary:hover {
+
 }
 
 .navbar {
@@ -97,13 +101,13 @@ p, label, a, legend {
 #home-hero-title {
     font-size: 8vh;
     color: #fff;
-    font-family: 'Rubik', 'Helvetica Neue', sans-serif;
+    font-family: Rubik, 'Helvetica Neue', sans-serif;
 }
 
 #home-hero-subtitle {
     font-size: 20px;
     color: #fff;
-    font-family: 'Rubik', 'Helvetica Neue', sans-serif;
+    font-family: Rubik, 'Helvetica Neue', sans-serif;
 }
 
 #home-hero-buttons {
@@ -162,6 +166,9 @@ p, label, a, legend {
     background-position: center;
     background-attachment: fixed;
     min-height: 60vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* @media (max-height:600px) {
@@ -207,14 +214,14 @@ p, label, a, legend {
 #white-container-small {
     background: white;
     margin: auto;
-    padding: 40px;
-    width: 40vw;
-    min-width: 500px;
+    padding: 5vh 5vw;
+    width: 50vh;
 }
 
 @media screen and (max-width: 500px) {
-    #white-container-small {
+    #white-container-small, #white-container-medium #white-container-large {
         width: 100vw;
+        padding: 5vh 10vw;
     }
 }
 
@@ -237,7 +244,7 @@ p, label, a, legend {
 /** Make a list **/
 
 
-.entry(:first-of-type)
+.entry (:first-of-type)
 {
     margin-top: 10px !important;
 }
