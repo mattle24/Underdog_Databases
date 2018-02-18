@@ -20,9 +20,9 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
   <?php
   include 'includes/navbar_loggedin.php';
   ?>
-  <div id = 'page-header1'>
+  <div id = 'page-header1' class = 'container-fluid'>
     <div class = 'spacer'></div>
-    <div id = 'my-form'>
+    <div id = 'white-container-small' class = 'container'>
       <h2>Choose Campaign</h2>
       <?php
         // check for error messages
@@ -56,10 +56,11 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
         echo "</select>";
         echo "</div>";
         ?>
-        <button type = 'submit' class = 'btn btn-primary'>Choose</button>
+        <button type = 'submit' class = 'btn btn-primary'>Select</button>
       </form>
 
     </div>
+    <div class = 'spacer'> </div>
   </div>
   <footer>
   </footer>

@@ -15,10 +15,10 @@ session_start();
 	}
 	else {include 'includes/navbar_loggedin.php';}
 	?>
-    <div id = 'page-header0'>
+    <div id = 'page-header0' class = 'container-fluid'>
         <div class = 'spacer'> </div>
 
-        <div id = 'white-container-medium'>
+        <div id = 'white-container-medium' class = 'container'>
             <div>
                 <h4>1. Terms</h4>
                 <p>By accessing the Underdog Databases website and/or services, you are agreeing to be bound by these terms of service and all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.  You may not use the website or services if you are under the age of 13.  If you are under the age of 18, you represent that a parent or legal guardian also agrees to these terms on your behalf.</p>
@@ -105,6 +105,7 @@ session_start();
         </div>
         <div class = 'spacer'> </div>
     </div>
+	<footer></footer>
 </body>
 
 </html>

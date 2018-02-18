@@ -18,7 +18,7 @@ html, body {
     padding: 0;
 }
 
-h2, h3 {
+h2, h3, h4 {
     font-family: Rubik, sans-serif;
     font-weight: 400;
     margin-top: 0px;
@@ -30,7 +30,7 @@ label {
 }
 
 .btn-secondary:hover {
-
+    background-color: #D1D1D1;
 }
 
 .navbar {
@@ -190,10 +190,10 @@ p, label, a, legend {
 /** Landing **/
 #landing-container {
     background: white;
-    width: 80%;
-    max-width: 800px;
     margin: auto;
-    padding: 30px 0;
+    padding: 5vh 5vw;
+    width: 70vw;
+    margin: auto;
 }
 
 #landing-container ul {
@@ -211,6 +211,11 @@ p, label, a, legend {
     text-decoration: none !important;
 }
 
+.tools a:hover{
+    background-color: #d0e6fb;
+}
+
+/* Containers */
 #white-container-small {
     background: white;
     margin: auto;
@@ -218,27 +223,26 @@ p, label, a, legend {
     width: 50vh;
 }
 
-@media screen and (max-width: 500px) {
-    #white-container-small, #white-container-medium #white-container-large {
-        width: 100vw;
-        padding: 5vh 10vw;
-    }
-}
 
 #white-container-medium {
     background: white;
     margin: auto;
-    padding: 40px;
-    width: 700px;
-    min-width: 500px;
+    padding: 5vh 5vw;
+    width: 70vw;
 }
 
 #white-container-large {
     background: white;
-    width: 80%;
+    width: 80vw;
     margin: auto;
-/*    min-height: 600px;*/
-    padding: 40px;
+    padding: 5vh 5vw;
+}
+
+@media screen and (max-width: 500px) {
+    #white-container-small, #white-container-medium, #white-container-large{
+        width: 100%;
+        padding: 5vh 10vw;
+    }
 }
 
 /** Make a list **/
