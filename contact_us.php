@@ -20,7 +20,7 @@
             <div class = 'row'> <!-- Page title -->
                 <h2>Contact Us</h2>
                 <p>Have questions or comments? Submit them here and we will get back to you as soon as possible. If you are interested in joining the Underdog team, <a href = 'join_team.php'>click here.</a></p>
-						</div> <!-- End page title -->
+			</div> <!-- End page header -->
 			<?php
 		   // Check if form was filled out
 			if (isset($_POST['first']) && isset($_POST['last']) && isset($_POST['email']) && isset($_POST['comments'])) {
@@ -39,39 +39,46 @@
 				echo
 				"
         <form action = 'contact_us.php' method = 'post'>
-            <!-- First Name -->
-            <div class = 'form-group'>
-                <label for = 'firstName'>First Name</label>
-                <input id = 'firstName' class = 'form-control' type = 'text' name = 'first' placeholder = 'First Name' required>
-            </div> <!-- End first name -->
+			<div class = 'row'> <!-- Row for name -->
+	            <!-- First Name -->
+	            <div class = 'form-group col-sm-6'>
+	                <label for = 'firstName'>First Name</label>
+	                <input id = 'firstName' class = 'form-control' type = 'text' name = 'first' placeholder = 'First Name' required>
+	            </div> <!-- End first name -->
 
-            <!-- Last Name -->
-            <div class = 'form-group'>
-                <label for = 'lastName'>Last Name</label>
-                <input id = 'lastName' class = 'form-control' type = 'text' name = 'last' placeholder = 'Last Name' required>
-            </div> <!-- End last Name -->
+	            <!-- Last Name -->
+	            <div class = 'form-group col-sm-6'>
+	                <label for = 'lastName'>Last Name</label>
+	                <input id = 'lastName' class = 'form-control' type = 'text' name = 'last' placeholder = 'Last Name' required>
+	            </div> <!-- End last Name -->
+			</div> <!-- End name -->
 
-            <!-- Email -->
-            <div class = 'form-group'>
-                <label for = 'Email'>Email Address</label>
-                <input id = 'Email' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_|.)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder = 'Email' required>
-            </div> <!-- End email -->
+            <div class = 'row'> <!-- Row for email -->
+	            <div class = 'form-group col-sm-6'>
+	                <label for = 'Email'>Email Address</label>
+	                <input id = 'Email' class = 'form-control' type = 'email' name = 'email' pattern = '([a-z]|\d|_|.)+(@)([a-z])+(\.)([a-z]){2,3}' placeholder = 'Email' required>
+	            </div> <!-- End email -->
+			</div>
 
-            <!-- comments -->
-            <div class = 'form-group'>
-                <label for = 'intent'>Questions/ comments</label>
-                <textarea rows = '5' id = 'intent' class = 'form-control' name = 'comments' required> </textarea>
-            </div> <!-- End comments -->
+            <div class = 'row'> <!-- Row for comments -->
+	            <div class = 'form-group col-xs-12'>
+	                <label for = 'intent'>Questions/ comments</label>
+	                <textarea rows = '5' id = 'intent' class = 'form-control' name = 'comments' required> </textarea>
+				</div>
+			</div> <!-- End comments -->
 
-            <!-- Beta interest -->
-            <div class = 'form-group'>
-                <label class = 'form-check'>I want to be a beta tester</label>
-                <input type = 'checkbox' name = 'beta_tester' value = 'True' class = 'form-check' />
-            </div <!-- End of beta interest -->
+            <div class = 'row'> <!-- Row for beta interest -->
+	            <div class = 'form-group col-xs-12'>
+	                <label class = 'form-check'>I want to be a beta tester</label>
+	                <input type = 'checkbox' name = 'beta_tester' value = 'True' class = 'form-check' />
+				</div>
+			</div <!-- End of beta interest -->
 
-            <button type = 'submit' class = 'btn btn-primary' value = 'Submit'>Send</button>
-				</form>
-                ";
+            <div class = 'row'>
+				<button type = 'submit' class = 'btn btn-primary' value = 'Submit'>Send</button>
+			</div>
+		</form>
+        ";
 		}
 		?>
 	</div>

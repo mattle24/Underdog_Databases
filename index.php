@@ -60,7 +60,7 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>Why Underdog Databases</h3>
 				<p>
-                    Underdog Databases is a database management platform especially designed for local campaigns and progressive organizations. Underdog’s goal is to allow any progressive campaign or group, no matter the size or funding, to have full access to data they need to succeed. Underdog develops software specially designed for progressives who cannot access expensive tools.
+                    Underdog Databases is a database management platform designed for local campaigns and progressive organizations. Our goal is to allow any progressive campaign or group, no matter the size or funding, to have full access to data management technology they need to succeed.
                     <!-- Not ready yet
                     <a href = 'underdog_workshop'>Take a look at what we offer and our developing programs.</a>	-->
                 </p>
@@ -69,14 +69,14 @@ else {
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>The Importance of Data</h3>
 				<p>
-					At the core of Underdog Databases, we believe data contains an important underlying truth. For your campaign or organization to make the largest possible impact, you need to maximize your organizers’ and volunteers’ efforts. Underdog helps you keep track of your supporters and determine which voters should be contacted. Today, no campaign can afford to ignore data.
+					At the core of Underdog Databases, we believe data contains an important underlying truth. For your campaign or organization to make the largest possible impact, you need to maximize your organizers’ and volunteers’ efforts. Underdog helps you keep track of your supporters and determine who to call next.
 				</p>
 			</article>
 
 			<article class='home-text-block col-md-4'>
 				<h3 class='block-header page-header'>How to Sign Up</h3>
 				<p>
-                    Underdog Databases is currently in beta testing. If you are interested in using the platform when the full version is released, <a href='new_campaign.php'>contact us!</a> If you would like to be a beta tester, you can <a href = 'contact_us.php'>sign up here.</a>
+                    Underdog Databases is currently in beta testing. If you are interested in using the platform when the full version is released, <a href='new_campaign.php'>contact us!</a> If you would like help us test the platform, you can <a href = 'contact_us.php'>sign up here.</a>
 				</p>
 			</article>
 		</div>
