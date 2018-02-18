@@ -1,6 +1,9 @@
 <?php
 echo "
     <meta charset='utf-8'>
+    <!-- For mobile-responsive design -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
     <!-- Barlow font -->
     <link href='https://fonts.googleapis.com/css?family=Barlow' rel='stylesheet'>
 
@@ -22,8 +25,6 @@ echo "
     <!-- Favicon -->
     <link rel='shortcut icon' href='images/favicon.png' type='image/x-icon'/>
 
-    <!-- For mobile-responsive design -->
-    <meta name='viewport' content='width=device-width, initial-scale=.9'>
 
 ";
 ?>

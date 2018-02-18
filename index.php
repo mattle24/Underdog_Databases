@@ -23,6 +23,8 @@ else {
 <head>
 	<title>Underdog Databases</title>
     <?php include "includes/head.php"; ?>
+	<meta name = 'keywords' content = "underdog databases, politics, data, progressive, target, voters, analytics, campaign">
+	<meta name = 'description' content = 'Data management for small political campaigns and movements.'>
 </head>
 <body>
 
