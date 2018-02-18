@@ -45,8 +45,8 @@ else {
 				<span>Bringing Big Data to Small Campaigns</span>
 			</div>
 			<div id='home-hero-buttons'>
-				<button type='button' class='btn btn-secondary cta-button'>New Campaign</button>
-				<button type='button' class='btn btn-secondary cta-button'>New User</button>
+				<a href = 'new_campaign.php'><button type='button' class='btn btn-secondary cta-button'>New Campaign</button></a>
+				<a href = 'new_user.php'><button type='button' class='btn btn-secondary cta-button'>New User</button></a>
 				<!-- <a class='cta-button' href= 'new_campaign.php'>New Campaign</a>
 				<a class='cta-button' href = 'new_user.php'>New User</a> -->
 			</div>
