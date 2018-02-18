@@ -120,14 +120,6 @@ p, label, a, legend {
     font-family: 'Rubik', 'Helvetica Neue', sans-serif;
 }
 
-@media screen and (max-width: 600px) {
- #home-hero-title {
-    font-size: 4em;
- }
- #home-hero-subtitle {
-     font-size: 1em;
- }
-}
 
 #home-hero-buttons {
     margin-top: 2em;
@@ -153,6 +145,17 @@ p, label, a, legend {
     margin-bottom: 27vh;
     padding-top: 5vh;
 }
+
+@media screen and (max-width: 600px) {
+ #home-hero-title {
+    font-size: 4em;
+ }
+ #home-hero-subtitle {
+     font-size: 1em;
+ }
+ #home-hero-image
+}
+
 
 /****** Begin Login and Sign Up Page Styles ********/
 
