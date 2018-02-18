@@ -107,19 +107,24 @@ p, label, a, legend {
 }
 
 #home-hero-buttons {
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .cta-button {
     font-size: 1.5em;
-    padding: 20px;
+    color: #0d579c;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-bottom: .5em;
+    padding: .7em;
     background-color: #fff;
 }
 
 .cta-button:hover {
+    color: #0d579c;
     transition: 0.3s;
     text-decoration: none;
-    background-color: #f2f2f2;
+    background-color: #D1D1D1;
     cursor: pointer;
 }
 
@@ -134,7 +139,7 @@ p, label, a, legend {
     font-size: 4em;
  }
  #home-hero-subtitle {
-     font-size: 1.5em;
+     font-size: 2em;
  }
 }
 

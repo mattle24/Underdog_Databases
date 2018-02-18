@@ -42,9 +42,11 @@ else {
 			<div id = 'home-hero-subtitle'>
 				<span>Bringing Big Data to Small Campaigns</span>
 			</div>
-			<div id='home-hero-buttons' class = 'row'>
-				<a class='cta-button col-md-4' href= 'new_campaign.php'>New Campaign</a>
-				<a class='cta-button col-md-4' href = 'new_user.php'>New User</a>
+			<div id='home-hero-buttons'>
+				<button type='button' class='btn btn-secondary cta-button'>New Campaign</button>
+				<button type='button' class='btn btn-secondary cta-button'>New User</button>
+				<!-- <a class='cta-button' href= 'new_campaign.php'>New Campaign</a>
+				<a class='cta-button' href = 'new_user.php'>New User</a> -->
 			</div>
 			<div class = 'spacer'> </div>
 
