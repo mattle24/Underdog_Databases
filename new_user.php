@@ -90,18 +90,31 @@
                 echo "There is already an account for this email";
             }
             else {
-                // Create a new user in the SQL database: initialize with no privledges
-                // $query = "CREATE USER ?@'localhost' IDENTIFIED BY ?;";
-                // $stmt = $db->prepare($query);
-                // $stmt->bind_param('ss', $email, $passwd);
-                // $stmt->execute();
-
                 // Create a record for the user for contact purposes etc.
                 $query = "INSERT INTO users (email, hashpassword, first, last)
                 VALUES(?, ?, ?, ?);";
                 $stmt = $db->prepare($query);
                 $stmt->bind_param('ssss', $email, $passwd, $first, $last);
                 $stmt->execute();
+                // ONLY FOR BETA: give them access to the test campaigns
+                // get userID
+                $query = "SELECT userid FROM users WHERE email = ?;";
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('s', $email);
+                $stmt->execute();
+                $stmt->store_result();
+                $stmt->bind_result($user_id);
+                $stmt->fetch();
+                $user_id = (int)$user_id;
+
+                // Now, insert into user_campaign_bridge as Volunteer
+                $query = "INSERT INTO user_campaign_bridge (userid, campaignid, position)
+                VALUES(?, 1, 1);";
+                $stmt = $db->prepare($query);
+                $stmt->bind_param('i', $user_id);
+                $stmt->execute();
+
+                echo "Succes! Your account has been made.";
                 header('Location: login.php');
             }
         }
