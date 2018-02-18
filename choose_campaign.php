@@ -7,14 +7,8 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
 <!DOCTYPE html>
 <html>
 <head>
- <title>Choose Campaign</title>
- <!-- Source Sans Pro font -->
- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
- <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
- <link rel='stylesheet' type='text/css' href="styles/all.css">
- <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
- <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <title>Choose Campaign</title>
+    <?php include "includes/head.php"; ?>
 </head>
 <body>
   <?php
