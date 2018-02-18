@@ -23,7 +23,6 @@ else {
 <head>
 	<title>Underdog Databases</title>
     <?php include "includes/head.php"; ?>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -34,7 +33,7 @@ else {
 	else {include 'includes/navbar_loggedin.php';}
 	?>
 
-	<div id='home-banner'>
+	<div id='home-banner' class = 'row'>
 		<img id='home-hero-image' src='images/background.png' alt='Background'>
 		<div id='home-hero-wrapper'>
 			<div id='home-hero-title'>

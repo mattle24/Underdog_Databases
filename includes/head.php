@@ -22,5 +22,8 @@ echo "
     <!-- Favicon -->
     <link rel='shortcut icon' href='images/favicon.png' type='image/x-icon'/>
 
+    <!-- For mobile-responsive design -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
 ";
 ?>
