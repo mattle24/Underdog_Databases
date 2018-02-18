@@ -49,9 +49,9 @@ if ( isset($_POST['submit']) ) {
 </head>
 <body>
     <?php include 'includes/navbar.php'; ?>
-    <div id = 'page-header0'>
+    <div id = 'page-header0' class = 'col-12'>
         <div class='spacer'></div>
-        <div id='white-container-small'>
+        <div id='white-container-small' class = 'col-12'>
             <div class = 'row'>
                 <h2>Login</h2>
                 <p>This site uses cookies to enhance security.</p>

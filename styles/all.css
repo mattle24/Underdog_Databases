@@ -1,16 +1,4 @@
 /****** Begin Global Styles ******/
-@font-face {
-    /* For titles */
-    font-family: Rubik, sans-serif;
-    src: url("https://fonts.googleapis.com/css?family=Rubik");
-}
-
-@font-face {
-    /* For text */
-    font-family: barlow;
-    src: url("https://fonts.googleapis.com/css?family=Barlow");
-}
-
 a {
     color: #0d579c;
 }
@@ -82,7 +70,7 @@ label {
 }
 
 .spacer {
-    height: 100px;
+    height: 10vh;
 }
 
 p, label, a, legend {
@@ -95,31 +83,28 @@ p, label, a, legend {
     width: 100%;
 }
 
-#home-hero-image {
+/* #home-hero-image {
     width: 100vw;
-    height: 80vh;
     object-fit: cover;
     position: absolute;
-}
+} */
 
 #home-hero-wrapper {
     position: relative;
-    top: 18vh;
     text-align: center;
 }
 
 #home-hero-title {
-    font-size: 7em;
-    color: #f3f3f3;
-    font-family: 'Rubik', sans-serif, 'Source Sans Pro', 'Helvetica Neue', sans-serif;
-}
-
-#home-hero-subtitle {
-    font-size: 2.25em;
-    color: #ffffff;
+    font-size: 8vh;
+    color: #fff;
     font-family: 'Rubik', 'Helvetica Neue', sans-serif;
 }
 
+#home-hero-subtitle {
+    font-size: 20px;
+    color: #fff;
+    font-family: 'Rubik', 'Helvetica Neue', sans-serif;
+}
 
 #home-hero-buttons {
     margin-top: 2em;
@@ -127,8 +112,6 @@ p, label, a, legend {
 
 .cta-button {
     font-size: 1.5em;
-    margin-left: 10px;
-    margin-right: 10px;
     padding: 20px;
     background-color: #fff;
 }
@@ -141,8 +124,8 @@ p, label, a, legend {
 }
 
 #home-container {
-    margin-top: 53vh;
-    margin-bottom: 27vh;
+    /* margin-top: 53vh; */
+    padding-bottom: 5vh;
     padding-top: 5vh;
 }
 
@@ -151,9 +134,8 @@ p, label, a, legend {
     font-size: 4em;
  }
  #home-hero-subtitle {
-     font-size: 1em;
+     font-size: 1.5em;
  }
- #home-hero-image
 }
 
 
@@ -174,15 +156,15 @@ p, label, a, legend {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    min-height: 650px;
+    min-height: 60vh;
 }
 
-@media (max-height:600px) {
-    /* Adjust for mobile devices */
+/* @media (max-height:600px) {
     #page-header0, #page-header1 #make-list-body {
         min-height: 550px;
     }
 }
+*/
 
 #page-header0{
     background-image: url('../resources/background.png');
@@ -221,8 +203,14 @@ p, label, a, legend {
     background: white;
     margin: auto;
     padding: 40px;
-    width: 450px;
+    width: 40vw;
     min-width: 500px;
+}
+
+@media screen and (max-width: 500px) {
+    #white-container-small {
+        width: 100vw;
+    }
 }
 
 #white-container-medium {

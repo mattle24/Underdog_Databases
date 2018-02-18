@@ -33,19 +33,21 @@ else {
 	else {include 'includes/navbar_loggedin.php';}
 	?>
 
-	<div id='home-banner' class = 'row'>
-		<img id='home-hero-image' src='images/background.png' alt='Background'>
-		<div id='home-hero-wrapper'>
-			<div id='home-hero-title'>
+	<div id = 'page-header0'>
+		<div class = 'spacer'> </div>
+		<div id = 'home-hero-wrapper'>
+			<div id = 'home-hero-title'>
 				<span>Underdog Databases</span>
 			</div>
-			<div id='home-hero-subtitle'>
+			<div id = 'home-hero-subtitle'>
 				<span>Bringing Big Data to Small Campaigns</span>
 			</div>
-			<div id='home-hero-buttons'>
-				<a class='cta-button' href= 'new_campaign.php'>New Campaign</a>
-				<a class='cta-button' href = 'new_user.php'>New User</a>
+			<div id='home-hero-buttons' class = 'row'>
+				<a class='cta-button col-md-4' href= 'new_campaign.php'>New Campaign</a>
+				<a class='cta-button col-md-4' href = 'new_user.php'>New User</a>
 			</div>
+			<div class = 'spacer'> </div>
+
 		</div>
 	</div>
 
