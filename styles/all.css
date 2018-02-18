@@ -7,7 +7,7 @@
 
 @font-face {
     /* For text */
-    font-family: barlow; 
+    font-family: barlow;
     src: url("https://fonts.googleapis.com/css?family=Barlow");
 }
 
@@ -108,19 +108,9 @@ p, label, a, legend {
     text-align: center;
 }
 
-@media (max-width:800px) {
-    /* Adjust for mobile devices */
-    /* Might need to play around with the exact adjustment */
-    #home-hero-wrapper { 
-        top: 10vh;
-    }
-}
-
-
 #home-hero-title {
     font-size: 7em;
-    font-weight: 400;
-    color: #ffffff;
+    color: #f3f3f3;
     font-family: 'Rubik', sans-serif, 'Source Sans Pro', 'Helvetica Neue', sans-serif;
 }
 
@@ -131,7 +121,7 @@ p, label, a, legend {
 }
 
 #home-hero-buttons {
-    margin-top: 50px;
+    margin-top: 2em;
 }
 
 .cta-button {
@@ -145,23 +135,20 @@ p, label, a, legend {
 .cta-button:hover {
     transition: 0.3s;
     text-decoration: none;
-/*    color: #0d579c;*/
     background-color: #f2f2f2;
     cursor: pointer;
 }
 
 #home-container {
-    margin-top: 58vh;
-    margin-bottom: 27vh;    
+    margin-top: 53vh;
+    margin-bottom: 27vh;
+    padding-top: 5vh;
 }
 
-.home-text-block {
-    /*** What happended here? There's no styling **/
-}
 /****** Begin Login and Sign Up Page Styles ********/
 
 #my-form {
-    /** #my-form is backwards-compatible, use #white-container-small 
+    /** #my-form is backwards-compatible, use #white-container-small
     going forward **/
     background: white;
     margin: auto;
@@ -180,7 +167,7 @@ p, label, a, legend {
 
 @media (max-height:600px) {
     /* Adjust for mobile devices */
-    #page-header0, #page-header1 #make-list-body { 
+    #page-header0, #page-header1 #make-list-body {
         min-height: 550px;
     }
 }
@@ -299,7 +286,7 @@ tr {
 
 #QLbody a{
   color: #0d579c;
-} 
+}
 
 #QLhead {
     display: table-header-group;
@@ -312,7 +299,7 @@ tr {
 /*** Join team styles **/
 .join-team label {
     color: black;
-    font-weight: normal !important;    
+    font-weight: normal !important;
 }
 
 /*** Help page styles **/
