@@ -25,6 +25,15 @@ else {
     <?php include "includes/head.php"; ?>
 	<meta name = 'keywords' content = "underdog databases, politics, data, progressive, target, voters, analytics, campaign">
 	<meta name = 'description' content = 'Data management for small political campaigns and movements.'>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114403761-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-114403761-1');
+	</script>
 </head>
 <body>
 
