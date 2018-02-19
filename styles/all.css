@@ -126,6 +126,10 @@ p, label, a, legend {
     cursor: pointer;
 }
 
+.error {
+    color: red;
+}
+
 #home-container {
     /* margin-top: 53vh; */
     padding-bottom: 5vh;
@@ -316,4 +320,9 @@ tr {
 
 #toc a:hover{
     background-color: #d0e6fb;
+}
+
+/*** Manager User styles **/
+.my_table {
+    margin: 5vh 0;
 }
