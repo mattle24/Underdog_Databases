@@ -10,13 +10,13 @@ include 'includes/check_logged_in.php';
 </head>
 <body>
    <?php include 'includes/navbar_loggedin.php'; ?>
-   <div id = "page-header1">
+   <div id = "page-header1" class = 'container-fluid'>
        <div class = 'spacer'></div>
            <div id = 'white-container-medium'>
                <div class = 'row'>
                    <h2>Change user position</h2>
                 </div>
-               
+
                 <?php
                 if (isset($_GET['err'])) {
                     $err = filter_input(INPUT_GET, 'err', FILTER_SANITIZE_STRING);
@@ -26,10 +26,10 @@ include 'includes/check_logged_in.php';
                 }
                 ?>
                <div class = 'row'>
-                   <p>You can change the positions of users with lower roles than you.</p> 
+                   <p>You can change the positions of users with lower roles than you.</p>
                    <p>You can change their role to a position equal to or lower than the role you have.</p>
                </div>
-               
+
                <form action = "change_user.php" method = "post">
                    <div class = 'form-group'>
                        <label for = 'formEmail'>User email</label>
@@ -60,11 +60,11 @@ include 'includes/check_logged_in.php';
         DB_USER,
         DB_PASSWORD,
         DB_NAME) or die("Failed to connect.");
-    $query = "SELECT users.first, users.last, users.email, positions_reference.name 
-    FROM users, user_campaign_bridge, campaigns, positions_reference 
+    $query = "SELECT users.first, users.last, users.email, positions_reference.name
+    FROM users, user_campaign_bridge, campaigns, positions_reference
     WHERE campaigns.table_name = ?
-    AND user_campaign_bridge.campaignID = campaigns.campaignID 
-    AND positions_reference.number = user_campaign_bridge.Position 
+    AND user_campaign_bridge.campaignID = campaigns.campaignID
+    AND positions_reference.number = user_campaign_bridge.Position
     AND users.userID = user_campaign_bridge.userID
     ORDER BY positions_reference.number DESC, users.last, users.first;";
     $stmt = $db->prepare($query);
@@ -72,7 +72,7 @@ include 'includes/check_logged_in.php';
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($first, $last, $email, $position);
-    
+
     echo '<center>
         <table>
         <thead id = "QLhead">
@@ -95,7 +95,7 @@ include 'includes/check_logged_in.php';
     }
     echo '</tbody>
     </table>
-    </center>'; 
+    </center>';
         ?>
        </div>
     <div class="spacer"></div>

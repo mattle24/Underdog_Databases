@@ -214,7 +214,7 @@ p, label, a, legend {
     background: white;
     margin: auto;
     padding: 5vh 5vw;
-    width: 50vh;
+    width: 60vh;
 }
 
 
@@ -222,12 +222,12 @@ p, label, a, legend {
     background: white;
     margin: auto;
     padding: 5vh 5vw;
-    width: 70vw;
+    width: 75vw;
 }
 
 #white-container-large {
     background: white;
-    width: 80vw;
+    width: 90vw;
     margin: auto;
     padding: 5vh 5vw;
 }
