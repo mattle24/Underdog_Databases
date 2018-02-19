@@ -116,6 +116,11 @@
 
                 echo "Succes! Your account has been made.";
                 header('Location: login.php');
+                echo "<script type=\"text/javascript\">
+                alert(\"You have created an account.\");
+                window.location = \"login.php\"
+                </script>";
+
             }
         }
     }
