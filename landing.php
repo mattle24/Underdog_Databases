@@ -1,11 +1,20 @@
 <?php session_start();
 include 'includes/check_logged_in.php';
-// reset the cookie each time the user comes to the landing
-setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
+
+
 // check for the post campaign variable
 if (isset($_POST['choose_cmp'])) {
     $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
+    header("Location: landing.php");
+    // This way, the SESSION variable is set and the user is redirected to the Landing
+    // This means that landing.php will be stored in the cache, allowing users to go
+    // back after navigating away from the landing.
 }
+
+// reset the cookie each time the user comes to the landing
+// This helps timing out inactive users.
+setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
+
 // TODO: make sure that user has access to the campaign. Otherwise,
 // can spoof with a curl(?) POST input
 ?>
@@ -13,7 +22,11 @@ if (isset($_POST['choose_cmp'])) {
 <html>
 <head>
     <title>Toolbox</title>
-    <?php include "includes/head.php"; ?>
+    <?php include "includes/head.php";
+    // prevent document from expiring
+    ini_set('session.cache_limiter','public');
+    session_cache_limiter(false);
+    ?>
 </head>
 <body>
     <?php include 'includes/navbar_loggedin.php'; ?>
