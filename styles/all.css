@@ -158,6 +158,17 @@ p, label, a, legend {
     min-width: 500px;
 }
 
+#home-header{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 50vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 #page-header0, #page-header1{
     background-size: cover;
     background-repeat: no-repeat;
