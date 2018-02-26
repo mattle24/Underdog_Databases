@@ -187,7 +187,7 @@ p, label, a, legend {
 }
 */
 
-#page-header0{
+#home-header, #page-header0{
     background-image: url('../resources/background.png');
 }
 
