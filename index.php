@@ -44,7 +44,7 @@ else {
 	else {include 'includes/navbar_loggedin.php';}
 	?>
 
-	<div id = 'page-header0'>
+	<div id = 'home-header'>
 		<div class = 'spacer'> </div>
 		<div id = 'home-hero-wrapper'>
 			<div id = 'home-hero-title'>
