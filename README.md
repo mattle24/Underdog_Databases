@@ -4,16 +4,9 @@
 
 TODO:
 
-- Add sample voter file and deploy 
-
 - In list_results.php, POST input is obtained without filtering input. There should be filter input arrays, or at least some array validation.
 
 - Landing security flaw (must be fixed before actual data deployed)
-
-- Meta tags
-
-- Reformat all pages to effectively use responsive design 
-    - Ie, be ready for mobile use
 
 - Add more search features 
     - Voter history
