@@ -43,7 +43,7 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($campaign, $table_name);
-        echo "<select class = 'form-control' name = 'choose_cmp'>";
+        echo "<select class = 'selectpicker' name = 'choose_cmp'>";
         while ($stmt->fetch()) {
             echo "<option value = $table_name>$campaign</option>";
         }

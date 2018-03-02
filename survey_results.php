@@ -21,7 +21,7 @@ include 'includes/check_logged_in.php';
                 header("Location: choose_campaign.php?msg=$msg");
             }
             $cmp = $_SESSION['cmp'];
-            
+
             // Connect to DB
             require_once('configs/config.php');
             $db = new mysqli(
@@ -29,7 +29,7 @@ include 'includes/check_logged_in.php';
             DB_USER,
             DB_PASSWORD,
             DB_NAME) or die('Failed to connect.');
-            
+
             // Add a dropdown menu of every question currently associated with this campaign
             echo"<form action = 'survey_results.php' method = 'post'>
                 <div class = 'form-group'>
@@ -43,7 +43,7 @@ include 'includes/check_logged_in.php';
             $stmt->execute();
             $stmt->store_result();
             $stmt->bind_result($question);
-            echo "<select class = 'form-control' name = 'question' required>";
+            echo "<select class = 'selectpicker' name = 'question' required>";
             while ($stmt->fetch()) {
                 echo "<option value =$question>$question</option>";
             }
@@ -57,10 +57,10 @@ include 'includes/check_logged_in.php';
                 // Show a quick analysis of the survey responses
                 $question = filter_input(INPUT_POST, 'question', FILTER_SANITIZE_STRING);
                 // Get count of distinct responses
-                $query = "SELECT response, COUNT(response) FROM responses, campaigns 
+                $query = "SELECT response, COUNT(response) FROM responses, campaigns
                 WHERE campaigns.table_name = ?
-                AND campaigns.campaignID = responses.campaign 
-                AND responses.question = ? 
+                AND campaigns.campaignID = responses.campaign
+                AND responses.question = ?
                 GROUP BY response";
                 // TODO: this counts the same voters multiple times
                 // This will be much easier to do after making the switch
@@ -94,7 +94,7 @@ include 'includes/check_logged_in.php';
 
             }
             ?>
-        
+
         </div>
         <div class = 'spacer'></div>
     </div>
