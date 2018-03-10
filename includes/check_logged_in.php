@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Check if the cookie has expired
 if(!isset($_COOKIE['logged_user'])) {
 	header('Location: ../logout.php');

@@ -161,9 +161,9 @@ p, label, a, legend {
 #home-header{
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
     background-attachment: fixed;
-    min-height: 50vh;
+    min-height: 60vh;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -172,7 +172,7 @@ p, label, a, legend {
 #page-header0, #page-header1{
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
     background-attachment: fixed;
     min-height: 85vh;
     width: 100%;

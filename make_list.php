@@ -26,12 +26,20 @@ if (!isset($_SESSION['cmp'])) {
         <div id = 'white-container-large' class = 'container'>
             <div class = 'row'>
                 <h2>Create List</h2>
+                <p>Select the search criteria you want to use to create a list of voters.
+                    Multiple search terms in the same group will look for any matches.
+                    Search terms in different groups will return voters who meet
+                    both critera (ie Democrats in a certain set of cities).
+                    You can click on a group header to collapse or expand the options.
+                </p>
             </div>
             <form action = 'list_results.php' method = 'post'>
                 <br>
                 <div class = 'row'>
-                    <h3>Geography</h3>
+                    <a data-toggle="collapse" href='#geo'><h3>Geography</h3></a>
                 </div>
+
+                <div class = 'row collapse in' id = 'geo'>
                 <?php
                 require_once("configs/config.php");
                 # Get the user's password and the campaign table name
@@ -79,85 +87,91 @@ if (!isset($_SESSION['cmp'])) {
                 }
                 echo "</fieldset>";
                 echo "</div>";
+                echo "</div>"; // End of Geography
 
                 echo "<div class = 'row'>
-                <h3>Personal Demography</h3>
+                <a href='#personal_demography' data-toggle='collapse'><h3>Personal Demography</h3></a>
                 </div>";
 
-                // AGE //
-                echo "<div class = 'form-group'>";
-                    echo "<fieldset><legend>Age</legend>";
-                        echo "<div class = 'col-xs-4'>";
-                            echo "<label for = 'mnAge'>Minimum Age</label>
-                            <input id = 'mnAge' class = 'form-control' type = 'number' name = 'minage' min='18' placeholder = '18' aria-describedby = 'minHelp'>";
-                            echo "<small id = 'minHelp' class = 'form-text text-muted'>Minimum age cannot be below 18.</small>";
-                        echo "</div>";
-                        echo "<div class = 'col-xs-4'>";
-                            echo "<label for = 'maxAge'>Maximum Age</label>
-                            <input id = 'maxAge' class = 'form-control' class = 'col-xs-2' type = 'number' name = 'maxage' max=$maxage>";
-                        echo "</div>";
-                    echo "</fieldset>";
-                echo "</div>";
+                echo "<div id ='personal_demography' class='collapse in'>";
 
-                // PARTY //
-                echo "<div class = 'form-check'>";
-                echo "<fieldset><legend>Party</legend>";
-                $query = "SELECT DISTINCT(Party) FROM $cmp;"; # Party Reg
-                $stmt = $db->prepare($query);
-                $stmt->execute();
-                $stmt->store_result();
-                $stmt->bind_result($party);
-                while ($stmt->fetch()) {
-                    echo "
-                    <label class = 'form-check-label' for = 'ptyChk'>$party</label>
-                    <input type = 'checkbox' name = 'party[]' value = $party>";
-                  echo "   "; // three spaces
-                }
-                echo "</fieldset>";
-                echo "</div>";
+                    // AGE //
+                    echo "<div class = 'form-group'>";
+                        echo "<fieldset><legend>Age</legend>";
+                            echo "<div class = 'col-xs-4'>";
+                                echo "<label for = 'mnAge'>Minimum Age</label>
+                                <input id = 'mnAge' class = 'form-control' type = 'number' name = 'minage' min='18' placeholder = '18' aria-describedby = 'minHelp'>";
+                                echo "<small id = 'minHelp' class = 'form-text text-muted'>Minimum age cannot be below 18.</small>";
+                            echo "</div>";
+                            echo "<div class = 'col-xs-4'>";
+                                echo "<label for = 'maxAge'>Maximum Age</label>
+                                <input id = 'maxAge' class = 'form-control' class = 'col-xs-2' type = 'number' name = 'maxage' max=$maxage>";
+                            echo "</div>";
+                        echo "</fieldset>";
+                    echo "</div>";
+
+                    // PARTY //
+                    echo "<div class = 'form-check'>";
+                    echo "<fieldset><legend>Party</legend>";
+                    $query = "SELECT DISTINCT(Party) FROM $cmp;"; # Party Reg
+                    $stmt = $db->prepare($query);
+                    $stmt->execute();
+                    $stmt->store_result();
+                    $stmt->bind_result($party);
+                    while ($stmt->fetch()) {
+                        echo "
+                        <label class = 'form-check-label' for = 'ptyChk'>$party</label>
+                        <input type = 'checkbox' name = 'party[]' value = $party>";
+                      echo "   "; // three spaces
+                    }
+                    echo "</fieldset>";
+                    echo "</div>";
+                echo "</div>"; // End of personal demography
 
                 // Survey Responses //
                 echo "<div class = 'row'>
-                        <h3>Survey Responses</h3>
+                        <a href ='#responses' data-toggle='collapse'><h3>Survey Responses</h3></a>
                     </div>";
-                echo "
-                <div class = 'form-group'>";
-                    // get list of questions
-                    $query = "SELECT question FROM survey_questions, campaigns
-                    WHERE campaigns.table_name = ?
-                    AND survey_questions.campaignid = campaigns.campaignid;";
-                    $stmt = $db->prepare($query);
-                    $stmt->bind_param('s', $cmp);
-                    $stmt->execute();
-                    $stmt->store_result();
-                    $stmt->bind_result($question);
-                    if ($stmt->num_rows > 0) {
-                        echo "<label for = 'formQ'>Question</label>";
-                        echo "<select id = 'formQ' class = 'form-control' name = 'question'>";
-                        echo "<option></option>";
-                        while ($stmt->fetch()) {
-                            echo "<option value = $question>$question</option>";
+                echo "<div id ='responses' class ='collapse in'>";
+                    echo "
+                    <div class = 'form-group'>";
+                        // get list of questions
+                        $query = "SELECT question FROM survey_questions, campaigns
+                        WHERE campaigns.table_name = ?
+                        AND survey_questions.campaignid = campaigns.campaignid;";
+                        $stmt = $db->prepare($query);
+                        $stmt->bind_param('s', $cmp);
+                        $stmt->execute();
+                        $stmt->store_result();
+                        $stmt->bind_result($question);
+                        if ($stmt->num_rows > 0) {
+                            echo "<label for = 'formQ'>Question</label>";
+                            echo "<select id = 'formQ' class = 'form-control' name = 'question'>";
+                            echo "<option></option>";
+                            while ($stmt->fetch()) {
+                                echo "<option value = $question>$question</option>";
+                            }
+                            echo "</select>";
+                        //    echo "</tbody>
+                        //    </table>";
+                        } else {
+                            echo "No questions found for your campaign.";
                         }
-                        echo "</select>";
-                    //    echo "</tbody>
-                    //    </table>";
-                    } else {
-                        echo "No questions found for your campaign.";
-                    }
-                    $stmt->free_result();
-                echo "</div>";
-                // Need to update possible responses with AJAX
-                // Need to give option to add more responses and more questions
-                ?>
+                        $stmt->free_result();
+                    echo "</div>";
+                    // Need to update possible responses with AJAX
+                    // Need to give option to add more responses and more questions
+                    ?>
 
-                <!-- Add dynamic response fields (add and remove fields) -->
-                <label>Add Response</label>
-                    <button class = 'btn btn-success js-add-button' type = 'button'>
-                        <span class ='glyphicon glyphicon-plus'></span>
-                    </button>
-                <div class = 'row'>
-                    <div class = 'entry input-group col-xs-5 js-inputs-container'>
-                        <input class = 'form-control' name = 'responses[]' type = 'text' placeholder='Response' />
+                    <!-- Add dynamic response fields (add and remove fields) -->
+                    <label>Add Response</label>
+                        <button class = 'btn btn-success js-add-button' type = 'button'>
+                            <span class ='glyphicon glyphicon-plus'></span>
+                        </button>
+                    <div class = 'row'>
+                        <div class = 'entry input-group col-xs-5 js-inputs-container'>
+                            <input class = 'form-control' name = 'responses[]' type = 'text' placeholder='Response' />
+                        </div>
                     </div>
                 </div>
                 <div class = 'row'>
