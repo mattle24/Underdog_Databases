@@ -192,10 +192,7 @@ session_start();
                 // When we make a selection, find the points that we selected.
                 // Change these markers' colors, and add them to the appropriate
                 // group.
-                graphDiv.on('plotly_selected', function(eventData) {            // TODO: overwrite plotly_selecting event that causes
-            // all the markers to fade when not selected
-
-
+                graphDiv.on('plotly_selected', function(eventData) {  
                     var lat = [];
                     var lon = [];
 
@@ -223,7 +220,7 @@ session_start();
                     });
                     Plotly.restyle(graphDiv, 'marker.opacity', [opacities], [0]);
                 });
-                console.log('try now :/');
+                console.log('If you can read this, please help me! Email underdogDatabases@gmail.com');
 
             // TODO: responsive design for the map
             </script>
