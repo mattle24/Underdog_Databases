@@ -95,7 +95,7 @@ include 'includes/check_logged_in.php';
                 $query = $query."WHERE YEAR(CURDATE()) - YEAR(dob) BETWEEN $minage AND $maxage";
                 $where = True;
             }else{
-                $query = $query." AND age BETWEEN $minage AND $maxage";
+                $query = $query." AND YEAR(CURDATE()) - YEAR(dob) BETWEEN $minage AND $maxage";
             }
         } elseif (isset($_POST['maxage'])) {
             $maxage = $_POST['maxage'];
