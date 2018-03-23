@@ -74,17 +74,18 @@ session_start();
 
             $voterIDSQuery = "('".implode("','", $voterIDS)."')";
 
-            // $query = "SELECT COUNT(DISTINCT(voter_id)) as number, latitude,
-            // longitude FROM seneca, geocoded_addresses
-            // WHERE voter_id IN $voterIDSQuery
-            // AND CONCAT(house_number, ' ', street_name) = address
-            // GROUP BY latitude, longitude;";
-
             $query = "SELECT COUNT(DISTINCT(voter_id)) as number, latitude,
             longitude FROM seneca, geocoded_addresses
-            WHERE voter_id LIKE 'A%'
-            AND CONCAT(house_number, ' ', street_name) = address
+            WHERE voter_id IN $voterIDSQuery
+            AND CONCAT(street_number, ' ', street_name) = address
             GROUP BY latitude, longitude;";
+
+            // // For testting on local server:
+            // $query = "SELECT COUNT(DISTINCT(voter_id)) as number, latitude,
+            // longitude FROM seneca, geocoded_addresses
+            // WHERE voter_id LIKE 'A%'
+            // AND CONCAT(house_number, ' ', street_name) = address
+            // GROUP BY latitude, longitude;";
 
             $stmt = $db->prepare($query);
             $stmt->execute();
