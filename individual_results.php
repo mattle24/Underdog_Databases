@@ -33,7 +33,7 @@ include 'includes/check_logged_in.php';
            exit;
         }
         $cmp = $_SESSION['cmp'];
-        $query = "SELECT First_Name, Last_Name, Age, Street_Number, Street_Name, City, Area_Code, Phone_Number, Party FROM $cmp
+        $query = "SELECT First_Name, Last_Name, YEAR(CURDATE()) - YEAR(dob) as Age, Street_Number, Street_Name, City, Area_Code, Phone_Number, Party FROM $cmp
                   WHERE voter_id = ? LIMIT 1;"; // limit 1 should be redundant, problem with test file
         $stmt = $db->prepare($query);
         $stmt->bind_param('s', $VoterID);

@@ -90,9 +90,9 @@ include 'includes/check_logged_in.php';
         if (isset($_POST['minage'])) {
             $minage = max(18, $_POST['minage']); // weird handling issue
             if (!empty($_POST['maxage'])){$maxage = filter_input(INPUT_POST, 'maxage', FILTER_SANITIZE_NUMBER_INT);}
-            else{ $maxage = 200; } // fewer conditions to code through
+            else{ $maxage = 200; } // fewer conditions to code through, I can just use BETWEEN
             if ($where == False){
-                $query = $query."WHERE age BETWEEN $minage AND $maxage";
+                $query = $query."WHERE YEAR(CURDATE()) - YEAR(dob) BETWEEN $minage AND $maxage";
                 $where = True;
             }else{
                 $query = $query." AND age BETWEEN $minage AND $maxage";
@@ -100,10 +100,10 @@ include 'includes/check_logged_in.php';
         } elseif (isset($_POST['maxage'])) {
             $maxage = $_POST['maxage'];
             if ($where == False){
-                $query = $query."WHERE age <= $maxage";
+                $query = $query."WHERE YEAR(CURDATE()) - YEAR(dob) <= $maxage";
                 $where = True;
             }else{
-                $query = $query." AND age <= $maxage";
+                $query = $query." AND YEAR(CURDATE()) - YEAR(dob) <= $maxage";
             }
         }
         // echo $query;
