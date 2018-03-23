@@ -78,6 +78,7 @@ session_start();
             longitude FROM seneca, geocoded_addresses
             WHERE voter_id IN $voterIDSQuery
             AND CONCAT(street_number, ' ', street_name) = address
+            AND latitude IS NOT NULL
             GROUP BY latitude, longitude;";
 
             // // For testting on local server:
@@ -192,7 +193,7 @@ session_start();
                 // When we make a selection, find the points that we selected.
                 // Change these markers' colors, and add them to the appropriate
                 // group.
-                graphDiv.on('plotly_selected', function(eventData) {  
+                graphDiv.on('plotly_selected', function(eventData) {
                     var lat = [];
                     var lon = [];
 
