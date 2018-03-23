@@ -13,8 +13,8 @@ include 'includes/check_logged_in.php';
 <div id = 'page-header1'>
     <div class="spacer"></div>
     <div id = 'white-container-large'>
-        <a href="make_list.php">Back to Make List</a>
-        <h2 align='center'>List Results</h2>
+
+        <h2>List Results</h2>
         <?php
         include("configs/config.php");
         # Get the user's password and the campaign table name
@@ -112,19 +112,30 @@ include 'includes/check_logged_in.php';
         $stmt->execute();
         $stmt->store_result();
         $stmt->bind_result($Voter_ID, $First_Name, $Last_Name, $Age, $Street_Number,$Street_Name, $City);
-        echo "<center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".<br /></p>";
-        echo "<form action = 'export_list.php' method = 'post'>
-            <button class = 'btn btn-secondary' type = 'submit'>Export List</button>
-            </form>";
+        echo "<center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".
+        <a href='make_list.php'>Back to make list</a></p>";?>
 
-        echo '<table>
+        <div class = 'btn-group'>
+            <div class = 'col-xs-4'>
+                <form action = 'export_list.php' method = 'post'>
+                    <button class = 'btn btn-secondary' type = 'submit'>Export List</button>
+                </form>
+            </div>
+
+            <div class = 'col-xs-4'>
+                <a href='canvassing.php'><button type='button' class = 'btn btn-outline-primary'>Cut Turf</button></a>
+            </div>
+        </div> <!-- End buttons -->
+        <?php
+        echo '<div class="table-responsive">
+                <table class="table">
                 <thead id = "QLhead">
                 <tr>
-                  <th>VOTER ID</th>
-                  <th>NAME</th>
-                  <th>ADDRESS</th>
-                  <th>CITY</th>
-                  <th>AGE</th>
+                  <th scope="col">VOTER ID</th>
+                  <th scope="col">NAME</th>
+                  <th scope="col">ADDRESS</th>
+                  <th scope="col">CITY</th>
+                  <th scope="col">AGE</th>
                 </tr>
                 </thead>
                 <tbody id = "QLbody">';
@@ -143,6 +154,7 @@ include 'includes/check_logged_in.php';
         }
         echo '</tbody>
         </table>
+        </div>
         </center>';
         $stmt->free_result();
         $db->close();

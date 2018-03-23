@@ -47,6 +47,7 @@ include 'includes/check_logged_in.php';
        if (!$searchlast && !$searchcity && !$searchstreet &&!$searchnumber && !$searchid && !$searchfirst) {
            echo '<p>You have not entered search details. Please go back and try again.</p>';
            // TODO: this is coded terribly. It should not exit. Also, this does not do anything because all this terms are set.
+           // Look at donor search results for something better
            exit();
         }
 

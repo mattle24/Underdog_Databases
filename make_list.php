@@ -20,6 +20,7 @@ if (!isset($_SESSION['cmp'])) {
     <?php
     if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
     include 'includes/navbar_loggedin.php';
+
     ?>
     <div id = "page-header1">
         <div class="spacer"></div>
