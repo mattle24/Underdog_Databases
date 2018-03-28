@@ -126,6 +126,7 @@ session_start();
                 numbers.forEach(function(ele) {
                  size.push(Math.min(Math.sqrt(ele), 20));
                 });
+		// console.log(size);
 
                 var latitude = <?php echo json_encode($Latitudes); ?>;
                 var longitude = <?php echo json_encode($Longitudes); ?>;
@@ -162,7 +163,7 @@ session_start();
                   lon: voterList.lon,
                   mode: 'markers',
                   marker: {
-                    size: voterList.size,
+                    size: 10,
                     color: colors,
                     opacity: 1,
                   },
