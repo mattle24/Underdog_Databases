@@ -10,7 +10,7 @@ session_start();
     <?php include 'includes/head.php'; ?>
     <title>Canvassing</title>
     <!-- Plotly.js -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="plotly/plotly-latest.min.js"></script>
 </head>
 <body>
     <?php
