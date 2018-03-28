@@ -26,7 +26,7 @@ include 'includes/check_logged_in.php';
             DB_USER, #$_SESSION['logged_user'],
             DB_PASSWORD,
             DB_NAME)or die('Failed to connect.');
-        $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, $cmp.Age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
+        $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, YEAR(CURDATE()) - YEAR(dob) as age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
         $where = False;
@@ -68,7 +68,7 @@ include 'includes/check_logged_in.php';
             $city = $_POST['city'];
             $cityWhere = "('".implode("','", $city)."')";
             if ($where == False){
-                $query = $query."WHERE city in $cityWhere";
+                $query = $query."WHERE city IN $cityWhere";
                 $where = True;
             }else{
                 $query = $query." AND city in $cityWhere";

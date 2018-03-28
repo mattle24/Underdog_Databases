@@ -84,7 +84,7 @@ if (!isset($_SESSION['cmp'])) {
                 while ($stmt->fetch()) {
                    echo "
                    <label class = 'form-check-label' for = 'cityChk'>$city</label>
-                   <input id = 'cityChk' class = 'form-check=input' type = 'checkbox' name = 'city[]' value = $city>";
+                   <input id = 'cityChk' class = 'form-check=input' type = 'checkbox' name = 'city[]' value = '$city'>";
                 }
                 echo "</fieldset>";
                 echo "</div>";
