@@ -81,7 +81,7 @@ session_start();
             AND latitude IS NOT NULL
             GROUP BY latitude, longitude;";
 
-            // // For testting on local server:
+            // // For testing on local server:
             // $query = "SELECT COUNT(DISTINCT(voter_id)) as number, latitude,
             // longitude FROM seneca, geocoded_addresses
             // WHERE voter_id LIKE 'A%'
@@ -119,13 +119,15 @@ session_start();
                 }
 
                 var numbers = <?php echo json_encode($Latitudes); ?>; // number of voters per coordinate pair
-                var size = [];
-                // size is the size of each dot
-                // make the size the minimum of the sqrt of the number of voters
+                var dotSize = [];
+                // make the dot size the minimum of the sqrt of the number of voters
                 // per coord pair and 20 so dots don't get too big
                 numbers.forEach(function(ele) {
-                 size.push(Math.min(Math.sqrt(ele), 20));
+                 dotSize.push(Math.min(Math.sqrt(ele)+5, 25));
                 });
+
+                // TODO: fix size. The calculation doesn't seem to be working,
+                // and I never added it the the voterList object.
 
                 var latitude = <?php echo json_encode($Latitudes); ?>;
                 var longitude = <?php echo json_encode($Longitudes); ?>;
@@ -143,6 +145,7 @@ session_start();
                     lat: latitude,
                     lon: longitude,
                     voterId: voter_keys,
+                    size: dotSize,
                     group: groups,
                 };
 
