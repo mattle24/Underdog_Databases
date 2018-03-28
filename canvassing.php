@@ -118,7 +118,7 @@ session_start();
                     return avg;
                 }
 
-                var numbers = <?php echo json_encode($Latitudes); ?>; // number of voters per coordinate pair
+                var numbers = <?php echo json_encode($Numbers); ?>; // number of voters per coordinate pair
                 var dotSize = [];
                 // make the dot size the minimum of the sqrt of the number of voters
                 // per coord pair and 20 so dots don't get too big
