@@ -9,8 +9,23 @@ session_start();
 <head>
     <?php include 'includes/head.php'; ?>
     <title>Canvassing</title>
+
     <!-- Plotly.js -->
     <script src="plotly/plotly-latest.min.js"></script>
+
+    <!-- Loading before php fully processes query
+         From: https://stackoverflow.com/questions/5427759/showing-a-progress-wheel-while-page-loads
+     -->
+    <script>
+        $('.loading')
+        .hide()  // hide it initially
+        .ajaxStart(function() {
+            $(this).show();
+        })
+        .ajaxStop(function() {
+            $(this).hide();
+        });
+    </script>
 </head>
 <body>
     <?php
@@ -23,14 +38,14 @@ session_start();
         <div class = 'spacer'></div>
         <div id = 'white-container-large'>
             <p>
-                Select different groups of voters.
+                Select different groups of voters. Use the help section.
             </p>
 
             <!-- Plots go in blank <div> elements.
                 You can size them in the plot layout,
                 or give the div a size as shown here.-->
             <!-- TODO: fix width styling of plot div -->
-            <div id="graph" class = 'col-xl-12' style="width:900px;height:800px;"></div>
+            <div id="graph" class = 'loading' style="width:900px;height:800px;"></div>
 
             <?php
             // Actual implementation: retrieve the query stored in the session["query"]
