@@ -13,6 +13,8 @@ session_start();
     <!-- Plotly.js -->
     <script src="plotly/plotly-latest.min.js"></script>
 
+</head>
+<body>
     <!-- Loading before php fully processes query
          From: https://stackoverflow.com/questions/5427759/showing-a-progress-wheel-while-page-loads
      -->
@@ -26,8 +28,6 @@ session_start();
             $(this).hide();
         });
     </script>
-</head>
-<body>
     <?php
 	if (!isset($_SESSION['logged_user'])){
 		include 'includes/navbar.php';
