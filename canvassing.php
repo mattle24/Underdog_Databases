@@ -37,15 +37,15 @@ session_start();
     <div id = 'page-header1' class = 'container-fluid'>
         <div class = 'spacer'></div>
         <div id = 'white-container-large'>
-            <p>
-                Select different groups of voters. Use the help section.
-            </p>
+            <div class = 'row'>
+                <h3>Cut Turf</h3>
+                <p>Use the "Lasso" or rectangle selected to split voters into
+                    different groups. Then, export the lists for canvassing.
+                </p>
+            </div>
 
-            <!-- Plots go in blank <div> elements.
-                You can size them in the plot layout,
-                or give the div a size as shown here.-->
-            <!-- TODO: fix width styling of plot div -->
-            <div id="graph" class = 'loading' style="width:900px;height:800px;"></div>
+            <!-- the plot goes after this blank div -->
+            <div id="graph" class = 'loading'></div>
 
             <?php
             // Actual implementation: retrieve the query stored in the session["query"]
@@ -172,8 +172,6 @@ session_start();
 
                 var group = 1; // init group at 1
 
-                var graphDiv = document.getElementById('graph');
-
                 var data = [{
                   type:'scattermapbox',
                   lat: voterList.lat,
@@ -206,42 +204,65 @@ session_start();
                     mapboxAccessToken:  mapboxToken,
                 });
 
-                Plotly.plot(graphDiv, data, layout);
+                // var graphDiv = document.getElementById('graph');
+                (function() {
+                    var d3 = Plotly.d3;
 
-                // When we make a selection, find the points that we selected.
-                // Change these markers' colors, and add them to the appropriate
-                // group.
-                graphDiv.on('plotly_selected', function(eventData) {
-                    var lat = [];
-                    var lon = [];
+                    var WIDTH_IN_PERCENT_OF_PARENT = 100,
+                        HEIGHT_IN_PERCENT_OF_PARENT = 90;
 
-                    var color_index = group % color_groups.length; // choose a color from the pre-defined 9
+                    var gd3 = d3.select('#graph')
+                        .append('div')
+                        .style({
+                            width: WIDTH_IN_PERCENT_OF_PARENT + '%',
+                            'margin-left': (100 - WIDTH_IN_PERCENT_OF_PARENT) / 2 + '%',
 
-                    eventData.points.forEach(function(pt) {
-                        lat.push(pt.lat);
-                        lon.push(pt.lon);
-                        colors[pt.pointNumber] = color_groups[color_index];
-                        voterList.group[pt.pointNumber] = group; // set group of selected dots
+                            height: HEIGHT_IN_PERCENT_OF_PARENT + 'vh',
+                            'margin-top': (100 - HEIGHT_IN_PERCENT_OF_PARENT) / 2 + 'vh'
+                        });
+
+                    var gd = gd3.node();
+
+                    Plotly.plot(gd, data, layout);
+
+                    window.onresize = function() {
+                        Plotly.Plots.resize(gd);
+                    };
+
+                    // When we make a selection, find the points that we selected.
+                    // Change these markers' colors, and add them to the appropriate
+                    // group.
+                    gd.on('plotly_selected', function(eventData) {
+                        var lat = [];
+                        var lon = [];
+
+                        var color_index = group % color_groups.length; // choose a color from the pre-defined 9
+
+                        eventData.points.forEach(function(pt) {
+                            lat.push(pt.lat);
+                            lon.push(pt.lon);
+                            colors[pt.pointNumber] = color_groups[color_index];
+                            voterList.group[pt.pointNumber] = group; // set group of selected dots
+                        });
+
+                        group ++ ; // increment group
+
+                        Plotly.restyle(gd, 'marker.color', [colors]);
                     });
 
-                    group ++ ; // increment group
+                    // TODO: While selecting, do not fade the not-selected dots
+                    gd.on('plotly_selecting', function(eventData) {
+                        var opacities = [];
+                        for(var i = 0; i < nVoters; i++) opacities.push(1);
 
-                    Plotly.restyle(graphDiv, 'marker.color', [colors]);
-                });
-
-                // TODO: While selecting, do not fade the not-selected dots
-                graphDiv.on('plotly_selecting', function(eventData) {
-                    var opacities = [];
-                    for(var i = 0; i < nVoters; i++) opacities.push(1);
-
-                    eventData.points.forEach(function(pt) {
-                        opacities[pt.pointNumber] = 1;
+                        eventData.points.forEach(function(pt) {
+                            opacities[pt.pointNumber] = 1;
+                        });
+                        Plotly.restyle(gd, 'marker.opacity', [opacities], [0]);
                     });
-                    Plotly.restyle(graphDiv, 'marker.opacity', [opacities], [0]);
-                });
-                console.log('If you can read this, please help me! Email underdogDatabases@gmail.com');
+                    console.log('If you can read this, please help me! Email underdogDatabases@gmail.com');
 
-            // TODO: responsive design for the map
+                })();
             </script>
         </div>
         <div class = 'spacer'></div>
