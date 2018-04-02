@@ -19,6 +19,7 @@ include 'includes/check_logged_in.php';
 
                 <div class = 'row'>
                 <?php
+                // See if there was an error on a previous attempted change
                 if (isset($_GET['err'])) {
                     $err = filter_input(INPUT_GET, 'err', FILTER_SANITIZE_STRING);
                     echo "<p class = 'error'>$err</p>";

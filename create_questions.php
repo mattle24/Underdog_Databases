@@ -64,37 +64,40 @@ include 'includes/check_logged_in.php';
     // If user is high enough level to change questions, allow them
     // to add and remove questions.
     include 'includes/check_level.php';
-    $user_pos = checkLevel("mhl84@cornell.edu", "cornell");
-    
+    $user_pos = checkLevel("mhl84@cornell.edu", $cmp);
+
     // Can play around with level required to add questions
-    if ($user_pos > 3) {
-        echo "
-        <!-- Create a Question -->
-        <form action = 'new_question.php' method = 'post'>
-            <div class = 'row'>
+    if ($user_pos > 1) {
+    echo "
+        <div> <!-- Add and remove question forms -->
+            <div class = 'col-xs-6'> <!-- div for create question -->
                 <h3>New Question</h3>
-            </div>
-            <div class = 'form-group'>
-                <input type = 'text' name = 'new_question' placeholder = 'New question' required/>
-            </div>
-            <button class = 'btn btn-primary'>Add</button>
-        </form>
-        <br>
-        <!-- Remove a Question -->
-        <form action = 'remove_question.php' method = 'post'>
-            <div class = 'row'>
+                <form action = 'new_question.php' method = 'post'>
+                    <div class = 'form-group'>
+                        <input type = 'text' name = 'new_question' placeholder = 'New question' required/>
+                    </div>
+                    <button type = 'submit' class = 'btn btn-primary'>Add</button>
+                </form>
+            </div> <!-- End create question -->
+
+            <div class = 'col-xs-6'> <!-- div for remove quesion -->
                 <h3>Remove Question</h3>
-            </div>
-            <div class = 'form-group'>
-                <input aira-describedby = 'rmvHelp' type = 'text' name = 'remove_question' required/>
-                <small id = 'rmvHelp' class = 'form-text text-muted'>This will prevent people from creating lists based on responses to this question and uploading new lists with responses to this question. It will not remove the existing responses to this question.</small>
-            </div>
-            <button class = 'btn btn-primary' type = 'submit'>Remove</button>
-        </form>";
+                <div class = 'form-group'>
+                    <input aira-describedby = 'rmvHelp' type = 'text' name = 'remove_question' required/>
+                    <small id = 'rmvHelp' class = 'form-text text-muted'>
+                        This will prevent people from creating lists based on responses to this
+                        question and uploading new lists with responses to this question. It will not
+                        remove the existing responses to this question.
+                    </small>
+                </div>
+                <button class = 'btn btn-primary' type = 'submit'>Remove</button>
+            </div> <!-- End remove quesion -->
+        </div>
+        ";
     } else {
         echo "You do not have permission to edit questions for this campaign.";
     }
-    
+
 
     ?>
     </div>

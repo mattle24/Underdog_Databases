@@ -1,11 +1,13 @@
 <?php session_start();
+include 'check_logged_in.php';
 // from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
 
 if(isset($_POST["Import"])){
 	// echo "Import was set!";
-	$filename=$_FILES["file"]["tmp_name"];		
-	if(!isset($_SESSION['cmp']) || !isset($_SESSION['logged_user'])){
-		header('Location: choose_campaign.php'); // if not set get the user out of here
+	$filename=$_FILES["file"]["tmp_name"];
+	if(!isset($_SESSION['cmp']){
+		$msg = 'Please choose a campaign before importing data';
+		header("Location: choose_campaign.php?msg=$msg"); // if not set get the user out of here
 		exit();
 	}
 	$cmp = $_SESSION['cmp'];
@@ -30,11 +32,11 @@ if(isset($_POST["Import"])){
 			// echo "File size greater than 0";
 			include('../configs/config.php');
 			$db = new mysqli(
-			DB_HOST, 
-			DB_USER, #$_SESSION['logged_user'], 
-			DB_PASSWORD, 
+			DB_HOST,
+			DB_USER, #$_SESSION['logged_user'],
+			DB_PASSWORD,
 			'voter_file'
-			)or die('Failed to connect.'); 
+			)or die('Failed to connect.');
 			// echo "Connected to database!";
 			if (($handle = fopen($filename, "r")) !== FALSE) {
 				while (($getData = fgetcsv($handle, 1000, ",")) !== FALSE) {
@@ -52,8 +54,8 @@ if(isset($_POST["Import"])){
 				        // $stmt->execute();
 				        // // printf($db->error);
 		        		// echo "The test worked";
-		        		$query = "INSERT INTO responses 
-		        		(voter_id, question, response, campaign) 
+		        		$query = "INSERT INTO responses
+		        		(voter_id, question, response, campaign)
 		        		VALUES(?, ?, ?, ?);";
 		        		$stmt = $db->prepare($query);
 						if ( !$stmt ) {
@@ -72,13 +74,13 @@ if(isset($_POST["Import"])){
 						}
 		        		// echo "Statement binded";
 		        		$stmt->execute();
-		        		// echo "Data was uploaded.";   		
+		        		// echo "Data was uploaded.";
 			        }
 			    }
 			    // Close connections
 				$db->close();
 				fclose($handle);
-			}	
+			}
 		}
 		else {echo "File size was 0.";}
 		echo "<script type=\"text/javascript\">
@@ -91,9 +93,9 @@ if(isset($_POST["Import"])){
 		echo "<script type=\"text/javascript\">
 		alert(\"Invalid File:Please Upload CSV File.\");
 		window.location = \"import_list.php\"
-		</script>";		
+		</script>";
 	}
-}	 
+}
 else {
 	echo "There was an error";
 }
