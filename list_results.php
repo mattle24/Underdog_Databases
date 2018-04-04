@@ -20,13 +20,12 @@ include 'includes/check_logged_in.php';
         # Get the user's password and the campaign table name
         $username = $_SESSION['logged_user'];
         $cmp = $_SESSION['cmp'];
-        # TODO: change this so that it uses user credentials, not default
         $db = new mysqli(
             DB_HOST,
             DB_USER, #$_SESSION['logged_user'],
             DB_PASSWORD,
             DB_NAME)or die('Failed to connect.');
-        $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, YEAR(CURDATE()) - YEAR(dob) as age, $cmp.Street_Number, $cmp.Street_Name, $cmp.City FROM $cmp ";
+        $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, YEAR(CURDATE()) - YEAR(dob) as age, CONCAT(Street_Number, ' ', Street_Name) as Address, $cmp.City, $cmp.Party, $cmp.Gender FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
         $where = False;
@@ -111,7 +110,7 @@ include 'includes/check_logged_in.php';
         $stmt = $db->prepare($query);
         $stmt->execute();
         $stmt->store_result();
-        $stmt->bind_result($Voter_ID, $First_Name, $Last_Name, $Age, $Street_Number,$Street_Name, $City);
+        $stmt->bind_result($Voter_ID, $First_Name, $Last_Name, $Age, $Address, $City, $Party, $Gender);
         echo "<center><p>Number of records found: ".$stmt->num_rows.". Showing  ".min($stmt->num_rows,75).".
         <a href='make_list.php'>Back to make list</a></p>";?>
 
@@ -136,6 +135,8 @@ include 'includes/check_logged_in.php';
                   <th scope="col">ADDRESS</th>
                   <th scope="col">CITY</th>
                   <th scope="col">AGE</th>
+                  <th scope="col">Party</th>
+                  <th scope="col">Gender</th>
                 </tr>
                 </thead>
                 <tbody id = "QLbody">';
@@ -146,9 +147,11 @@ include 'includes/check_logged_in.php';
             <tr>
               <td>$Voter_ID</td>
               <td>$First_Name $Last_Name</td>
-              <td>$Street_Number $Street_Name</td>
+              <td>$Address</td>
               <td>$City</td>
               <td>$Age</td>
+              <td>$Party</td>
+              <td>$Gender</td>
             </tr>";
             $row = $row + 1;
         }
