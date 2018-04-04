@@ -10,18 +10,11 @@ if (!isset($_SESSION['cmp'])) {
 <head>
     <title>Make List</title>
     <?php include "includes/head.php"; ?>
-    <!-- To add and remove responses -->
     <!-- import custom script for adding and removing fields -->
     <script src='scripts/add_rm_rsp.js'></script>
-
-
 </head>
 <body>
-    <?php
-    if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
-    include 'includes/navbar_loggedin.php';
-
-    ?>
+    <?php  include 'includes/navbar_loggedin.php';?>
     <div id = "page-header1">
         <div class="spacer"></div>
         <div id = 'white-container-large' class = 'container'>

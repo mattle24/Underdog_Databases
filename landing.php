@@ -4,8 +4,19 @@ include 'includes/check_logged_in.php';
 
 // check for the post campaign variable
 if (isset($_POST['choose_cmp'])) {
-    $_SESSION['cmp'] = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
-    header("Location: landing.php");
+    // Make sure this is a valid campaign for the user.
+    require_once 'configs/config.php';
+    $cmp = filter_input(INPUT_POST, 'choose_cmp', FILTER_SANITIZE_STRING);
+    $username = $_SESSION['logged_user'];
+    include('includes/check_campaign.php');
+    if (!checkCampaign($username, $cmp)) {
+        // Then the campaign is invalid, redirect to choose campaign
+        header("Location: choose_campaign.php");
+    }
+    else {
+        $_SESSION['cmp'] = $cmp;
+        header("Location: landing.php");
+    }
     // This way, the SESSION variable is set and the user is redirected to the Landing
     // This means that landing.php will be stored in the cache, allowing users to go
     // back after navigating away from the landing.

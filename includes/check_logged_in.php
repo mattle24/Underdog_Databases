@@ -1,7 +1,8 @@
 <?php
 // Check if the cookie has expired
 if(!isset($_COOKIE['logged_user'])) {
-	header('Location: ../logout.php');
+	$reason = "Your session has expired due to inactivity.";
+	header("Location: ../logout.php?reason=$reason");
 }
 // Check if Session variable is set
 if(!isset($_SESSION['logged_user'])) {

@@ -1,7 +1,5 @@
 <?php session_start();
-if (!isset($_SESSION['logged_user'])) {
-    header('Location: index.php');
-}
+include "check_logged_in.php";
 setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
 ?>
 <!DOCTYPE html>
@@ -21,7 +19,8 @@ setcookie('logged_user', $_SESSION['logged_user'], time() + 60 * 60);
       <?php
         // check for error messages
       if (isset($_GET['msg'])) {
-          echo filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING);
+          $msg = filter_input(INPUT_GET, 'msg', FILTER_SANITIZE_STRING);
+          echo "<p class = 'error'>$msg</p>";
       }
       echo "<form action = 'landing.php' method = 'post' id ='choose_cmp'>";
         // BS Dropdown

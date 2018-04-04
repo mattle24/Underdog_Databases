@@ -60,7 +60,11 @@ if ( isset($_POST['submit']) ) {
 
             <div class = 'row'>
                 <form id='login-form' action='login.php' method='post'>
-                    <?php echo "<p>$err_msg</p>"; ?>
+                    <?php
+                    if (isset($_GET['msg'])) {
+                        $err_msg = $_GET['msg'];
+                    }
+                    echo "<p class = 'error'>$err_msg</p>"; ?>
                     <div class = 'row'>
                         <!-- Email input -->
                         <div class = 'form-group col-sm-6'>
