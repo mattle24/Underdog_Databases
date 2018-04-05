@@ -59,9 +59,10 @@ if (!isset($_SESSION['cmp'])) {
                 echo "<fieldset>
                 <legend>Zip Code</legend>";
                 while ($stmt->fetch()) {
+                   echo "<div class = col-md-2>";
                    echo "<label class = 'form-check-label' for = 'zipChk'>$zip_code</label>
                    <input id = 'zipChk' class = 'form-check-input' type = 'checkbox' name = 'zip[]' value = $zip_code>";
-                   echo "   "; // three spaces
+                   echo "</div>"; // three spaces
                 }
                 echo "</fieldset>";
                 echo "</div>";
@@ -75,9 +76,10 @@ if (!isset($_SESSION['cmp'])) {
                 $stmt->store_result();
                 $stmt->bind_result($city);
                 while ($stmt->fetch()) {
-                   echo "
+                   echo "<div class = 'col-md-2>'
                    <label class = 'form-check-label' for = 'cityChk'>$city</label>
-                   <input id = 'cityChk' class = 'form-check=input' type = 'checkbox' name = 'city[]' value = '$city'>";
+                   <input id = 'cityChk' class = 'form-check=input' type = 'checkbox' name = 'city[]' value = '$city'>
+                   </div>";
                 }
                 echo "</fieldset>";
                 echo "</div>";
@@ -92,14 +94,14 @@ if (!isset($_SESSION['cmp'])) {
                     // AGE //
                     echo "<div class = 'form-group'>";
                         echo "<fieldset><legend>Age</legend>";
-                            echo "<div class = 'col-xs-4'>";
+                            echo "<div class = 'col-md-4'>";
                                 echo "<label for = 'mnAge'>Minimum Age</label>
                                 <input id = 'mnAge' class = 'form-control' type = 'number' name = 'minage' min='18' placeholder = '18' aria-describedby = 'minHelp'>";
                                 echo "<small id = 'minHelp' class = 'form-text text-muted'>Minimum age cannot be below 18.</small>";
                             echo "</div>";
-                            echo "<div class = 'col-xs-4'>";
+                            echo "<div class = 'col-md-4'>";
                                 echo "<label for = 'maxAge'>Maximum Age</label>
-                                <input id = 'maxAge' class = 'form-control' class = 'col-xs-2' type = 'number' name = 'maxage' max=$maxage>";
+                                <input id = 'maxAge' class = 'form-control' class = 'col-md-2' type = 'number' name = 'maxage' max=$maxage>";
                             echo "</div>";
                         echo "</fieldset>";
                     echo "</div>";
@@ -114,8 +116,10 @@ if (!isset($_SESSION['cmp'])) {
                     $stmt->bind_result($party);
                     while ($stmt->fetch()) {
                         echo "
-                        <label class = 'form-check-label' for = 'ptyChk'>$party</label>
-                        <input type = 'checkbox' name = 'party[]' value = $party>";
+                        <div class = 'col-md-2'>
+                            <label class = 'form-check-label' for = 'ptyChk'>$party</label>
+                            <input type = 'checkbox' name = 'party[]' value = $party>
+                        </div>";
                       echo "   "; // three spaces
                     }
                     echo "</fieldset>";
@@ -163,7 +167,7 @@ if (!isset($_SESSION['cmp'])) {
                             <span class ='glyphicon glyphicon-plus'></span>
                         </button>
                     <div class = 'row'>
-                        <div class = 'entry input-group col-xs-5 js-inputs-container'>
+                        <div class = 'entry input-group col-md-5 js-inputs-container'>
                             <input class = 'form-control' name = 'responses[]' type = 'text' placeholder='Response' />
                         </div>
                     </div>
