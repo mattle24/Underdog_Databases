@@ -1,16 +1,17 @@
 <?php session_start();
 
-if (!isset($_SESSION['logged_user'])){header('Location: index.php');}
+include 'includes/check_logged_in.php';
 
 $my_query = $_SESSION['query'];
 include("configs/config.php");
 # TODO: change this so that it uses user credentials, not default
 $db = new mysqli(
 DB_HOST,
-DB_USER, #$_SESSION['logged_user'],
+DB_USER,
 DB_PASSWORD,
 DB_NAME
 )or die('Failed to connect.');
+
 $query = "INSERT INTO lists (query_text) VALUES(?);";
 $stmt = $db->prepare($query);
 $stmt->bind_param('s', $my_query);
@@ -32,23 +33,23 @@ header("Content-Disposition: attachment; filename= $file_name");
 $output = fopen('php://output', 'w');
 
 // output the column headings
-fputcsv($output, array('VoterID', 'First', 'Last', 'Age', 'Address', 'City'));
+fputcsv($output, array('Voter ID', 'First', 'Last', 'Age','Gender', 'Party', 'Address', 'City'));
 
 // fetch the data
 $db = new mysqli(
 DB_HOST,
-DB_USER, #$_SESSION['logged_user'],
+DB_USER,
 DB_PASSWORD,
 DB_NAME)or die('Failed to connect.');
 
 $stmt = $db->prepare($my_query);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($VoterID, $FirstName, $LastName, $Age, $StreetNumber,$StreetName, $City);
+$stmt->bind_result($Voter_ID, $First_Name, $Last_Name, $Age, $Address, $City, $Party, $Gender);
 
 // loop over the rows, outputting them
 while ($stmt->fetch()) {
-    fputcsv($output, array($VoterID, $FirstName, $LastName, $Age, $StreetNumber.' '.$StreetName, $City));
+    fputcsv($output, array( $Voter_ID, $First_Name, $Last_Name, $Age, $Gender, $Party, $Address, $City ));
 }
 fclose($output);
 ?>
