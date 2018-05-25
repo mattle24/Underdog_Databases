@@ -25,6 +25,7 @@ include 'includes/check_logged_in.php';
             DB_USER, #$_SESSION['logged_user'],
             DB_PASSWORD,
             DB_NAME)or die('Failed to connect.');
+        // TODO: this is wrong. It goes based on year, not the date in the year.
         $query = "SELECT $cmp.voter_id, $cmp.First_Name, $cmp.Last_Name, YEAR(CURDATE()) - YEAR(dob) as age, CONCAT(Street_Number, ' ', Street_Name) as Address, $cmp.City, $cmp.Party, $cmp.Gender FROM $cmp ";
         # if not where, add "WHERE"
         # if where, add "AND"
@@ -121,9 +122,10 @@ include 'includes/check_logged_in.php';
                 </form>
             </div>
 
-            <div class = 'col-xs-4'>
+            <!-- Remove canvassing button while canvassing is in development -->
+            <!-- <div class = 'col-xs-4'>
                 <a href='canvassing.php'><button type='button' class = 'btn btn-outline-primary'>Cut Turf</button></a>
-            </div>
+            </div> -->
         </div> <!-- End buttons -->
         <?php
         echo '<div class="table-responsive">
