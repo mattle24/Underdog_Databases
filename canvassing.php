@@ -27,7 +27,8 @@ include 'includes/check_logged_in.php';
         <div id = 'white-container-large'>
             <div class = 'row'>
                 <h3>Cut Turf</h3>
-                <p>Use the "Lasso" or rectangle selected to split voters into
+                <p>
+                    Use the "Lasso" or rectangle selected to split voters into
                     different groups. Then, export the lists for canvassing.
                 </p>
             </div>
@@ -104,6 +105,13 @@ include 'includes/check_logged_in.php';
             //         and UPPER(voters2.City) = UPPER(ga2.city))
             //     WHERE voter_id IN $voterIDSQuery GROUP BY ga2.latitude, ga2.longitude) two ON latitude = group_lat AND longitude = group_lon;";
 
+            // TODO: my theory is that the first query has more rows than the
+            // second query. If that is the case, then I need to filter the results
+            // from the first query so that voters without adddresses do not show
+            // up in the JS.
+            // However, I do not think that explains why there are lat/lon coords
+            // without an address. I need to figure that out too.
+            
             $query = "SELECT voter_id, number, latitude,longitude
             FROM $cmp as voters
             JOIN geocoded_addresses as ga ON
@@ -116,7 +124,7 @@ include 'includes/check_logged_in.php';
                     and UPPER(voters2.City) = UPPER(ga2.city))
                 WHERE voter_id IN $voterIDSQuery
                 GROUP BY ga2.latitude, ga2.longitude) two ON latitude = group_lat AND longitude = group_lon;";
-            // echo $query;
+            echo $query; echo "<h1>Warning: query echoed.</h1>";
             // // For testing on local server:
             // $query = "SELECT voter_id, number, latitude,longitude
             // FROM seneca as voters
@@ -164,7 +172,7 @@ include 'includes/check_logged_in.php';
 
             var dotSize = [];
             // make the dot size the minimum of the sqrt of the number of voters
-            // per coord pair and 20 so dots don't get too big
+            // per coord pair and 25 so dots don't get too big
             numbers.forEach(function(ele) {
              dotSize.push(Math.min(Math.sqrt(ele)+5, 25));
             });
@@ -203,11 +211,13 @@ include 'includes/check_logged_in.php';
                 };
                 allVoters.push(newVoter);
             };
+            // allVoters is now an array of objects (that are voters)
 
             var coordsList = {
                 lat: latitude,
                 lon: longitude,
                 size: dotSize,
+                label: addresses,
             };
 
             var group = 1; // init group as 1
@@ -228,6 +238,7 @@ include 'includes/check_logged_in.php';
                 color: colors,
                 opacity: 1,
               },
+              text : coordsList.label,
             }]
 
             var layout = {
@@ -245,6 +256,8 @@ include 'includes/check_logged_in.php';
               },
             }
 
+            // TODO: make API query secure
+            // https://stackoverflow.com/questions/46024518/passing-api-token-in-javascript-how-to-keep-it-secure
             var mapboxToken = "<?php echo $mapboxToken ?>";
             Plotly.setPlotConfig({
                 mapboxAccessToken:  mapboxToken,
@@ -286,9 +299,7 @@ include 'includes/check_logged_in.php';
                     });
 
                     group ++ ; // increment group
-                    console.log("A");
                     Plotly.restyle(gd, 'marker.color', [colors]);
-                    console.log("B");
                 });
 
                 // TODO: While selecting, do not fade the not-selected dots
