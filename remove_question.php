@@ -27,7 +27,7 @@ $stmt->fetch();
 // Obtain question to be deleted and delete
 $rm_question = trim(filter_input(INPUT_POST, 'remove_question', FILTER_SANITIZE_STRING));
 $query = "DELETE FROM survey_questions
-WHERE campaignid = ? 
+WHERE campaignid = ?
 AND question = ?;";
 $stmt = $db->prepare($query);
 $stmt->bind_param('is', $cmpid, $rm_question);

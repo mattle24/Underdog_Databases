@@ -24,15 +24,23 @@ $stmt->store_result();
 $stmt->bind_result($cmpid);
 $stmt->fetch();
 
-// Insert new question and campaign id into survey_questions
+// Make sure question is not already entered
 $new_question = trim(filter_input(INPUT_POST, 'new_question', FILTER_SANITIZE_STRING));
+include 'includes/questions_in_array.php';
+$questions = get_questions($cmp);
+// if new question in array, go back to main question page with warning.
+if (in_array($new_question, $questions)) {
+    $msg = "This question has already been created.";
+    header("Location: create_questions.php?msg=$msg");
+    exit();
+}
+// Insert new question and campaign id into survey_questions
 $query = "INSERT INTO survey_questions (campaignid, question)
 VALUES(?, ?);";
 $stmt = $db->prepare($query);
 $stmt->bind_param('is', $cmpid, $new_question);
 $stmt->execute();
 if ($stmt) {
-    echo "B";
     header("Location: create_questions.php");
 } else {
     echo "Failed.";
