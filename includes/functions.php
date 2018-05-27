@@ -1,8 +1,7 @@
 <?php session_start();
-include 'check_logged_in.php';
 // from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
 
-if(isset($_POST["Import"])){
+if(isset($_POST["upload_csv"])){
 	// echo "Import was set!";
 	$filename=$_FILES["file"]["tmp_name"];
 	if(!isset($_SESSION['cmp']){
@@ -33,7 +32,7 @@ if(isset($_POST["Import"])){
 			include('../configs/config.php');
 			$db = new mysqli(
 			DB_HOST,
-			DB_USER, #$_SESSION['logged_user'],
+			DB_USER, 
 			DB_PASSWORD,
 			'voter_file'
 			)or die('Failed to connect.');
