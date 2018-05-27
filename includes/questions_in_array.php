@@ -10,7 +10,8 @@ function get_questions($cmp) {
     )or die('Failed to connect.');
     $query = "SELECT DISTINCT(question) FROM survey_questions, campaigns
     WHERE campaigns.table_name = ?
-    AND survey_questions.campaignid = campaigns.campaignid;";
+    AND survey_questions.campaignid = campaigns.campaignid
+    ORDER BY question;";
     $stmt = $db->prepare($query);
     $stmt->bind_param('s', $cmp);
     $stmt->execute();
