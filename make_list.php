@@ -4,7 +4,6 @@ if (!isset($_SESSION['cmp'])) {
     header("Location: choose_campaign.php");
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,7 +100,7 @@ if (!isset($_SESSION['cmp'])) {
                             echo "</div>";
                             echo "<div class = 'col-md-4'>";
                                 echo "<label for = 'maxAge'>Maximum Age</label>
-                                <input id = 'maxAge' class = 'form-control' class = 'col-md-2' type = 'number' name = 'maxage' max=$maxage>";
+                                <input id = 'maxAge' class = 'form-control' class = 'col-md-2' type = 'number' name = 'maxage' max=130>";
                             echo "</div>";
                         echo "</fieldset>";
                     echo "</div>";

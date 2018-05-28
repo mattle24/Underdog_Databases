@@ -1,101 +1,53 @@
-<?php session_start();
-// from https://www.cloudways.com/blog/import-export-csv-using-php-and-mysql/
+<?php
 
-if(isset($_POST["upload_csv"])){
-	// echo "Import was set!";
-	$filename=$_FILES["file"]["tmp_name"];
-	if(!isset($_SESSION['cmp']){
-		$msg = 'Please choose a campaign before importing data';
-		header("Location: choose_campaign.php?msg=$msg"); // if not set get the user out of here
-		exit();
-	}
-	$cmp = $_SESSION['cmp'];
-	if(!isset($_SESSION['questions'])) {
-		header('Location: import_list.php');
-		// if questions aren't set, redirect to import list
-	}
-	$questions = $_SESSION['questions'];
-	// make sure the question start and the id column are set
-	// todo: id col
-	if(!isset($_SESSION['Qstart']) || !isset($_SESSION['id_col'])) {
-		header('Location: import_list.php');
-	}
-	$Qstart = $_SESSION['Qstart'];
-	$id_col = $_SESSION['id_col'];
+// This is the new file for helper functions. All helper functions should migrate here.
+// TOC:
+// - get campaign number
+// - get user credentials
 
-	// connect to database
-
-	try {
-		// echo "In try block";
-		if($_FILES["file"]["size"] > 0) {
-			// echo "File size greater than 0";
-			include('../configs/config.php');
-			$db = new mysqli(
-			DB_HOST,
-			DB_USER, 
-			DB_PASSWORD,
-			'voter_file'
-			)or die('Failed to connect.');
-			// echo "Connected to database!";
-			if (($handle = fopen($filename, "r")) !== FALSE) {
-				while (($getData = fgetcsv($handle, 1000, ",")) !== FALSE) {
-					// echo "Data obtained. ";
-		        	// for each question, insert data
-		        	$col = -1; // init col to be zero from Qstart during first loop
-		        	foreach ($questions as $q) {
-		        		// loop through each question
-		        		// echo "Loop started";
-		        		$col = $col + 1; // for the next question
-				        // $query = "SELECT DISTINCT(question) FROM responses;";
-				        // printf($db->error);
-				        // $stmt = $db->prepare($query);
-				        // printf($db->error);
-				        // $stmt->execute();
-				        // // printf($db->error);
-		        		// echo "The test worked";
-		        		$query = "INSERT INTO responses
-		        		(voter_id, question, response, campaign)
-		        		VALUES(?, ?, ?, ?);";
-		        		$stmt = $db->prepare($query);
-						if ( !$stmt ) {
-							echo "Fatal prepare error...";
-							printf("Error: %s.\n", $stmt->error);
-							die;
-						}
-						// echo "Statment prepared.";
-						$voter_id = (int)$getData[$id_col];
-						$response = $getData[$col + $Qstart]; // column of current question
-		        		$bind = $stmt->bind_param('isss', $voter_id, $q, $response, $cmp);
-						if ( !$bind ) {
-							echo "Fatal binding error...";
-							// printf("Error: %s.\n", $stmt->error);
-							die;
-						}
-		        		// echo "Statement binded";
-		        		$stmt->execute();
-		        		// echo "Data was uploaded.";
-			        }
-			    }
-			    // Close connections
-				$db->close();
-				fclose($handle);
-			}
-		}
-		else {echo "File size was 0.";}
-		echo "<script type=\"text/javascript\">
-		alert(\"CSV File has been successfully Imported.\");
-		window.location = \"../landing.php\"
-		</script>";
-	}
-	catch (Exception $e) {
-		echo "Error. Caught except $e.";
-		echo "<script type=\"text/javascript\">
-		alert(\"Invalid File:Please Upload CSV File.\");
-		window.location = \"import_list.php\"
-		</script>";
-	}
+function getCampaignNumber($cmp) {
+    require_once 'configs/config.php';
+    $db = new mysqli(
+        DB_HOST,
+        DB_USER,
+        DB_PASSWORD,
+        DB_NAME) or die("Failed to connect");
+    $query = "SELECT campaignid FROM campaigns WHERE table_name = ?;";
+    $stmt = $db->prepare($query);
+    $stmt -> bind_param('s', $cmp);
+    $stmt -> execute();
+    $stmt -> store_result();
+    $stmt -> bind_result($campaign_number);
+    if ($stmt->fetch()) {
+        $db->close();
+        return($campaign_number);
+    }
+    $db->close();
+    // TODO: Error handling
+    return("SomethingBad");
 }
-else {
-	echo "There was an error";
+
+
+
+
+// Get the userid and password given
+// an email address
+function getCredentials($email) {
+    require_once "configs/config.php";
+    $db = new mysqli(
+        DB_HOST,
+        DB_USER,
+        DB_PASSWORD,
+        DB_NAME) or die("Failed to connect");
+    $query = "SELECT userid, hashpassword FROM users
+    WHERE email = ?;";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($user_id, $hashpassword);
+    $stmt->fetch();
+    $stmt->free_result();
+    $db->close();
+    return array($user_id, $hashpassword);
 }
-?>
